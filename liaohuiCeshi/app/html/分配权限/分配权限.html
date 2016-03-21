@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../../../node_modules/bootstrap/dist/css/bootstrap.css" rel='stylesheet'>
+    <link href="../../../node_modules/bootstrap/dist/css/bootstrap-theme.css" rel='stylesheet'>
+    <link href="../../../../lh_file/css/main.min.css" rel='stylesheet'>
+
+
+</head>
+
+
+<style>
+
+</style>
+<body>
+
+<!--myApp-->
+<div ng-app="myApp" class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="page-title">组织架构
+                <small>User list</small>
+            </h3>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs ">
+                <li role="presentation" class="active"><a href="#">用户管理</a></li>
+                <li role="presentation"><a href="#">企业管理</a></li>
+                <li role="presentation"><a href="#">权限管理</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i><a href="">账户管理</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                <li><a href="#">用户列表 </a></li>
+                <li class="pull-right">
+                    <div data-original-title="Change dashboard date range" data-placement="top"
+                         class="dashboard-date-range tooltips" id="dashboard-report-range">
+                        <i class="fa fa-calendar"></i>
+                        <span></span>
+                        <i class="fa fa-angle-down"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    icon-leaf="glyphicon glyphicon-plus" //没有数据
+    icon-expand="glyphicon glyphicon-eur" //默认显示
+    icon-collapse="glyphicon glyphicon-minus" //展开时显示
+
+    <!--zuzhijiagou-->
+    <div class="row" ng-controller="zuzhijiagou">
+
+
+        <div class="col-md-12">
+            <tree-grid tree-data="tree_data"
+                       expand-level="2"
+                       col-defs="col_name"
+                       tree-control="my_tree"
+                       expand-on="expanding_property"
+                       template-url="tree.html"
+                       on-select="my_tree_handler(branch)"
+                       icon-leaf="glyphicon glyphicon-folder-open">
+
+
+            </tree-grid>
+
+        </div>
+
+
+
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="add">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="border-bottom:none">
+
+
+
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#home" aria-controls="home" role="tab"
+                                                                      data-toggle="tab">新建部门</a></li>
+                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
+                                                       data-toggle="tab">新建用户</a></li>
+                        </ul>
+                    </div>
+                    <div class="modal-body" style="padding-top: 0px; padding-bottom: 20px">
+
+
+                        <!-- Tab panes -->
+                        <div class="tab-content ">
+                            <div role="tabpanel" class="tab-pane active  " id="home" >
+
+
+                                <div class="row">
+                                    <form class="col-md-12 w5c-form demo-form" w5c-form-validate="addForm.validateOptions"
+                                          name="validateForm" ng-controller="addBumen">
+
+
+                                        <div class="form-group">
+                                            <label >部门名称</label>
+                                            <input  class="form-control"   placeholder="部门名称"
+                                                   ng-model="addForm.entity.childname" name="childname" required="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label >部门描述</label>
+                                            <textarea class="form-control" rows="3" ng-model="addForm.entity.description"></textarea>
+                                        </div>
+
+                                        <button type="button" ng-click="validateForm.reset()" class="btn btn-default" data-dismiss="modal">取消</button>
+                                        <button type="submit" class="btn btn-primary" w5c-form-submit="addForm.save($event)">保存</button>
+
+                                    </form>
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div role="tabpanel" class="tab-pane" id="profile">
+
+                                <div class="row">
+                                    <form class="col-md-12 w5c-form demo-form" w5c-form-validate="addForm.validateOptions"
+                                          name="validateForm" ng-controller="addUser">
+
+
+                                        <div class="form-group">
+                                            <label >用户名字</label>
+                                            <input  class="form-control"   placeholder="用户名字"
+                                                    ng-model="addForm.entity.childname" name="childname" required="">
+                                        </div>
+
+
+
+                                        <button type="button" ng-click="validateForm.reset()" class="btn btn-default" data-dismiss="modal">取消</button>
+                                        <button type="submit" class="btn btn-primary" w5c-form-submit="addForm.save($event)">保存</button>
+
+                                    </form>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="edit">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="border-bottom:none">
+
+
+
+                       <h4>编辑</h4>
+                    </div>
+                    <div class="modal-body" style="padding-top: 0px; padding-bottom: 20px">
+                        <div class="row" ng-show="type=='department'">
+
+                            <form class="col-md-12 w5c-form demo-form" w5c-form-validate="addForm.validateOptions"
+                                  name="validateForm" ng-controller="editBumen">
+
+
+                                <div class="form-group">
+                                    <label >部门名称</label>
+                                    <input  class="form-control"   placeholder="部门名称"
+                                            ng-model="addForm.entity.childname" name="childname" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label >部门描述</label>
+                                    <textarea class="form-control" rows="3" ng-model="addForm.entity.description"></textarea>
+                                </div>
+
+                                <button type="button" ng-click="validateForm.reset()" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="submit" class="btn btn-primary" w5c-form-submit="addForm.save($event)">保存</button>
+
+                            </form>
+                        </div>
+                        <div class="row" ng-show="type=='person'">
+                            <form class="col-md-12 w5c-form demo-form" w5c-form-validate="addForm.validateOptions"
+                                  name="validateForm" ng-controller="editUser">
+
+
+                                <div class="form-group">
+                                    <label >用户名字</label>
+                                    <input  class="form-control"   placeholder="用户名字"
+                                            ng-model="addForm.entity.childname" name="childname" required="">
+                                </div>
+
+
+
+                                <button type="button" ng-click="validateForm.reset()" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="submit" class="btn btn-primary" w5c-form-submit="addForm.save($event)">保存</button>
+
+                            </form>
+                        </div>
+
+
+
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+    </div>
+    <!--/ zuzhijiagou-->
+
+
+    <!--tree 模板-->
+    <script type="text/ng-template" id="tree.html">
+        <div class="table-responsive">
+            <table class="table tree-grid">
+                <thead>
+                <tr>
+                    <th><a ng-if="expandingProperty.sortable" ng-click="sortBy(expandingProperty)">{{expandingProperty.displayName
+                        || expandingProperty.field || expandingProperty}}</a><span
+                            ng-if="!expandingProperty.sortable">{{expandingProperty.displayName || expandingProperty.field || expandingProperty}}</span><i
+                            ng-if="expandingProperty.sorted"
+                            class="{{expandingProperty.sortingIcon}} pull-right"></i></th>
+                    <th ng-repeat="col in colDefinitions"><a ng-if="col.sortable" ng-click="sortBy(col)">{{col.displayName
+                        || col.field}}</a><span ng-if="!col.sortable">{{col.displayName || col.field}}</span><i
+                            ng-if="col.sorted" class="{{col.sortingIcon}} pull-right"></i></th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in tree_rows | searchFor:$parent.filterString:expandingProperty:colDefinitions track by row.branch.uid"
+                    ng-class="'level-' + {{ row.level }} + (row.branch.selected ? ' active':'')"
+                    class="tree-grid-row">
+                    <td><a abc="dddd" ng-click="user_clicks_branch(row.branch)">
+
+                        <i ng-class="row.tree_icon"
+                           ng-click="row.branch.expanded = !row.branch.expanded"
+                           class="indented tree-icon">
+
+
+                        </i>
+
+                    </a><span class="indented tree-label" ng-click="on_user_click(row.branch)">
+                   {{row.branch[expandingProperty.field] || row.branch[expandingProperty]}}</span>
+                    </td>
+                    <td ng-repeat="col in colDefinitions">
+
+                        <div style="text-align: right" ng-if="col.cellTemplate" compile="col.cellTemplate"
+                             cell-template-scope="col.cellTemplateScope">
+
+                        </div>
+                        <div ng-if="!col.cellTemplate">{{row.branch[col.field]}}</div>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+</div>
+<!--/myApp-->
+
+<script src="../../../node_modules/jquery/dist/jquery.js"></script>
+
+<script src="../../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../../../bower_components/angular/angular.js"></script>
+<script src="../../../configCeshi.js"></script>
+<script src="../../../../lh_file/js/main.js"></script>
+
+
+<script src="../../js/controller/组织架构/ceshi.js"></script>
+</body>
+</html>

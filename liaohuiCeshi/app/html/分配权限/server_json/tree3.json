@@ -1,0 +1,24 @@
+{
+  "status": 1,
+  "info": "获取二级部门",
+  "data": [
+    {
+      "name": "三级管理用户",
+      "phoneNumber": "0398-2938393",
+      "email": "tianliaohui@tianliaohui.com",
+      "type": "user"
+
+    },
+    {
+      "name": "三级部门",
+      "phoneNumber": "0398-2938393",
+      "email": "tianliaohui@tianliaohui.com",
+      "type": "bumen"
+
+
+    }
+  ]
+}
+
+
+
