@@ -1,0 +1,25 @@
+{
+  "status": 1,
+  "info": "获取组织机构成功",
+  "data": [
+    {
+      "name": "一级部门1",
+      "phoneNumber": "0398-2938393",
+      "email": "tianliaohui@tianliaohui.com",
+      "type": "department",
+      "url":"server_json/tree2.json"
+
+    },
+    {
+      "name": "一级部门1",
+      "phoneNumber": "0398-2938393",
+      "email": "tianliaohui@tianliaohui.com",
+      "type": "department",
+      "url":"server_json/tree2.json"
+
+    }
+  ]
+}
+
+
+

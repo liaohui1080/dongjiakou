@@ -1,0 +1,13 @@
+/*angular-datatable 样式*/
+
+.dataTables_wrapper {
+
+    position: relative;
+
+}
+
+.dataTables_filter {
+
+    position: absolute;
+    right: 70px;
+}

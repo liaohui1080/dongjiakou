@@ -1,0 +1,29 @@
+{
+  "name": "images",
+  "authors": [
+    "liaohui1080 <liaohui1080@tianliaohui.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "w5c-validator": "angular-w5c-validator#~2.4.12",
+    "angular-loading-bar": "^0.8.0",
+    "angular-datatables": "^0.5.3",
+    "ng-notify": "^0.7.2",
+    "angular-object-table": "^0.2.2",
+    "ng-file-upload": "^12.0.4",
+    "wangEditor": "^2.0.16",
+    "angular-bootstrap-grid-tree": "*",
+    "angular-bootstrap-nav-tree": "*"
+  }
+}
