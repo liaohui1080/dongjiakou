@@ -1,0 +1,23 @@
+{
+  "status": 1,
+  "info": "获取权限",
+  "data": {
+    "canshu1":"用户名字2",
+    "canshu2":"年龄",
+    "canshu3":"出生时间",
+    "canshu4":"所在职位",
+    "canshu5":"婚姻状况",
+    "canshu6":"政治面貌",
+    "canshu7":"工作年限",
+    "canshu8":"电话",
+    "canshu9":" 中国 河南省 郑州市 金水区 花园路与金水路交叉口 金水大厦3楼304室",
+    "canshu10":"tianliaohui@tianlioahui.com",
+    "canshu11":"性别",
+    "canshu12":"照片url",
+    "partyId":"partyId"
+  }
+
+}
+
+
+

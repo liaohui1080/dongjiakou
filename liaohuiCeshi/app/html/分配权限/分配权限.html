@@ -12,7 +12,38 @@
 
 
 <style>
+    .switch {
+        /* frame */
+        height: 20px;
 
+    }
+
+    .switch small {
+        /* button */
+        height: 20px;
+        width: 20px;
+    }
+
+    .switch.checked {
+        /* frame when enabled */
+        width: 42px;
+    }
+
+    .badge {
+        background-color: #bbbbbb;
+
+    }
+
+    .user-list {
+        border-bottom: 1px solid #f0ad4e;
+    }
+
+    .bagde-item {
+        background-color: #fff;
+        color: #000;
+        font-size: 14px;
+        font-weight: normal;
+    }
 </style>
 <body>
 
@@ -21,7 +52,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h3 class="page-title">组织架构
+            <h3 class="page-title">分配权限
                 <small>User list</small>
             </h3>
 
@@ -32,9 +63,10 @@
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-tabs ">
-                <li role="presentation" class="active"><a href="#">用户管理</a></li>
+                <li role="presentation"><a href="#">用户管理</a></li>
                 <li role="presentation"><a href="#">企业管理</a></li>
                 <li role="presentation"><a href="#">权限管理</a></li>
+                <li role="presentation" class="active"><a href="#">分配权限</a></li>
             </ul>
         </div>
     </div>
@@ -58,240 +90,192 @@
             </ul>
         </div>
     </div>
-    icon-leaf="glyphicon glyphicon-plus" //没有数据
-    icon-expand="glyphicon glyphicon-eur" //默认显示
-    icon-collapse="glyphicon glyphicon-minus" //展开时显示
 
     <!--zuzhijiagou-->
-    <div class="row" ng-controller="zuzhijiagou">
+    <div class="row" ng-controller="rootController">
 
 
-        <div class="col-md-12">
-            <tree-grid tree-data="tree_data"
-                       expand-level="2"
-                       col-defs="col_name"
-                       tree-control="my_tree"
-                       expand-on="expanding_property"
-                       template-url="tree.html"
-                       on-select="my_tree_handler(branch)"
-                       icon-leaf="glyphicon glyphicon-folder-open">
+        <div class="col-md-8">
 
 
-            </tree-grid>
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <!--用户资料-->
+                    <div ng-if="guanlianShow==true" class="row">
+                        <div class="col-sm-6">
+
+
+                            <img ng-src="../../images/user.png" class="img-rounded " style="width: 300px">
+
+                            <div style="position: relative">
+
+                                <h3 ng-bind="guanlianUser.canshu1">用户名字 </h3>
+                                <span class="label label-success" style="position: absolute;top:5px;left: 270px"
+                                      ng-bind="guanlianUser.canshu11">女</span>
+
+
+
+
+                                <address>
+                                    <span><span class="glyphicon glyphicon-envelope"></span>&nbsp;邮箱地址</span><br>
+                                    <a href="mailto:#" ng-bind="guanlianUser.canshu10">first.last@example.com</a>
+                                </address>
+
+                            </div>
+
+
+                        </div>
+                        <div class="col-sm-6">
+
+                            <ul class="list-group" style="box-shadow:none">
+                                <li class="list-group-item user-list" style="border: none">
+                                    <span class="badge bagde-item" ng-bind="guanlianUser.canshu2">14</span>
+                                    <span class="text-muted">年龄</span>
+                                </li>
+
+                                <li class="list-group-item user-list" style="border: none">
+                                    <span class="badge bagde-item" ng-bind="guanlianUser.canshu3">1985年12月13日</span>
+                                    <span class="text-muted">出生时间</span>
+                                </li>
+                                <li class="list-group-item user-list" style="border: none">
+                                    <span class="badge bagde-item" ng-bind="guanlianUser.canshu4">石油公司石油公司</span>
+                                    <span class="text-muted">所在职位</span>
+                                </li>
+
+
+                                <li class="list-group-item user-list" style="border: none">
+                                    <span class="badge bagde-item" ng-bind="guanlianUser.canshu5">已婚</span>
+                                    <span class="text-muted">婚姻状况</span>
+                                </li>
+                                <li class="list-group-item" style="border: none">
+                                    <span class="badge bagde-item" ng-bind="guanlianUser.canshu6">共青团员</span>
+                                    <span class="text-muted">政治面貌</span>
+                                </li>
+                                <li class="list-group-item user-list" style="border: none">
+                                    <span class="badge bagde-item" ng-bind="guanlianUser.canshu7">12年</span>
+                                    <span class="text-muted">工作年限</span>
+                                </li>
+
+                                <li class="list-group-item user-list" style="border: none">
+                                    <span class="badge bagde-item" ng-bind="guanlianUser.canshu8">电话</span>
+                                    <span class="text-muted">电话</span>
+                                </li>
+
+                                <li class="list-group-item user-list" style="border: none">
+
+                                    <span class="text-muted">家庭住址</span>
+                                    <p></p>
+                                    <p ng-bind="guanlianUser.canshu9">
+                                        中国 河南省 郑州市 金水区 花园路与金水路交叉口 金水大厦3楼304室
+
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!--/ .用户资料-->
+
+
+
+
+                    <div  ng-if="guanlianShow==false" class="jumbotron text-center" style="margin-bottom:0; height:310px; background-color: #fff;">
+                        <!--<h1 class=" glyphicon glyphicon-random"></h1>-->
+                        <!--<p>关联用户名和账户</p>-->
+                        <h4 style="margin-top: 20px; margin-bottom: 30px">关联用户名和账户</h4>
+                        <p></p>
+                        <p></p>
+                        <div class="center-block" style="width: 300px">
+
+
+                            <ui-select ng-model="userLists.partyId" theme="selectize" ng-disabled="disabled"  title="Choose a country">
+                                <ui-select-match placeholder="搜索用户 ">{{$select.selected.firstName}}</ui-select-match>
+                                <ui-select-choices repeat="row.partyId  as row in userLists | propsFilter: {firstName: $select.search}">
+                                    <span ng-bind-html="row.firstName"></span>
+
+                                </ui-select-choices>
+                            </ui-select>
+
+                            <button ng-show="userLists.partyId" class="btn btn-primary btn-block" ng-click="guanlianClick(userLists.partyId)">确认关联</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <ul class="list-inline" style="margin-bottom: 0">
+                        <li><strong>登录帐号</strong>: {{zhanghao.userLoginId}}</li>
+                        <li><strong>启用状态</strong>: {{zhanghao.enabled | YNtoHanzi:zhanghao.enabled}}</li>
+                        <li><strong>所属企业</strong>: {{zhanghao.partyGroupId}}</li>
+                        <li><strong>创建机构</strong>: {{zhanghao.jigou}}</li>
+                    </ul>
+                </div>
+            </div>
+
 
         </div>
 
+        <div class="col-md-4">
 
 
-
-        <div class="modal fade" tabindex="-1" role="dialog" id="add">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="border-bottom:none">
-
-
-
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#home" aria-controls="home" role="tab"
-                                                                      data-toggle="tab">新建部门</a></li>
-                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
-                                                       data-toggle="tab">新建用户</a></li>
-                        </ul>
-                    </div>
-                    <div class="modal-body" style="padding-top: 0px; padding-bottom: 20px">
+            <div class="list-group">
+                <a href="#" class="list-group-item disabled active">
+                    权限列表
+                </a>
+                <div class="list-group-item" ng-repeat="q in quanxians">
 
 
-                        <!-- Tab panes -->
-                        <div class="tab-content ">
-                            <div role="tabpanel" class="tab-pane active  " id="home" >
+                    <div class="row">
 
+                        <div class="col-sm-8 col-md-8 col-xs-8" ng-bind="q.name"></div>
 
-                                <div class="row">
-                                    <form class="col-md-12 w5c-form demo-form" w5c-form-validate="addForm.validateOptions"
-                                          name="validateForm" ng-controller="addBumen">
+                        <div class=" col-sm-4 col-md-4 col-xs-4">
 
-
-                                        <div class="form-group">
-                                            <label >部门名称</label>
-                                            <input  class="form-control"   placeholder="部门名称"
-                                                   ng-model="addForm.entity.childname" name="childname" required="">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label >部门描述</label>
-                                            <textarea class="form-control" rows="3" ng-model="addForm.entity.description"></textarea>
-                                        </div>
-
-                                        <button type="button" ng-click="validateForm.reset()" class="btn btn-default" data-dismiss="modal">取消</button>
-                                        <button type="submit" class="btn btn-primary" w5c-form-submit="addForm.save($event)">保存</button>
-
-                                    </form>
-                                </div>
-
-
-                            </div>
-
-
-
-                            <div role="tabpanel" class="tab-pane" id="profile">
-
-                                <div class="row">
-                                    <form class="col-md-12 w5c-form demo-form" w5c-form-validate="addForm.validateOptions"
-                                          name="validateForm" ng-controller="addUser">
-
-
-                                        <div class="form-group">
-                                            <label >用户名字</label>
-                                            <input  class="form-control"   placeholder="用户名字"
-                                                    ng-model="addForm.entity.childname" name="childname" required="">
-                                        </div>
-
-
-
-                                        <button type="button" ng-click="validateForm.reset()" class="btn btn-default" data-dismiss="modal">取消</button>
-                                        <button type="submit" class="btn btn-primary" w5c-form-submit="addForm.save($event)">保存</button>
-
-                                    </form>
-                                </div>
-
-
+                            <div class="pull-right">
+                                <switch class="small " name="enabled" ng-model="q.quanxian"
+                                        ng-change="changeCallback(q)"></switch>
 
                             </div>
 
                         </div>
+
+
                     </div>
 
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                    <div class="row">
+                        <div class="panel ">
+                            <div class="panel-body col-sm-12" style="padding-bottom: 0">
+                                <ul class="list-inline">
+                                    <li ng-repeat='r in  q.miaoshu'><span class="label label-info" ng-bind="r"></span>
+                                    </li>
+                                </ul>
 
 
-
-
-        <div class="modal fade" tabindex="-1" role="dialog" id="edit">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="border-bottom:none">
-
-
-
-                       <h4>编辑</h4>
-                    </div>
-                    <div class="modal-body" style="padding-top: 0px; padding-bottom: 20px">
-                        <div class="row" ng-show="type=='department'">
-
-                            <form class="col-md-12 w5c-form demo-form" w5c-form-validate="addForm.validateOptions"
-                                  name="validateForm" ng-controller="editBumen">
-
-
-                                <div class="form-group">
-                                    <label >部门名称</label>
-                                    <input  class="form-control"   placeholder="部门名称"
-                                            ng-model="addForm.entity.childname" name="childname" required="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label >部门描述</label>
-                                    <textarea class="form-control" rows="3" ng-model="addForm.entity.description"></textarea>
-                                </div>
-
-                                <button type="button" ng-click="validateForm.reset()" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="submit" class="btn btn-primary" w5c-form-submit="addForm.save($event)">保存</button>
-
-                            </form>
-                        </div>
-                        <div class="row" ng-show="type=='person'">
-                            <form class="col-md-12 w5c-form demo-form" w5c-form-validate="addForm.validateOptions"
-                                  name="validateForm" ng-controller="editUser">
-
-
-                                <div class="form-group">
-                                    <label >用户名字</label>
-                                    <input  class="form-control"   placeholder="用户名字"
-                                            ng-model="addForm.entity.childname" name="childname" required="">
-                                </div>
-
-
-
-                                <button type="button" ng-click="validateForm.reset()" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="submit" class="btn btn-primary" w5c-form-submit="addForm.save($event)">保存</button>
-
-                            </form>
+                            </div>
                         </div>
 
 
-
                     </div>
 
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+
+            </div>
+        </div>
 
 
     </div>
     <!--/ zuzhijiagou-->
 
 
-    <!--tree 模板-->
-    <script type="text/ng-template" id="tree.html">
-        <div class="table-responsive">
-            <table class="table tree-grid">
-                <thead>
-                <tr>
-                    <th><a ng-if="expandingProperty.sortable" ng-click="sortBy(expandingProperty)">{{expandingProperty.displayName
-                        || expandingProperty.field || expandingProperty}}</a><span
-                            ng-if="!expandingProperty.sortable">{{expandingProperty.displayName || expandingProperty.field || expandingProperty}}</span><i
-                            ng-if="expandingProperty.sorted"
-                            class="{{expandingProperty.sortingIcon}} pull-right"></i></th>
-                    <th ng-repeat="col in colDefinitions"><a ng-if="col.sortable" ng-click="sortBy(col)">{{col.displayName
-                        || col.field}}</a><span ng-if="!col.sortable">{{col.displayName || col.field}}</span><i
-                            ng-if="col.sorted" class="{{col.sortingIcon}} pull-right"></i></th>
-
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="row in tree_rows | searchFor:$parent.filterString:expandingProperty:colDefinitions track by row.branch.uid"
-                    ng-class="'level-' + {{ row.level }} + (row.branch.selected ? ' active':'')"
-                    class="tree-grid-row">
-                    <td><a abc="dddd" ng-click="user_clicks_branch(row.branch)">
-
-                        <i ng-class="row.tree_icon"
-                           ng-click="row.branch.expanded = !row.branch.expanded"
-                           class="indented tree-icon">
-
-
-                        </i>
-
-                    </a><span class="indented tree-label" ng-click="on_user_click(row.branch)">
-                   {{row.branch[expandingProperty.field] || row.branch[expandingProperty]}}</span>
-                    </td>
-                    <td ng-repeat="col in colDefinitions">
-
-                        <div style="text-align: right" ng-if="col.cellTemplate" compile="col.cellTemplate"
-                             cell-template-scope="col.cellTemplateScope">
-
-                        </div>
-                        <div ng-if="!col.cellTemplate">{{row.branch[col.field]}}</div>
-                    </td>
-
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </script>
 </div>
 <!--/myApp-->
 
 <script src="../../../node_modules/jquery/dist/jquery.js"></script>
-
 <script src="../../../node_modules/bootstrap/dist/js/bootstrap.js"></script>
 <script src="../../../bower_components/angular/angular.js"></script>
 <script src="../../../configCeshi.js"></script>
 <script src="../../../../lh_file/js/main.js"></script>
 
 
-<script src="../../js/controller/组织架构/ceshi.js"></script>
+<script src="../../js/controller/分配权限/ceshi.js"></script>
 </body>
 </html>

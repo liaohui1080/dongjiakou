@@ -1,23 +1,16 @@
 {
   "status": 1,
-  "info": "获取组织机构成功",
+  "info": "获取权限",
   "data": [
-    {
-      "name": "一级部门1",
-      "phoneNumber": "0398-2938393",
-      "email": "tianliaohui@tianliaohui.com",
-      "type": "department",
-      "url":"server_json/tree2.json"
-
+    {"name":"用户操作权限","quanxian":true ,
+      "miaoshu":["asdfa","asdfasd"]
     },
-    {
-      "name": "一级部门1",
-      "phoneNumber": "0398-2938393",
-      "email": "tianliaohui@tianliaohui.com",
-      "type": "department",
-      "url":"server_json/tree2.json"
-
-    }
+    {"name":"用户增加权限","quanxian":false,
+      "miaoshu":["asdfa","asdfasd"]},
+    {"name":"删除文档权限","quanxian":false,
+      "miaoshu":[]},
+    {"name":"修改照片权限","quanxian":false,
+      "miaoshu":[]}
   ]
 }
 

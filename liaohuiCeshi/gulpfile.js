@@ -31,6 +31,10 @@ var jsArr = [
     //树
     'lh_public/tree-grid-directive4019/src/tree-grid-directive.js',
 
+
+    //angular-ui-switch
+    'bower_components/angular-ui-switch/angular-ui-switch.min.js',
+
     'app/js/service/*.js',  //模块
     'app/js/factory/*.js',  //服务
     'app/js/filter/*.js',  //服务
@@ -64,6 +68,9 @@ var cssArr = [
     //树treeGrid
     'lh_public/tree-grid-directive4019/src/treeGrid.css',
 
+
+    //angular-ui-switch
+    'bower_components/angular-ui-switch/angular-ui-switch.min.css',
 
     'app/css/css.css' // 我自己写的css
 

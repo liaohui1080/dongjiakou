@@ -24,6 +24,7 @@
     "ng-file-upload": "^12.0.4",
     "wangEditor": "^2.0.16",
     "angular-bootstrap-grid-tree": "*",
-    "angular-bootstrap-nav-tree": "*"
+    "angular-bootstrap-nav-tree": "*",
+    "angular-ui-switch": "^0.1.1"
   }
 }

@@ -1,0 +1,20 @@
+{
+  "status": 1,
+  "info": "获取权限",
+  "data": [
+    {"firstName":"用户名字1","partyId":"partyId1" },
+    {"firstName":"用户名字2","partyId":"partyId2" },
+    {"firstName":"用户名字3","partyId":"partyId3" },
+    {"firstName":"用户名字4","partyId":"partyId4" },
+    {"firstName":"用户名字5","partyId":"partyId5" },
+    {"firstName":"用户名字6","partyId":"partyId6" },
+    {"firstName":"用户名字7","partyId":"partyId7" },
+    {"firstName":"用户名字8","partyId":"partyId8" },
+    {"firstName":"用户名字9","partyId":"partyId9" },
+    {"firstName":"用户名字10","partyId":"partyId10" }
+
+  ]
+}
+
+
+
