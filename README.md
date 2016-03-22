@@ -35,3 +35,6 @@
         }
     
     }]);
+    
+    html 使用
+    <div>{{abc | YNtoHanzi:abc}}<div>
