@@ -18,6 +18,24 @@ myApp.config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
 //filter 过滤器 下拉菜单
 myApp.filter("propsFilter", lhFilter.uiSelectPropsFilter);
 myApp.filter("YNtoHanzi", lhFilter.YNtoHanzi);
+
+myApp.filter("YNtoHanzi",[function () {
+    return function(input, str) {
+
+        if(input=='Y'){
+            str="启用"
+        }
+        if(input=='N'){
+            str="禁用"
+        }
+
+        return str
+
+    }
+
+}]);
+
+
 //factory  服务添加位置
 myApp.factory("lh_ajax", lhFactory.ajax); //新ajax服务
 

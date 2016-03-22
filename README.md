@@ -14,3 +14,24 @@
 * [js](liaohuiCeshi/app/js/controller/分配权限)
     
 
+
+##代码实例
+
+
+    ###过滤器
+    
+    myApp.filter("YNtoHanzi",[function () {
+        return function(input, str) {
+    
+            if(input=='Y'){
+                str="启用"
+            }
+            if(input=='N'){
+                str="禁用"
+            }
+    
+            return str
+    
+        }
+    
+    }]);
