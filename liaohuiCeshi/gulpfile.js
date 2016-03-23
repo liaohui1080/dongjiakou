@@ -27,10 +27,10 @@ var jsArr = [
     'bower_components/ng-file-upload/ng-file-upload.min.js',
 
     //表格
-    'lh_public/angular-object-table/build/object-table.js',
+    'lh_js_diy/angular-object-table/build/object-table.js',
 
     //树
-    'lh_public/tree-grid-directive4019/src/tree-grid-directive.js',
+    'lh_js_diy/tree-grid-directive4019/src/tree-grid-directive.js',
 
 
     //angular-ui-switch
@@ -64,10 +64,10 @@ var cssArr = [
     'bower_components/ng-notify/dist/ng-notify.min.css', //信息提示
 
     //表格的css
-    'lh_public/angular-object-table/build/object-table-style.css',
+    'lh_js_diy/angular-object-table/build/object-table-style.css',
 
     //树treeGrid
-    'lh_public/tree-grid-directive4019/src/treeGrid.css',
+    'lh_js_diy/tree-grid-directive4019/src/treeGrid.css',
 
 
     //angular-ui-switch

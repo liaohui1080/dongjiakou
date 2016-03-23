@@ -19,21 +19,6 @@ myApp.config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
 myApp.filter("propsFilter", lhFilter.uiSelectPropsFilter);
 myApp.filter("YNtoHanzi", lhFilter.YNtoHanzi);
 
-myApp.filter("YNtoHanzi",[function () {
-    return function(input, str) {
-
-        if(input=='Y'){
-            str="启用"
-        }
-        if(input=='N'){
-            str="禁用"
-        }
-
-        return str
-
-    }
-
-}]);
 
 
 //factory  服务添加位置
@@ -82,6 +67,9 @@ myApp.controller('rootController',
         //权限修改事件
         $scope.changeCallback = function (row) {
             console.log(row);
+
+            //禁用权限按钮
+            row.switch=true;
             lh_ajax.get({
                 url: "server_json/tree1.json",
                 infoShow: true,
@@ -89,6 +77,8 @@ myApp.controller('rootController',
                     console.log(msg);
                     console.log("发送权限修改成功");
 
+                    //启用权限按钮
+                    row.switch=false;
 
                 }
             });

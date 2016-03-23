@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../../js/pagePublic/bootstarp/css/bootstrap.css" rel='stylesheet'>
+    <link href="../../js/pagePublic/bootstarp/css/bootstrap-theme.css" rel='stylesheet'>
+    <link href="../../../../lh_file/css/main.min.css" rel='stylesheet'>
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="listUserLogin">
+    <!--{{liaohui}}-->
+    <!--<table object-table-->
+    <!--data="data"-->
+    <!--display="3"-->
+    <!--headers="Age, full Name,money"-->
+    <!--fields="age,name,money"-->
+    <!--paging="true"-->
+    <!--sorting="simple"-->
+    <!--search="true"-->
+    <!--&gt;-->
+    <!--</table>-->
+
+    <!--<input type="text" ng-model="all" class="form-control" placeholder="All fields">-->
+
+    <!--<table object-table-->
+    <!--class="blue-dust"-->
+    <!--data="data"-->
+    <!--search="false"-->
+    <!--data="exportDataVariable"-->
+    <!--display="3"-->
+
+
+    <!--fields="name,age,money"-->
+    <!--headers="Name,Age,money"-->
+    <!--add-filter="| filter:$owner.all"-->
+    <!--&gt;-->
+    <!--<thead>-->
+    <!--<tr>-->
+    <!--<th>Name..(click me)</th>-->
+    <!--<th>Age</th>-->
+    <!--<th>Money $</th>-->
+    <!--<th>Money $</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+
+    <!--<tbody>-->
+
+    <!--<td>{{$index}}{{item.name}}</td>-->
+    <!--<td>{{item.age}}</td>-->
+    <!--<td>-->
+    <!--{{item.money}}-->
+    <!--</td>-->
+    <!--<td>-->
+    <!--<button ng-click="$owner.dianji(item)">fsdf</button>-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
+    <!--<button ng-click="dianji()">fsdf</button>-->
+
+
+    <div class="container-fluid">
+
+
+
+
+        <div class="row">
+            <button ng-click="shuaxin()">刷新</button>
+            <button ng-click="shuaxin2()">刷新2</button>
+
+            <div class="col-md-12">
+
+                <table object-table
+
+                       data="userLists"
+
+                       search="true"
+
+                       paging="true"
+
+                       display="15"
+                       fields="userLoginId,enabled,hasLoggedOut,disabledDateTime,groupName"
+                       headers="userLoginId,enabled,hasLoggedOut,disabledDateTime,groupName"
+                       add-btn="addUser"
+                >
+                    <thead>
+                    <tr>
+                        <th style="width: 40px; text-align: center"></th>
+                        <th>用户登录账号</th>
+                        <th class="text-center">启用状态</th>
+                        <th class="text-center">在线状态</th>
+                        <th>禁用时间</th>
+                        <th>所属企业</th>
+                        <th style="width: 80px; text-align: center">操作</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <td style="text-align: center">
+                        {{$index+1}}
+                    </td>
+
+                    <td>{{::item.userLoginId}}</td>
+                    <td class="text-center">{{::item.enabled | YNtoHanzi:item.enabled}}
+
+                    </td>
+                    <td class="text-center">{{::item.hasLoggedOut | YNtoZaixian:item.hasLoggedOut}}
+
+
+                    </td>
+                    <td>{{::item.disabledDateTime}}</td>
+                    <td>{{::item.groupName}}</td>
+                    <td style="text-align: center">
+
+                        <button class="btn-success btn btn-xs" ng-click="$owner.userListRowBianji(item)">
+                            <li class="glyphicon glyphicon-pencil"></li>
+                        </button>
+                        <button type="button" class="btn btn-xs btn-danger" ng-click="$owner.userListRowShanchu(item)">
+                            <i class="glyphicon glyphicon-remove-circle">
+                            </i>
+                        </button>
+                    </td>
+                    </tr>
+                    </tbody>
+
+
+
+                </table>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div id="userListAdd" class="modal fade">
+        <div class="modal-dialog form-horizontal  "
+              >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            >&times;</button>
+                    <h4 class="modal-title">新建</h4>
+                </div>
+                <!-- dialog body -->
+                <div class="modal-body">
+                   fasdfasd
+                </div>
+                <!-- dialog buttons -->
+                <div class="modal-footer">
+                    sdfsd
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../../js/pagePublic/jquery.js"></script>
+
+<script src="../../js/pagePublic/bootstarp/js/bootstrap.min.js"></script>
+<script src="../../../../angular.js"></script>
+<script src="../../../configCeshi.js"></script>
+<script src="../../../../lh_file/js/main.js"></script>
+
+
+
+<script src="../../js/controller/表格列子object_table/ceshi.js"></script>
+</body>
+</html>

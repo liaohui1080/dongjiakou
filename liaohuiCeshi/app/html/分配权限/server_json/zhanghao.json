@@ -1,7 +1,7 @@
 {
   "status": 1,
   "info": "单个用户信息",
-  "data": {"userLoginId":"zhanghao","enabled":"Y","partyGroupId":"青岛石油贸易有限公司","jigou":"管委会","partyId":"sdf" }
+  "data": {"userLoginId":"zhanghao","enabled":"Y","partyGroupId":"青岛石油贸易有限公司","jigou":"管委会","partyId":"是否显示用户信息" }
 
 }
 

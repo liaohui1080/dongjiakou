@@ -1,0 +1,23 @@
+<div>
+    <div class="col-xs-12 text-center">
+        <nav ng-hide="pageCount()==0">
+            <ul class="pagination">
+                <li ng-class="prevPageDisabled()">
+                    <a href ng-click="prevPage()">上一页</a>
+                </li>
+                <li ng-repeat="n in range()"
+                    ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+                    <a href="javascript:void(0)">{{::n+1}}</a>
+                </li>
+                <li ng-class="nextPageDisabled()">
+                    <a href ng-click="nextPage()">下一页</a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+    <!--<div class="col-xs-3">-->
+        <!--<span class="label count">{{count}} <span>条</span></span>-->
+    <!--</div>-->
+</div>
+
