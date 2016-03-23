@@ -37,6 +37,6 @@ var pageUrl = {
 
 };
 
-console.log(pageUrl);
+
 
 

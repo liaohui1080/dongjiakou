@@ -1,6 +1,6 @@
 {
   "status": 1,
-  "info": "获取权限",
+  "info": "获取权限列表",
   "data": [
     {"name":"用户操作权限","quanxian":true ,
       "miaoshu":["asdfa","asdfasd"]

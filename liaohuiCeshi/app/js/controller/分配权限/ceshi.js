@@ -38,10 +38,11 @@ myApp.filter("YNtoHanzi",[function () {
 
 //factory  服务添加位置
 myApp.factory("lh_ajax", lhFactory.ajax); //新ajax服务
+myApp.factory("lh_http", lhFactory.http); //新ajax服务
 
 
 myApp.controller('rootController',
-    ['$scope', 'lh_ajax', function ($scope, lh_ajax) {
+    ['$scope', 'lh_ajax','lh_http', function ($scope, lh_ajax,lh_http) {
 
         //权限
         $scope.quanxians = {};
@@ -64,12 +65,26 @@ myApp.controller('rootController',
         });
 
 
+        //lh_http.get({
+        //    url: "http://localhost:9090/proxy/127.0.0.1:1337/index.js?abc=100",
+        //    success: function (msg) {
+        //        console.log("跨域");
+        //        console.log(msg);
+        //
+        //
+        //    },error:function(e){
+        //
+        //        console.log("服务器错误")
+        //        console.log(e);
+        //    }
+        //});
+
         //权限修改事件
         $scope.changeCallback = function (row) {
             console.log(row);
             lh_ajax.get({
                 url: "server_json/tree1.json",
-                infoSuccess: "修改权限成功",
+                infoShow: true,
                 success: function (msg) {
                     console.log(msg);
                     console.log("发送权限修改成功");

@@ -1,6 +1,6 @@
 {
   "status": 1,
-  "info": "获取权限",
+  "info": "关联用户信息",
   "data": {
     "canshu1":"用户名字2",
     "canshu2":"年龄",

@@ -16,7 +16,7 @@ var lhFactory = (function () {
      * error:function(){} 失败消息
      * }
      * */
-    var http = ["$http",function ($http) {
+    var http = ["$http", function ($http) {
 
         var ajax = {
 
@@ -55,6 +55,12 @@ var lhFactory = (function () {
     }];
 
 
+
+    /*
+    * {url:url地址,infoSuccess:成功消息内容,infoError:失败消息内容 ,infoShow:true false 控制是否显示 ,success:成功方法}
+    *
+    *
+    * */
     var ajax = ["$http", 'cfpLoadingBar', 'ngNotify', function ($http, cfpLoadingBar, ngNotify) {
 
         var ajax = {
@@ -70,12 +76,13 @@ var lhFactory = (function () {
                 }).success(function (data, status, headers, config) {
                     cfpLoadingBar.complete();
 
-                    var infoSuccess = o.infoSuccess ? o.infoSuccess : '成功';
-                    var infoError = o.infoError ? o.infoError : '数据格式错误';
+                    var infoSuccess = o.infoSuccess ? o.infoSuccess : data.info ? data.info : "成功";
+                    var infoError = o.infoSuccess ? o.infoSuccess : data.info ? data.info :  '数据格式错误';
 
                     if (data.status == 1) {
 
-                        if(o.infoSuccess){
+                        if(o.infoShow){
+
                             ngNotify.set(infoSuccess, {
                                 position: 'top',
                                 duration: 1500,
@@ -86,21 +93,21 @@ var lhFactory = (function () {
                         o.success(data, status, headers, config);
 
                     } else {
-
+                        if(o.infoShow) {
 
                             ngNotify.set(infoError, {
                                 position: 'top',
                                 duration: 1500,
                                 type: "warn"
                             });
-
+                        }
 
                     }
 
 
                 }).error(function (e) {
                     alert("服务器错误");
-                    console.log(e);
+                    //console.log(e);
                 });
             },
             "post": function (o) {
@@ -114,12 +121,13 @@ var lhFactory = (function () {
                 }).success(function (data, status, headers, config) {
                     cfpLoadingBar.complete();
 
-                    var infoSuccess = o.infoSuccess ? o.infoSuccess : '成功';
-                    var infoError = o.infoError ? o.infoError : '失败';
+                    var infoSuccess = o.infoSuccess ? o.infoSuccess : data.info ? data.info : "成功";
+                    var infoError = o.infoSuccess ? o.infoSuccess : data.info ? data.info :  '数据格式错误';
 
                     if (data.status == 1) {
 
-                        if(o.infoSuccess){
+                        if(o.infoShow){
+
                             ngNotify.set(infoSuccess, {
                                 position: 'top',
                                 duration: 1500,
@@ -130,8 +138,8 @@ var lhFactory = (function () {
                         o.success(data, status, headers, config);
 
                     } else {
+                        if(o.infoShow) {
 
-                        if(o.infoError){
                             ngNotify.set(infoError, {
                                 position: 'top',
                                 duration: 1500,
@@ -144,7 +152,7 @@ var lhFactory = (function () {
 
                 }).error(function (e) {
                     alert("服务器错误");
-                    console.log(e);
+                    //console.log(e);
                 });
             }
         };
@@ -154,7 +162,7 @@ var lhFactory = (function () {
 
     return {
         http: http,
-        ajax:ajax
+        ajax: ajax
 
     };
 

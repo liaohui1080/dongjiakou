@@ -6,7 +6,8 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');//文件合并
 var rename = require('gulp-rename');//文件更名
 var notify = require('gulp-notify');//提示信息
-var connect = require('gulp-connect');//提示信息
+var connect = require('gulp-connect');//服务器
+var shell = require('gulp-shell')
 var uglify = require('gulp-uglify');//js压缩
 var minifycss = require('gulp-minify-css');//css压缩
 
@@ -159,12 +160,35 @@ gulp.task('connect', function () {
     connect.server({
         root: '../',
         port: 9090,
-        livereload: true
+        livereload: true,
+        middleware: function (connect, opt) {
+            var Proxy = require('gulp-connect-proxy');//服务器端口扩展
+            opt.route = '/proxy';
+            var proxy = new Proxy(opt);
+            return [proxy];
+        }
     });
 });
 
 
-gulp.task('watch', ['js', 'jsbendi', 'html-temp', 'img', 'html', 'css'], function () {
+gulp.task('shell', function () {
+    return gulp.src('shell/*.js', {read: false})
+        .pipe(notify({message: 'shell ok'}))
+        .pipe(connect.reload());
+});
+
+gulp.task('shell2', function () {
+    return gulp.src('shell/*.js', {read: false})
+        .pipe(notify({message: 'shell2 ok'}))
+        .pipe(shell([
+
+            'supervisor shell/index.js'
+        ]))
+        .pipe(connect.reload());
+});
+//http://localhost:9000/proxy/foo.com/bar.png
+//http://localhost:9000/foo.com/bar.png
+gulp.task('watch', ['js', 'jsbendi', 'html-temp', 'img', 'html', 'css','shell'], function () {
 
     gulp.watch(jsArr, ['js']);
     gulp.watch(jsArrBendi, ['jsbendi']);
@@ -175,8 +199,13 @@ gulp.task('watch', ['js', 'jsbendi', 'html-temp', 'img', 'html', 'css'], functio
 
     gulp.watch(imgArr, ['img']);
 
+    //gulp.run(['shell'])
+    gulp.watch('shell/*.js', ['shell']);
+
 });
 
 
-gulp.task('http', ['connect', 'watch']);
+
+
+gulp.task('http', ['connect', 'watch','shell2']);
 gulp.task('default', ['watch']);

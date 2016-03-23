@@ -1,6 +1,6 @@
 {
   "status": 1,
-  "info": "获取权限",
+  "info": "所有用户",
   "data": [
     {"firstName":"用户名字1","partyId":"partyId1" },
     {"firstName":"用户名字2","partyId":"partyId2" },
