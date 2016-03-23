@@ -171,24 +171,8 @@ gulp.task('connect', function () {
 });
 
 
-gulp.task('shell', function () {
-    return gulp.src('shell/*.js', {read: false})
-        .pipe(notify({message: 'shell ok'}))
-        .pipe(connect.reload());
-});
 
-gulp.task('shell2', function () {
-    return gulp.src('shell/*.js', {read: false})
-        .pipe(notify({message: 'shell2 ok'}))
-        .pipe(shell([
-
-            'supervisor shell/index.js'
-        ]))
-        .pipe(connect.reload());
-});
-//http://localhost:9000/proxy/foo.com/bar.png
-//http://localhost:9000/foo.com/bar.png
-gulp.task('watch', ['js', 'jsbendi', 'html-temp', 'img', 'html', 'css','shell'], function () {
+gulp.task('watch', ['js', 'jsbendi', 'html-temp', 'img', 'html', 'css'], function () {
 
     gulp.watch(jsArr, ['js']);
     gulp.watch(jsArrBendi, ['jsbendi']);
@@ -199,13 +183,11 @@ gulp.task('watch', ['js', 'jsbendi', 'html-temp', 'img', 'html', 'css','shell'],
 
     gulp.watch(imgArr, ['img']);
 
-    //gulp.run(['shell'])
-    gulp.watch('shell/*.js', ['shell']);
 
 });
 
 
 
 
-gulp.task('http', ['connect', 'watch','shell2']);
+gulp.task('http', ['connect', 'watch']);
 gulp.task('default', ['watch']);
