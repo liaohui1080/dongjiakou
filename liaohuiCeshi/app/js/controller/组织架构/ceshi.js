@@ -88,12 +88,19 @@ myApp.controller('zuzhijiagou', ['$scope', 'lh_ajax',
                 field: "",
                 displayName: "",
                 cellTemplate: '' +
+
+                    //部门
                 '<button title="新建" class="btn btn-xs btn-primary " ng-click="cellTemplateScope.add(row.branch)" ng-if=row.branch.type=="department"><li class="glyphicon glyphicon-plus"></li></button>\n' +
                 '<button class="btn btn-xs btn-success"  ng-click="cellTemplateScope.edit(row.branch)" ng-if=row.branch.type=="department"><li class=" glyphicon glyphicon-pencil"></li></button>\n' +
                 '<button  class="btn btn-xs btn-danger " ng-click="cellTemplateScope.del(row.branch)" ng-if=row.branch.type=="department"><li class="glyphicon glyphicon-trash"></li></button>\n' +
 
+
+                    //人员
                 '<button class="btn btn-xs btn-success "  ng-click="cellTemplateScope.edit(row.branch)" ng-if=row.branch.type=="person"><li class="glyphicon glyphicon-pencil"></li></button>\n' +
-                '<button class="btn btn-xs btn-danger " ng-click="cellTemplateScope.del(row.branch)" ng-if=row.branch.type=="person"><li class="glyphicon glyphicon-trash"></li></button>\n',
+                '<button class="btn btn-xs btn-danger " ng-click="cellTemplateScope.del(row.branch)" ng-if=row.branch.type=="person"><li class="glyphicon glyphicon-trash"></li></button>\n'+
+
+                //公司
+                '<button class="btn btn-xs btn-success "  ng-click="cellTemplateScope.add(row.branch)" ng-if=row.branch.type=="company"><li class="glyphicon glyphicon-plus"></li></button>\n' ,
 
                 cellTemplateScope: {
                     add: function (data) {         // this works too: $scope.someMethod;
