@@ -59,6 +59,8 @@ myApp.controller('zuzhijiagou', ['$scope', 'lh_ajax',
         });
 
 
+
+        //刷新
         var refresh = function(){
             lh_ajax.get({
                 url: "server_json/tree2.json",
