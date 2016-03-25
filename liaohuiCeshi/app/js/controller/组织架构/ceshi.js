@@ -42,40 +42,59 @@ myApp.filter("propsFilter", lhFilter.uiSelectPropsFilter);
 myApp.factory("lh_ajax", lhFactory.ajax); //新ajax服务
 
 
-myApp.controller('zuzhijiagou', ['$scope', 'lh_ajax',
-    function ($scope, lh_ajax) {
+myApp.controller('zuzhijiagou', ['$scope', 'lh_ajax', '$timeout',
+    function ($scope, lh_ajax, $timeout) {
 
 
         $scope.tree_data = [];
 
-        //获取第一级数
-        lh_ajax.get({
-            url: "server_json/tree2.json",
-
-            success: function (msg) {
-                console.log(msg.data);
-                $scope.tree_data = msg.data
-            }
-        });
-
-
-
         //刷新
-        var refresh = function(){
-            lh_ajax.get({
-                url: "server_json/tree2.json",
-                infoSuccess:"成功",
-                success: function (msg) {
-                    console.log(msg.data);
-                    $scope.tree_data = msg.data
-                }
-            });
+        $scope.refresh = function () {
+
+            //返回公司数据
+            var timer = $timeout(function () {
+
+                var party = [{
+                    childname: $("#groupName").val(),
+                    partyId: $("#partyId").val(),
+                    type: "company"
+                }];
+                $scope.tree_data = party;
+                $timeout.cancel(timer);
+                //console.log($scope.tree_data)
+            }, 0);
         }
 
 
+        //显示第一条公司数据
+        $scope.refresh();
 
 
 
+
+
+
+        //获取子节点数据
+        $scope.my_tree_handler = function (row) {
+            lh_ajax.get({
+                url: 'server_json/tree2.json',
+                data: {id: 1},
+                success: function (msg) {
+                    console.log(msg.data);
+                    if (msg.data) {
+                        row.children = msg.data
+                    }
+                }
+            });
+        };
+
+
+        //刷新tree
+        $scope.$on('to-shuaxin', function (e, data) {
+            console.log("刷新")
+            //获取第一级数
+            $scope.refresh();
+        })
 
 
         //设置tree 标题
@@ -97,10 +116,10 @@ myApp.controller('zuzhijiagou', ['$scope', 'lh_ajax',
 
                     //人员
                 '<button class="btn btn-xs btn-success "  ng-click="cellTemplateScope.edit(row.branch)" ng-if=row.branch.type=="person"><li class="glyphicon glyphicon-pencil"></li></button>\n' +
-                '<button class="btn btn-xs btn-danger " ng-click="cellTemplateScope.del(row.branch)" ng-if=row.branch.type=="person"><li class="glyphicon glyphicon-trash"></li></button>\n'+
+                '<button class="btn btn-xs btn-danger " ng-click="cellTemplateScope.del(row.branch)" ng-if=row.branch.type=="person"><li class="glyphicon glyphicon-trash"></li></button>\n' +
 
-                //公司
-                '<button class="btn btn-xs btn-success "  ng-click="cellTemplateScope.add(row.branch)" ng-if=row.branch.type=="company"><li class="glyphicon glyphicon-plus"></li></button>\n' ,
+                    //公司
+                '<button class="btn btn-xs btn-success "  ng-click="cellTemplateScope.add(row.branch)" ng-if=row.branch.type=="company"><li class="glyphicon glyphicon-plus"></li></button>\n',
 
                 cellTemplateScope: {
                     add: function (data) {         // this works too: $scope.someMethod;
@@ -112,7 +131,7 @@ myApp.controller('zuzhijiagou', ['$scope', 'lh_ajax',
                     edit: function (data) {         // this works too: $scope.someMethod;
                         //console.log(data);
                         $("#edit").modal("show");
-                        $scope.type=data.type
+                        $scope.type = data.type
                         $scope.$broadcast("to-treeRow", data);
 
                     },
@@ -120,12 +139,11 @@ myApp.controller('zuzhijiagou', ['$scope', 'lh_ajax',
                         //console.log(data);
 
 
-
-
-                        var yes=confirm("确认删除?");
-                        if(yes==true){
+                        var yes = confirm("确认删除?");
+                        if (yes == true) {
                             console.log("Asdfasdf")
-                            refresh();
+                            //获取第一级数
+                            $scope.refresh();
 
                         }
 
@@ -136,35 +154,11 @@ myApp.controller('zuzhijiagou', ['$scope', 'lh_ajax',
         ];
 
 
-        //获取子节点数据
-        $scope.my_tree_handler = function (row) {
-            lh_ajax.get({
-                url: 'server_json/tree2.json',
-                data: {id: 1},
-                success: function (msg) {
-                    console.log(msg.data);
-                    if (msg.data) {
-                        row.children = msg.data
-                    }
-                }
-            });
-
-
-        };
-
-
-
-        //刷新tree
-        $scope.$on('to-shuaxin', function (e, data) {
-            //获取第一级数
-            refresh();
-        })
-
     }]);
 
 
-myApp.controller('addBumen', ['$scope','lh_ajax',
-    function ($scope,lh_ajax) {
+myApp.controller('addBumen', ['$scope', 'lh_ajax',
+    function ($scope, lh_ajax) {
         //form表单验证参数
         var addForm = $scope.addForm = {
             htmlSource: "",
@@ -178,15 +172,15 @@ myApp.controller('addBumen', ['$scope','lh_ajax',
         $scope.$on('to-treeRow', function (e, data) {
             console.log(data);
 
-            addForm.save=function(){
+            addForm.save = function () {
                 lh_ajax.get({
                     url: "server_json/tree2.json",
-                    data:{id:"节点id"},
+                    data: {id: "节点id"},
                     success: function (msg) {
                         console.log(msg.data);
-                        $scope.$emit('to-shuaxin',msg.data);
+                        $scope.$emit('to-shuaxin', msg.data);
                         $("#add").modal("hide");
-                        addForm.entity={};
+                        addForm.entity = {};
                     }
                 });
             }
@@ -196,8 +190,8 @@ myApp.controller('addBumen', ['$scope','lh_ajax',
     }]);
 
 
-myApp.controller('addUser', ['$scope','lh_ajax',
-    function ($scope,lh_ajax) {
+myApp.controller('addUser', ['$scope', 'lh_ajax',
+    function ($scope, lh_ajax) {
         //form表单验证参数
         var addForm = $scope.addForm = {
             htmlSource: "",
@@ -211,15 +205,15 @@ myApp.controller('addUser', ['$scope','lh_ajax',
         $scope.$on('to-treeRow', function (e, data) {
             console.log(data);
 
-            addForm.save=function(){
+            addForm.save = function () {
                 lh_ajax.get({
                     url: "server_json/tree2.json",
-                    data:{id:"节点id"},
+                    data: {id: "节点id"},
                     success: function (msg) {
                         console.log(msg.data);
-                        $scope.$emit('to-shuaxin',msg.data);
+                        $scope.$emit('to-shuaxin', msg.data);
                         $("#add").modal("hide");
-                        addForm.entity={};
+                        addForm.entity = {};
                     }
                 });
             }
@@ -229,8 +223,8 @@ myApp.controller('addUser', ['$scope','lh_ajax',
     }]);
 
 
-myApp.controller('editBumen', ['$scope','lh_ajax',
-    function ($scope,lh_ajax) {
+myApp.controller('editBumen', ['$scope', 'lh_ajax',
+    function ($scope, lh_ajax) {
         //form表单验证参数
         var addForm = $scope.addForm = {
             htmlSource: "",
@@ -243,18 +237,18 @@ myApp.controller('editBumen', ['$scope','lh_ajax',
         //编辑
         $scope.$on('to-treeRow', function (e, data) {
             console.log(data);
-            addForm.entity.childname=data.childname;
+            addForm.entity.childname = data.childname;
 
 
-            addForm.save=function(){
+            addForm.save = function () {
                 lh_ajax.get({
                     url: "server_json/tree2.json",
-                    data:{id:"节点id"},
+                    data: {id: "节点id"},
                     success: function (msg) {
                         console.log(msg.data);
-                        $scope.$emit('to-shuaxin',msg.data);
+                        $scope.$emit('to-shuaxin', msg.data);
                         $("#edit").modal("hide");
-                        addForm.entity={};
+                        addForm.entity = {};
                     }
                 });
             }
@@ -265,8 +259,8 @@ myApp.controller('editBumen', ['$scope','lh_ajax',
 
 
 //编辑用户
-myApp.controller('editUser', ['$scope','lh_ajax',
-    function ($scope,lh_ajax) {
+myApp.controller('editUser', ['$scope', 'lh_ajax',
+    function ($scope, lh_ajax) {
         //form表单验证参数
         var addForm = $scope.addForm = {
             htmlSource: "",
@@ -279,18 +273,18 @@ myApp.controller('editUser', ['$scope','lh_ajax',
         //编辑
         $scope.$on('to-treeRow', function (e, data) {
             console.log(data);
-            addForm.entity.childname=data.childname;
+            addForm.entity.childname = data.childname;
 
 
-            addForm.save=function(){
+            addForm.save = function () {
                 lh_ajax.get({
                     url: "server_json/tree2.json",
-                    data:{id:"节点id"},
+                    data: {id: "节点id"},
                     success: function (msg) {
                         console.log(msg.data);
-                        $scope.$emit('to-shuaxin',msg.data);
+                        $scope.$emit('to-shuaxin', msg.data);
                         $("#edit").modal("hide");
-                        addForm.entity={};
+                        addForm.entity = {};
                     }
                 });
             }

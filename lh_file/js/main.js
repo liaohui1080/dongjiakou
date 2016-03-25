@@ -2486,19 +2486,6 @@ $templateCache.put("/src/templates/paging.html","<div><div class=\"col-xs-12 tex
                                         //console.log("person chidren 不存在")
                                     }
                                     
-                                }else if(type=="department"){ //如果是公司显示默认图标
-
-                                    if (!branch.children || branch.children.length===0) {
-                                        tree_icon = attrs.iconLeaf;
-                                        //console.log("department chidren 不存在")
-                                    }else{
-                                            if (branch.expanded) {
-                                                tree_icon = attrs.iconCollapse;
-                                            } else {
-                                                tree_icon = attrs.iconExpand;
-
-                                            }
-                                    }
                                 }else{
 
                                     //如果type不存在的话, 就显示这个

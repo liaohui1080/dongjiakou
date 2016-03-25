@@ -187,7 +187,23 @@ gulp.task('watch', ['js', 'jsbendi', 'html-temp', 'img', 'html', 'css'], functio
 });
 
 
+gulp.task('watchBendi', [ 'jsbendi', 'html-temp', 'img', 'html', 'css'], function () {
+
+
+    gulp.watch(jsArrBendi, ['jsbendi']);
+
+    gulp.watch(htmlTempArr, ['html-ftl']);
+    gulp.watch(htmlArr, ['html']);
+    gulp.watch(cssArr, ['css']);
+
+    gulp.watch(imgArr, ['img']);
+
+
+});
+
+
+
 
 
 gulp.task('http', ['connect', 'watch']);
-gulp.task('default', ['watch']);
+gulp.task('default', ['watchBendi','connect']);
