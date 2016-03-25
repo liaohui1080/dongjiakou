@@ -39,6 +39,21 @@
 * [js](liaohuiCeshi/app/js/controller/表格列子object_table)
 
 
+
+#####下拉菜单例子 ui-select
+    需要引入的控件
+    "w5c.validator", //表单验证
+    "ui.select", // 下拉菜单
+    "ngSanitize", // 输出html
+    "angular-loading-bar", //加载进度条
+    'ngNotify' //弹出提示
+* [分配权限页面](http://liaohui1080.github.io/dongjiakou/liaohuiCeshi/app/html/下拉菜单select/index.html)
+* [html](liaohuiCeshi/app/html/下拉菜单select)
+* [js](liaohuiCeshi/app/js/controller/下拉菜单select)
+
+
+
+
 ##代码实例
 
 

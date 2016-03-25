@@ -1,0 +1,11 @@
+{
+  "status": 1,
+  "info": "获取权限列表",
+  "data": [
+    {"name": "erji1", "id": 1},
+    {"name": "erji1", "id": 2},
+    {"name": "erji1", "id": 3},
+    {"name": "erji1", "id": 4}
+  ]
+}
+

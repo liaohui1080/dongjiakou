@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../../js/pagePublic/bootstarp/css/bootstrap.css" rel='stylesheet'>
+    <link href="../../js/pagePublic/bootstarp/css/bootstrap-theme.css" rel='stylesheet'>
+    <link href="../../../../lh_file/css/main.min.css" rel='stylesheet'>
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="rootController">
+
+    <h3>Selectize theme</h3>
+    <p>Selected: {{countries.selected}}</p>
+    <ui-select ng-model="countries.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;"
+               title="Choose a country" on-select="dianji($model)">
+        <ui-select-match placeholder="">{{$select.selected.name}}
+        </ui-select-match>
+        <ui-select-choices repeat="country.id  as country in countries | filter: $select.search">
+            <span ng-bind-html="country.name | highlight: $select.search"></span>
+
+        </ui-select-choices>
+    </ui-select>
+
+    <h2>ddd</h2>
+    <p>Selected: {{dier.selected}}</p>
+    <ui-select ng-model="dier.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;"
+               title="Choose a country">
+        <ui-select-match placeholder="">{{$select.selected.name}}
+        </ui-select-match>
+        <ui-select-choices repeat="country.id  as country in dier | filter: $select.search">
+            <span ng-bind-html="country.name | highlight: $select.search"></span>
+
+        </ui-select-choices>
+    </ui-select>
+
+
+</div>
+
+<script src="../../js/pagePublic/jquery.js"></script>
+
+<script src="../../js/pagePublic/bootstarp/js/bootstrap.min.js"></script>
+<script src="../../../../angular.js"></script>
+<script src="../../../configCeshi.js"></script>
+<script src="../../../../lh_file/js/main.js"></script>
+
+
+<script src="../../js/controller/下拉菜单select/ceshi.js"></script>
+</body>
+</html>

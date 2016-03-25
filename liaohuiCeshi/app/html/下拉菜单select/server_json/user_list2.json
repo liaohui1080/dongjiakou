@@ -1,0 +1,74 @@
+{
+  "status": 1,
+  "info": "成功",
+  "data": [
+
+    {
+      "lastUpdatedStamp": {
+        "date": 25,
+        "day": 4,
+        "hours": 16,
+        "minutes": 52,
+        "month": 1,
+        "nanos": 0,
+        "seconds": 7,
+        "time": 1456390327000,
+        "timezoneOffset": -480,
+        "year": 116
+      },
+      "successiveFailedLogins": null,
+      "passwordHint": "rtq",
+      "createdTxStamp": {
+        "date": 25,
+        "day": 4,
+        "hours": 16,
+        "minutes": 52,
+        "month": 1,
+        "nanos": 0,
+        "seconds": 7,
+        "time": 1456390327000,
+        "timezoneOffset": -480,
+        "year": 116
+      },
+      "createdStamp": {
+        "date": 25,
+        "day": 4,
+        "hours": 16,
+        "minutes": 52,
+        "month": 1,
+        "nanos": 0,
+        "seconds": 7,
+        "time": 1456390327000,
+        "timezoneOffset": -480,
+        "year": 116
+      },
+      "externalAuthId": null,
+      "lastUpdatedTxStamp": {
+        "date": 25,
+        "day": 4,
+        "hours": 16,
+        "minutes": 52,
+        "month": 1,
+        "nanos": 0,
+        "seconds": 7,
+        "time": 1456390327000,
+        "timezoneOffset": -480,
+        "year": 116
+      },
+      "lastTimeZone": null,
+      "enabled": "Y",
+      "lastLocale": null,
+      "partyGroupId": null,
+      "currentPassword": "$SHA$g6eZ$FUT8NIj2wn3xT-3YqHIz6vsSibs",
+      "userLoginId": "54545",
+      "isSystem": null,
+      "disabledDateTime": null,
+      "hasLoggedOut": "N",
+      "userLdapDn": null,
+      "requirePasswordChange": "N",
+      "lastCurrencyUom": null,
+      "partyId": null
+    }
+
+  ]
+}
