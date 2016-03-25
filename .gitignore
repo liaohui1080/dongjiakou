@@ -1,1 +1,15 @@
-# Created by .ignore support plugin (hsz.mobi)
+
+.DS_Store
+json_server/
+.idea/
+lh_public/
+liaohuiApp/
+liaohuiCeshi/bower_components/
+liaohuiCeshi/json_server/
+liaohuiCeshi/lh_public/
+liaohuiCeshi/node_modules/
+
+
+liaohuiCeshi/lh_js_diy/angular-object-table/node_modules/
+liaohuiCeshi/lh_js_diy/angular-object-table/example/
+liaohuiCeshi/lh_js_diy/angular-object-table/build/
