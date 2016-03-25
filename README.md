@@ -47,7 +47,7 @@
     "ngSanitize", // 输出html
     "angular-loading-bar", //加载进度条
     'ngNotify' //弹出提示
-* [分配权限页面](http://liaohui1080.github.io/dongjiakou/liaohuiCeshi/app/html/下拉菜单select/index.html)
+* [下拉菜单例子页面](http://liaohui1080.github.io/dongjiakou/liaohuiCeshi/app/html/下拉菜单select/index.html)
 * [html](liaohuiCeshi/app/html/下拉菜单select)
 * [js](liaohuiCeshi/app/js/controller/下拉菜单select)
 
