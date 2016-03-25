@@ -26,7 +26,7 @@
     <h2>ddd</h2>
     <p>Selected: {{dier.selected}}</p>
     <ui-select ng-model="dier.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;"
-               title="Choose a country">
+               title="Choose a country" ng-show="renyuanShow">
         <ui-select-match placeholder="">{{$select.selected.name}}
         </ui-select-match>
         <ui-select-choices repeat="country.id  as country in dier | filter: $select.search">

@@ -37,9 +37,12 @@ myApp.controller('rootController',
 
         $scope.dianji=function(m){
 
+
+
             console.log(m);
 
             if(m==1){
+                $scope.renyuanShow=false;
                 lh_ajax.get({
                     url:"server_json/user_list33.json",
                     success:function(msg){
@@ -53,6 +56,8 @@ myApp.controller('rootController',
                     url:"server_json/user_list4.json",
                     success:function(msg){
                         $scope.dier=msg.data;
+
+                        $scope.renyuanShow=true;
                     }
                 });
             }
