@@ -1,0 +1,23 @@
+{
+  "status": 1,
+  "info": "获取权限列表",
+  "data": [
+    {
+      "name": "标题1",
+      "content": "内容有了,就不显示标题了",
+      "classes": "gantt-row-milestone",
+      "tasks": [
+        {
+          "name": "任务1",
+          "color": "#93C47D",
+          "from": "2013-10-06T09:00:00",
+          "to": "2013-10-06T12:00:00",
+          "data": ""
+        }
+      ]
+    }
+  ]
+}
+
+
+
