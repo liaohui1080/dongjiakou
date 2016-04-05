@@ -149,7 +149,7 @@ gulp.task('html-temp', function () {
 
 gulp.task('html', function () {
     gulp.src(htmlArr)
-        .pipe(gulp.dest('app/html'))
+        //.pipe(gulp.dest('app/html'))
         .pipe(notify({message: 'html ok'}))
         .pipe(connect.reload());
 });

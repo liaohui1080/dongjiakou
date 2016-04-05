@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Title</title>
     <link href="../../../bower_components/bootstrap/dist/css/bootstrap.css" rel='stylesheet'>
-    <link href="../../../bower_components/bootstrap/dist/css/bootstrap-theme.css" rel='stylesheet'>
+    <link href="../../../bower_components/ng-bs-animated-button/ng-bs-animated-button.css" rel='stylesheet'>
+
     <link href="../../../bower_components/angular-gantt/dist/angular-gantt.css" rel='stylesheet'>
     <link href="../../../bower_components/angular-gantt/dist/angular-gantt-plugins.css" rel='stylesheet'>
     <link href="../../../../lh_file/css/main.min.css" rel='stylesheet'>
@@ -23,50 +24,147 @@
 
 
     <div class="container-fluid">
+
+        <div class="row">
+            <div class="checkbox">
+
+                <label>
+                    <input type="checkbox" ng-model="options.labelsEnabled" value="false"> 侧边显示
+                </label>
+
+                <label>
+                    <input type="checkbox" ng-model="options.draw"> 增加任务开关
+                </label>
+                <label>
+                    <input type="checkbox" ng-model="options.readOnly"> 任务移动开关
+                    <button type="button" class="btn btn-default" ng-model="options.readOnly" bs-checkbox>Read
+                        Only
+                    </button>
+                </label>
+
+                <label>
+                    <!--<button ng-disabled="!canAutoWidth(options.scale)" type="button" class="btn btn-default" ng-model="options.width" bs-checkbox>Width</button>-->
+
+                    <input ng-disabled="false" ng-model="options.zoom" step="0.1" min="0.1" max="5"
+                           class="form-control ng-untouched ng-valid ng-valid-min ng-valid-max ng-dirty ng-valid-number"
+                           type="number">
+                </label>
+
+            </div>
+        </div>
+
         <div class="row clearfix">
             <div class="col-md-2">
-                <strong>任务日历</strong>
+                <h4>当前日期 <span ng-bind="today | timeFormat:'YYYY年MM月dd日'"></span></h4>
 
-                <input ng-model="edit">
-                <button ng-click="editClick()">edit</button>
             </div>
             <div class="col-md-10">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="rili.labelsEnabled" value="false"> 侧边显示
-                    </label>
-                </div>
 
-                <div class="btn-group btn-group-sm pull-right" data-toggle="radio">
-                    <label class="btn btn-default ">
-                        <input type="radio" ng-model="rili.riqi"
-                               value="years" name="options" id="option1" autocomplete="off" checked> 年 years
-                    </label>
-                    <label class="btn btn-default">
-                        <input type="radio"
-                               ng-model="rili.riqi"
-                               value="month"
-                               name="options" id="option2" autocomplete="off"> 月 month
-                    </label>
-                    <label class="btn btn-default">
-                        <input type="radio"
-                               ng-model="rili.riqi"
-                               value="week"
-                               name="options" id="option3" autocomplete="off"> 周 week
-                    </label>
-                    <label class="btn btn-default">
-                        <input type="radio"
-                               ng-model="rili.riqi"
-                               value="day"
-                               name="options" id="option4" autocomplete="off"> 日 day
-                    </label>
-                    <label class="btn btn-default">
-                        <input type="radio"
-                               ng-model="rili.riqi"
-                               value="hour"
-                               name="options" id="option5" autocomplete="off"> 时 hour
-                    </label>
-                </div>
+
+                <ul class="list-inline pull-right">
+
+                    <li>
+
+
+
+                    </li>
+
+                    <li>
+
+                        <form class="form-inline">
+                            范围:
+                            <div class="form-group">
+
+                                <input type="datetime" class="form-control input-sm"
+                                       ng-model="dataQuery.taskFrom"
+                                       data-autoclose="1"
+                                       placeholder="开始日期"
+                                       data-date-format="yyyy年MM月dd日"
+
+                                       bs-datepicker>
+                            </div>
+                            <div class="form-group">
+                                到
+
+                            </div>
+                            <div class="form-group">
+
+                                <input type="datetime" class="form-control input-sm"
+                                       ng-model="dataQuery.taskTo"
+                                       data-autoclose="1"
+                                       data-date-format="yyyy年MM月dd日"
+                                       placeholder="结束日期"
+                                       bs-datepicker>
+                            </div>
+                            <jp-ng-bs-animated-button
+                                    is-submitting="isSubmitting"
+                                    result="result" options="dataQueryBtn"
+                                    ng-click="todayClick()"
+                            ></jp-ng-bs-animated-button>
+                        </form>
+
+
+                    </li>
+                    <li>
+                        <!--<div class="btn-group btn-group-sm " data-toggle="radio">-->
+                            <!--<label class="btn btn-default ">-->
+                                <!--<input type="radio" ng-model="options.scale"-->
+                                       <!--value="year" name="options" id="option1" autocomplete="off" checked> 年 years-->
+                            <!--</label>-->
+                            <!--<label class="btn btn-default">-->
+                                <!--<input type="radio"-->
+                                       <!--ng-model="options.scale"-->
+                                       <!--value="month"-->
+                                       <!--name="options" id="option2" autocomplete="off"> 月 month-->
+                            <!--</label>-->
+                            <!--<label class="btn btn-default">-->
+                                <!--<input type="radio"-->
+                                       <!--ng-model="options.scale"-->
+                                       <!--value="week"-->
+                                       <!--name="options" id="option3" autocomplete="off"> 周 week-->
+                            <!--</label>-->
+                            <!--<label class="btn btn-default">-->
+                                <!--<input type="radio"-->
+                                       <!--ng-model="options.scale"-->
+                                       <!--value="day"-->
+                                       <!--name="options" id="option4" autocomplete="off"> 日 day-->
+                            <!--</label>-->
+                            <!--&lt;!&ndash;<label class="btn btn-default">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<input type="radio"&ndash;&gt;-->
+                            <!--&lt;!&ndash;ng-model="options.scale"&ndash;&gt;-->
+                            <!--&lt;!&ndash;value="hour"&ndash;&gt;-->
+                            <!--&lt;!&ndash;name="options" id="option5" autocomplete="off" > 时 hour&ndash;&gt;-->
+                            <!--&lt;!&ndash;</label>&ndash;&gt;-->
+
+
+                        <!--</div>-->
+                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                            <button type="button" class="btn btn-primary" ng-bind="timeType.up" ng-click="timeType.upClick(options.scale)">上</button>
+                            <button type="button" class="btn btn-default" ng-model="options.scale" data-html="1"
+                                    bs-options="icon.value as icon.name for icon in timeType.data" bs-select>
+                                Action <span class="caret"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary" ng-bind="timeType.low" ng-click="timeType.lowClick(options.scale)">下</button>
+                        </div>
+
+                    </li>
+                    <li>
+
+                        <!--<jp-ng-bs-animated-button-->
+                                <!--is-submitting="isSubmitting"-->
+                                <!--result="result" options="todayBtn"-->
+                                <!--ng-click="todayClick()"-->
+                        <!--&gt;</jp-ng-bs-animated-button>-->
+
+
+                        <button class="btn btn-success btn-sm">创建任务</button>
+
+                    </li>
+
+
+                </ul>
+
+
             </div>
 
         </div>
@@ -74,26 +172,41 @@
 
         <div class="row" style="padding-top: 10px;">
             <div class="col-md-12">
-                {{getToday}}{{1000|currency}}
+
                 <!--<div gantt headers="[riqi]"  current-date="line"   data="data" auto-expand="left"></div>-->
                 <!--<div gantt   current-date="getToday"></div>-->
 
                 <!--gantt table-->
                 <div gantt data=data
-                     api="rili.api"
-                     show-side="rili.labelsEnabled"
-                     daily="rili.daily"
-                     view-scale="rili.riqi"
-                >
+                     api="options.api"
+                     show-side="options.labelsEnabled"
+                     daily="options.daily"
+                     timespans="timespans"
+                     view-scale="options.scale"
+                     headers="options.headers"
+                     column-width="options.zoom"
+                >      <!--column-width="getColumnWidth(options.width, options.scale, options.zoom)"-->
                     <gantt-table></gantt-table>
-                    <gantt-movable></gantt-movable>
+
                     <gantt-tooltips></gantt-tooltips>
+
+
+                    <gantt-movable enabled="options.readOnly"></gantt-movable>
                     <gantt-draw-task
-                            enabled="true"
-                            task-factory="rili.drawTaskFactory">
+                            enabled="options.draw"
+                            move-threshold="2"
+                            task-factory="options.drawTaskFactory">
                     </gantt-draw-task>
                 </div>
                 <!--.gantt table-->
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <!--<textarea class="form-control" style="height: 300px;" rows="10" ng-model="live.taskJson"></textarea>-->
+                    <!--<textarea class="form-control" rows="5" ng-model="live.rowJson"></textarea>-->
+                </div>
 
             </div>
         </div>
@@ -103,7 +216,7 @@
 
     <!--修改时间-->
     <div class="modal fade" id="editTime">
-        <form >
+        <form>
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -114,45 +227,48 @@
                     <div class="modal-body">
 
 
-
                         <div class="row">
 
                             <div class="col-md-12">
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Task Name</label>
+                                    <label>Task Name</label>
                                     <input type="text" class="form-control" ng-model="editFrom.taskName">
                                 </div>
                                 <div class="form-group">
-                                    <label >Task From Time</label>
+                                    <label>Task From Time</label>
 
                                     <div class="form-group">
-                                        <input type="text" size="10" class="form-control" ng-model="time"
+                                        <input type="text" size="10" class="form-control" ng-model="editFrom.taskFrom"
                                                data-autoclose="1" placeholder="Date" bs-datepicker>
+                                        <input type="text" class="form-control" size="8" ng-model="editFrom.taskFrom"
+                                               name="time"
+                                               bs-timepicker data-time-format="HH:mm" data-length="1"
+                                               data-minute-step="1"
+                                               data-arrow-behavior="picker">
                                     </div>
 
 
-                                    <!--<input type="text" class="form-control" ng-model="editFrom.taskFrom">-->
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="control-label"><i class="fa fa-calendar"></i> Datetime picker</label><br>
-                                    <div class="form-group">
-                                        <input type="text" size="10" class="form-control" ng-model="time"
-                                               data-autoclose="1" placeholder="Date" bs-datepicker>
-                                    </div>
-                                    <div class="form-group">
-                                        {{time}}
-                                        <input type="text" class="form-control" size="8" ng-model="time" name="time"
-                                               bs-timepicker data-time-format="HH:mm" data-length="1" data-minute-step="1"
-                                               data-arrow-behavior="picker"></div>
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Task From Time To</label>
-                                    <input type="text" class="form-control" ng-model="editFrom.taskTo">
+                                    <label>Task From Time To</label>
+
+                                    <div class="form-group">
+                                        <input type="text" size="10" class="form-control" ng-model="editFrom.taskTo"
+                                               data-autoclose="1" placeholder="Date" bs-datepicker>
+                                        <input type="text" class="form-control" size="8" ng-model="editFrom.taskTo"
+                                               name="time"
+                                               bs-timepicker data-time-format="HH:mm" data-length="1"
+                                               data-minute-step="1"
+                                               data-arrow-behavior="picker">
+                                    </div>
+
+
                                 </div>
+
+
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Task Color</label>
                                     <input type="text" class="form-control" ng-model="editFrom.taskColor">
@@ -163,8 +279,6 @@
 
 
                         </div>
-
-
 
 
                     </div>
@@ -183,17 +297,23 @@
 <script src="../../../bower_components/jquery/dist/jquery.min.js"></script>
 
 <script src="../../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../../bower_components/moment/moment.js"></script>
+<script src="../../../bower_components/moment/locale/zh-cn.js"></script>
 <script src="../../../../angular.js"></script>
 
 <script src="../../../configCeshi.js"></script>
 <script src="../../../../lh_file/js/main.js"></script>
 <!--<script src="//cdn.bootcss.com/angular-i18n/1.5.0/angular-locale_zh-cn.js"></script>-->
-<script src="../../../bower_components/moment/moment.js"></script>
+
 <script src="../../../bower_components/angular-moment/angular-moment.js"></script>
+
+<script src="../../../bower_components/ng-bs-animated-button/ng-bs-animated-button.js"></script>
+
+
 <script src="../../../bower_components/angular-gantt/dist/angular-gantt.js"></script>
 <script src="../../../bower_components/angular-gantt/dist/angular-gantt-plugins.js"></script>
-<script src="../../../bower_components/angular-strap/dist/angular-strap.min.js"></script>
-<script src="../../../bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
+<script src="../../../bower_components/angular-strap/dist/angular-strap.js"></script>
+<script src="../../../bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
 
 <script src="../../js/controller/日历rili/ceshi.js"></script>
 </body>
