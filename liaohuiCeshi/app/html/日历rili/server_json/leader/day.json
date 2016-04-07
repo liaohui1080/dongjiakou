@@ -1,0 +1,77 @@
+{
+  "status": 1,
+  "info": "人 day",
+  "from":"2016-10-06T00:00:00",
+  "data": [
+    {
+      "name": "任务",
+      "content": "<img class='img-circle' style='width: 20px;' ng-src='../../images/user.png' > <span>用户名字</span>",
+      "classes": "gantt-row-milestone",
+      "personId":"用户id1",
+      "tasks": [
+        {
+          "name": "任务1",
+          "content": "<img class='img-circle' style='width: 20px;' ng-src='../../images/user.png' > <span>{{$index}}用户名字</span>",
+          "taskId":"任务id1",
+          "color": "#93C47D",
+          "from": "2016-04-06T00:00:00",
+          "to": "2016-04-06T04:00:00",
+          "data": ""
+        },
+        {
+          "name": "任务2",
+          "content": "用户名字",
+
+          "color": "#93C47D",
+          "taskId":"任务id2",
+          "from": "2016-04-06T10:20:00",
+          "to": "2016-04-06T12:00:00",
+          "data": ""
+        },
+        {
+          "name": "任务3",
+          "color": "#93C47D",
+          "taskId":"任务id3",
+          "from": "2016-04-06T13:20:00",
+          "to": "2016-04-06T18:00:00",
+          "data": ""
+        }
+      ]
+    },
+    {
+      "name": "任务",
+      "content": "<img class='img-circle' style='width: 20px;' ng-src='../../images/user.png' > <span>用户名字2</span>",
+      "classes": "gantt-row-milestone",
+      "personId":"用户id2",
+      "tasks": [
+        {
+          "name": "任务1",
+          "taskId":"任务id1",
+          "color": "#93C47D",
+          "from": "2016-04-06T00:00:00",
+          "to": "2016-04-06T04:00:00",
+          "data": ""
+        },
+        {
+          "name": "任务2",
+          "color": "#93C47D",
+          "taskId":"任务id2",
+          "from": "2016-04-06T10:20:00",
+          "to": "2016-04-06T12:00:00",
+          "data": ""
+        },
+        {
+          "name": "任务3",
+          "color": "#93C47D",
+          "taskId":"任务id3",
+          "from": "2016-04-06T13:20:00",
+          "to": "2016-04-06T18:00:00",
+          "data": ""
+        }
+      ]
+    }
+  ]
+}
+
+
+

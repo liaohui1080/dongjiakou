@@ -1,11 +1,11 @@
 {
   "status": 1,
-  "info": "任务日历数据 小时",
-
+  "info": "任务日历数据 day",
+  "from":"2013-09-06T00:00:00",
   "data": [
     {
-      "name": "标题1",
-      "content": "内容有了",
+      "name": "任务",
+      "content": "人名字",
       "classes": "gantt-row-milestone",
       "tasks": [
         {
@@ -16,23 +16,21 @@
           "data": ""
         },
         {
-          "name": "任务1",
+          "name": "任务2",
           "color": "#93C47D",
-          "from": "2013-10-06T10:20:00",
-          "to": "2013-10-06T12:00:00",
+          "from": "2013-10-03T10:20:00",
+          "to": "2013-10-03T12:00:00",
           "data": ""
         },
         {
-          "name": "任务1",
+          "name": "任务3",
           "color": "#93C47D",
-          "from": "2013-10-06T13:20:00",
-          "to": "2013-10-06T18:00:00",
+          "from": "2013-10-02T13:20:00",
+          "to": "2013-10-02T18:00:00",
           "data": ""
         }
       ]
-    },
-    {"name": "Hosting"},
-    {"name": "Server", "parent": "Hosting", "children": ["Setup", "Config"]}
+    }
   ]
 }
 
