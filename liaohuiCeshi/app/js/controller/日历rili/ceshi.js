@@ -53,15 +53,15 @@ myApp.controller('rootController',
 
         $scope.live = {};
 
-        var taskUrl = "/proxy/127.0.0.1:1337";
-        //var taskUrl = "server_json/leader/day.json";
+        //var taskUrl = "/proxy/127.0.0.1:1337";
+        var taskUrl = "server_json/leader/day.json";
 
         //控制btn加载状态
         $scope.isSubmitting = null;
         $scope.result = null;
 
 
-        //从服务器获取数据
+        //从服务器获取数据, 然后直接绑定到日历上
         $scope.data = []; //填充给 日历
         $scope.ajax = function (o, fn) {
             //o={
@@ -72,13 +72,45 @@ myApp.controller('rootController',
             //      action:"del" 或者 "updtae" 删除 或者修改稿的操作
             //};
             //console.log(o);
+
+
+
             lh_ajax.get({
                 url: taskUrl,
                 data: o,
-                infoShow:true,
+                infoShow:false,
                 success: function (msg) {
                     //console.log("啊上的发上的");
                     $scope.data = msg.data;
+
+                    if (fn) {
+                        fn(msg)
+                    }
+                }
+            });
+        };
+
+
+        //才操作提示的 ajax 主要用  删除修改
+        $scope.ajaxInfo = function (o,info, fn) {
+            //o={
+            //    timeScale:"", //时间规模 ,控制 年 月  日  周 的数据范围加载
+            //    userType:"",  //用户类型
+            //    timeSpans:{from:"开始",to:"结束"} //时间间隔
+            //    data:"给服务器发送的 数据,"
+            //      action:"del" 或者 "updtae" 删除 或者修改稿的操作
+            //};
+            //console.log(o);
+
+
+
+            lh_ajax.get({
+                url: taskUrl,
+                data: o,
+                infoShow:info,
+                success: function (msg) {
+                    //console.log("啊上的发上的");
+
 
                     if (fn) {
                         fn(msg)
@@ -324,13 +356,18 @@ myApp.controller('rootController',
         };
 
 
-        //颜色下拉菜单
-        $scope.colorList = [
-            {"value": {color: "#CD2C9C"}, "name": "重要任务"},
-            {"value": {color: "#00CF00"}, "name": "一般任务"},
-            {"value": {color: "#FF0000"}, "name": "紧急任务"},
-            {"value": {color: "#47D7FF"}, "name": "例行任务"}
-        ]
+        //加载颜色列表
+        $scope.colorList={};
+        lh_ajax.get({
+            url: 'server_json/color_list.json',
+            success: function (msg) {
+                //console.log("啊上的发上的");
+                //颜色下拉菜单
+                $scope.colorList = msg.data;
+            }
+        });
+
+
 
 
         //控制当前日历显示规模
@@ -549,10 +586,12 @@ myApp.controller('editTask',
                     layer.close(index);
 
                     //给服务器发消息删除
-                    $scope.dataQuery({
+                    $scope.ajaxInfo({
                         data: $scope.rowEdit.model,
                         action: "del"
-                    });
+                    },true);
+
+
 
 
                     $("#editTask").modal("hide");
@@ -572,11 +611,10 @@ myApp.controller('editTask',
             $scope.rowEdit.model.color = $scope.editFrom.color;
 
             //给服务器发消息修改
-            $scope.dataQuery({
-                data: $scope.editFrom,
+            $scope.ajaxInfo({
+                data: $scope.rowEdit.model,
                 action: "update"
-            });
-
+            },true);
 
             //发消息给主控制器
             $scope.$emit('to-rootController', $scope.rowEdit);
@@ -618,10 +656,11 @@ myApp.controller('addTask',
 
 
             //给服务器发消息修改
-            $scope.dataQuery({
-                data: $scope.editFrom,
+
+            $scope.ajaxInfo({
+                data: $scope.rowEdit.model,
                 action: "add"
-            });
+            },true);
 
             console.log($scope.rowEdit)
 

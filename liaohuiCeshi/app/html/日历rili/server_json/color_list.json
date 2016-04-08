@@ -1,0 +1,14 @@
+{
+  "status": 1,
+  "info": "颜色列表",
+  "from":"2016-10-06T00:00:00",
+  "data": [
+    {"value": {"color": "#CD2C9C"}, "name": "重要任务"},
+    {"value": {"color": "#00CF00"}, "name": "一般任务"},
+    {"value": {"color": "#FF0000"}, "name": "紧急任务"},
+    {"value": {"color": "#47D7FF"}, "name": "例行任务"}
+  ]
+}
+
+
+

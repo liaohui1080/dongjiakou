@@ -14,6 +14,19 @@ var minifycss = require('gulp-minify-css');//css压缩
 
 var jsArr = [
 
+    //时间格式化插件, 很多地方要用到
+    'bower_components/moment/moment.js',
+
+    //把时间本地化,显示汉字,几乎所有遵循标准的都可以显示
+    'bower_components/moment/locale/zh-cn.js',
+
+    //让js 同步执行代码
+    'node_modules/async/dist/async.min.js',
+
+
+    //弹出层 提示框 加载状态 提示信息
+    'lh_public/layer/pc/layer.js',
+
     'bower_components/ng-notify/dist/ng-notify.min.js',//提示信息
 
     'bower_components/angular-loading-bar/build/loading-bar.min.js', //加载进度条
@@ -36,7 +49,22 @@ var jsArr = [
     //angular-ui-switch
     'bower_components/angular-ui-switch/angular-ui-switch.min.js',
 
-    'app/js/service/*.js',  //模块
+
+    //带加载状态的按钮
+    'bower_components/ng-bs-animated-button/ng-bs-animated-button.js',
+
+    //ganttt 图用到的
+    'bower_components/angular-moment/angular-moment.js',
+    'bower_components/angular-gantt/dist/angular-gantt.js',
+    'bower_components/angular-gantt/dist/angular-gantt-plugins.js',
+
+
+    //angular-strap 一个bootsrap 的库,主要用到了时间选择器功能
+    'bower_components/angular-strap/dist/angular-strap.js',
+    'bower_components/angular-strap/dist/angular-strap.tpl.js',
+
+
+    'p/js/service/*.js',  //模块
     'app/js/factory/*.js',  //服务
     'app/js/filter/*.js',  //服务
     'app/js/directive/*.js', //指令
@@ -73,6 +101,19 @@ var cssArr = [
     //angular-ui-switch
     'bower_components/angular-ui-switch/angular-ui-switch.min.css',
 
+
+
+
+    //带加载状态的按钮
+    'bower_components/ng-bs-animated-button/ng-bs-animated-button.css',
+
+    //ganttt 图用到的
+    'bower_components/angular-gantt/dist/angular-gantt.css',
+    'bower_components/angular-gantt/dist/angular-gantt-plugins.css',
+
+    //弹出层 提示框 加载状态 提示信息
+    'lh_public/layer/pc/skin/layer.css',
+
     'app/css/css.css' // 我自己写的css
 
 ];
@@ -84,8 +125,7 @@ var imgArr = ['app/images/*'];
 
 
 //输出到 svn images/angualrjs/lh_file目录
-var mainPath='../lh_file';
-
+var mainPath = '../lh_file';
 
 
 // 合并、压缩js文件 公用js压缩合并
@@ -95,10 +135,10 @@ gulp.task('js', function () {
     gulp.src(jsArr)
 
         .pipe(concat('main.js'))
-        .pipe(gulp.dest(mainPath+"/js"))
+        .pipe(gulp.dest(mainPath + "/js"))
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(gulp.dest(mainPath+"/js"))
+        .pipe(gulp.dest(mainPath + "/js"))
         .pipe(notify({message: 'js hebing ok'}))
         .pipe(connect.reload());
 
@@ -121,10 +161,10 @@ gulp.task('jsbendi', function () {
 gulp.task('css', function () {
     return gulp.src(cssArr)
         .pipe(concat('main.css'))
-        .pipe(gulp.dest(mainPath+"/css"))
+        .pipe(gulp.dest(mainPath + "/css"))
         .pipe(rename({suffix: '.min'}))
         .pipe(minifycss())
-        .pipe(gulp.dest(mainPath+"/css"))
+        .pipe(gulp.dest(mainPath + "/css"))
         .pipe(notify({message: 'css 压缩成功'}))
         .pipe(connect.reload());
 });
@@ -132,7 +172,7 @@ gulp.task('css', function () {
 // img
 gulp.task('img', function () {
     gulp.src(imgArr)
-        .pipe(gulp.dest(mainPath+"/images"))
+        .pipe(gulp.dest(mainPath + "/images"))
         .pipe(notify({message: 'img shuchu ok'}))
         .pipe(connect.reload());
 
@@ -142,7 +182,7 @@ gulp.task('img', function () {
 gulp.task('html-temp', function () {
     gulp.src(htmlTempArr)
         .pipe(concat('zujian.ftl'))
-        .pipe(gulp.dest(mainPath+'/template'))
+        .pipe(gulp.dest(mainPath + '/template'))
         .pipe(notify({message: 'html-temp ok'}))
         .pipe(connect.reload());
 });
@@ -171,10 +211,24 @@ gulp.task('connect', function () {
 });
 
 
-
 gulp.task('watch', ['js', 'jsbendi', 'html-temp', 'img', 'html', 'css'], function () {
 
     gulp.watch(jsArr, ['js']);
+
+
+    gulp.watch(htmlTempArr, ['html-ftl']);
+    gulp.watch(htmlArr, ['html']);
+    gulp.watch(cssArr, ['css']);
+
+    gulp.watch(imgArr, ['img']);
+
+
+});
+
+
+gulp.task('watchBendi', ['jsbendi', 'html-temp', 'img', 'html', 'css'], function () {
+
+
     gulp.watch(jsArrBendi, ['jsbendi']);
 
     gulp.watch(htmlTempArr, ['html-ftl']);
@@ -187,23 +241,5 @@ gulp.task('watch', ['js', 'jsbendi', 'html-temp', 'img', 'html', 'css'], functio
 });
 
 
-gulp.task('watchBendi', [ 'jsbendi', 'html-temp', 'img', 'html', 'css'], function () {
-
-
-    gulp.watch(jsArrBendi, ['jsbendi']);
-
-    gulp.watch(htmlTempArr, ['html-ftl']);
-    gulp.watch(htmlArr, ['html']);
-    gulp.watch(cssArr, ['css']);
-
-    gulp.watch(imgArr, ['img']);
-
-
-});
-
-
-
-
-
-gulp.task('http', ['connect', 'watch']);
-gulp.task('default', ['watchBendi','connect']);
+gulp.task('合并', ['js', 'css']); //合并js css
+gulp.task('default', ['watchBendi', 'connect']);

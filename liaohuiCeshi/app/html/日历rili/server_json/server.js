@@ -48,6 +48,8 @@ var proxy = http.createServer(function (req, res) {
 
 
     if(aa(getQuery.action)){
+
+        console.log(aa(getQuery.action)+"==")
         res.writeHead(200, {'Content-Type': 'application/json'});
 
         var ss = {

@@ -67,15 +67,16 @@ var lhFactory = (function () {
 
 
             "get": function (o) {
-                cfpLoadingBar.start();
+               // cfpLoadingBar.start();
+                var load=layer.msg('正在努力加载中', {icon: 16});
                 $http({
                     ignoreLoadingBar: true,
                     method: 'get',
                     url: o.url,
                     params: o.data
                 }).success(function (data, status, headers, config) {
-                    cfpLoadingBar.complete();
-
+                   // cfpLoadingBar.complete();
+                   layer.close(load);
                     var infoSuccess = o.infoSuccess ? o.infoSuccess : data.info ? data.info : "成功";
                     var infoError = o.infoSuccess ? o.infoSuccess : data.info ? data.info :  '数据格式错误';
 
@@ -83,11 +84,13 @@ var lhFactory = (function () {
 
                         if(o.infoShow){
 
-                            ngNotify.set(infoSuccess, {
-                                position: 'top',
-                                duration: 1500,
-                                type: "success"
-                            });
+                            //ngNotify.set(infoSuccess, {
+                            //    position: 'top',
+                            //    duration: 1500,
+                            //    type: "success"
+                            //});
+
+                            layer.msg(infoSuccess);
                         }
 
                         o.success(data, status, headers, config);
@@ -95,10 +98,14 @@ var lhFactory = (function () {
                     } else {
                         if(o.infoShow) {
 
-                            ngNotify.set(infoError, {
-                                position: 'top',
-                                duration: 1500,
-                                type: "warn"
+                            //ngNotify.set(infoError, {
+                            //    position: 'top',
+                            //    duration: 1500,
+                            //    type: "warn"
+                            //});
+
+                            layer.msg(infoError, function(){
+                                //回震动提示的
                             });
                         }
 
