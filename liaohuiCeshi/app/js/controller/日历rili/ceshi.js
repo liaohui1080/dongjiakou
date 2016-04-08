@@ -2,7 +2,9 @@ var myApp = angular.module('myApp', [
     "angular-loading-bar", //加载进度条=
     'ngNotify',//弹出提示
     "ngSanitize", // 输出html
+    "w5c.validator",
     'jp.ng-bs-animated-button',
+    "ui.select", // 下拉菜单
     'gantt',
     'gantt.table',
     'gantt.movable',
@@ -13,13 +15,27 @@ var myApp = angular.module('myApp', [
     $compileProvider.debugInfoEnabled(false); // Remove debug info (angularJS >= 1.3)
 }]);
 
+//表单验证配置
+myApp.config(["w5cValidatorProvider", function (w5cValidatorProvider) {
+
+    // 全局配置
+    w5cValidatorProvider.config({
+        blurTrig: true,
+        showError: true,
+        removeError: true
+
+    });
+
+    w5cValidatorProvider.setRules({});
+}]);
+//filter 过滤器 下拉菜单
+myApp.filter("propsFilter", lhFilter.uiSelectPropsFilter);
+
+
 //时间格式化 timeFormat:'YYYY年MM月DD日 DD=星期,必须大写星期才能输出正确 H:mm:ss'
 myApp.filter("timeFormat", [function () {
     return function (input, str) {
-
-
         return moment(input).format(str)
-
     }
 
 }]);
@@ -38,7 +54,7 @@ myApp.controller('rootController',
         $scope.live = {};
 
         var taskUrl = "/proxy/127.0.0.1:1337";
-        //var taskUrl = "server_json/person.json";
+        //var taskUrl = "server_json/leader/day.json";
 
         //控制btn加载状态
         $scope.isSubmitting = null;
@@ -52,11 +68,14 @@ myApp.controller('rootController',
             //    timeScale:"", //时间规模 ,控制 年 月  日  周 的数据范围加载
             //    userType:"",  //用户类型
             //    timeSpans:{from:"开始",to:"结束"} //时间间隔
+            //    data:"给服务器发送的 数据,"
+            //      action:"del" 或者 "updtae" 删除 或者修改稿的操作
             //};
             //console.log(o);
             lh_ajax.get({
                 url: taskUrl,
                 data: o,
+                infoShow:true,
                 success: function (msg) {
                     //console.log("啊上的发上的");
                     $scope.data = msg.data;
@@ -77,8 +96,36 @@ myApp.controller('rootController',
 
         //给时间跨度设置默认的开始时间和结束时间
         $scope.timeSpans = {
-            from: $scope.today,
-            to: $scope.today
+            from: moment($scope.today),
+            to: moment($scope.today)
+        };
+
+        $scope.isSubmittings = null;
+        $scope.results = null;
+        //返回当天按钮
+        $scope.todayBtn = {
+            buttonDefaultClass: 'btn-primary btn-sm', //默认状态
+            buttonSubmittingClass: 'btn-primary btn-sm', // 加载状态
+            buttonDefaultText: '今天', //默认文字
+            buttonSubmittingText: "正在加载", //加载文字
+            buttonSuccessText: "完成",  //成功文字
+            buttonErrorText: "错误",  //成功文字
+            buttonSuccessClass: 'btn-success btn-sm' //成功状态
+
+        };
+
+        $scope.todayClick = function () {
+            $scope.options.scale='day';
+            $scope.ajax({
+                timeScale: 'day',
+                timeSpans: {
+                    from: moment($scope.today),
+                    to: moment($scope.today)
+                },
+                userType: $scope.userType
+            }, function () {
+                $scope.results = 'success';
+            });
         };
 
 
@@ -87,15 +134,15 @@ myApp.controller('rootController',
             buttonDefaultClass: 'btn-primary btn-sm', //默认状态
             buttonSubmittingClass: 'btn-primary btn-sm', // 加载状态
             buttonDefaultText: '查询', //默认文字
-            buttonSubmittingText: ".", //加载文字
-            buttonSuccessText: ".",  //成功文字
+            buttonSubmittingText: "正在加载", //加载文字
+            buttonSuccessText: "正在加载",  //成功文字
             buttonErrorText: "起始时间不能大于结束时间",  //成功文字
             buttonSuccessClass: 'btn-success btn-sm' //成功状态
 
         };
 
         //返回今天的任务计划
-        $scope.todayClick = function () {
+        $scope.dataQueryClick = function () {
             $scope.isSubmitting = true;
             var scale = $scope.options.scale; //获取当前选择的时间规模
 
@@ -112,11 +159,12 @@ myApp.controller('rootController',
                     $scope.result = 'success';
                 });
             }
-            console.log(from + "----" + to);
+            //console.log(from + "----" + to);
 
         };
 
 
+        //增加任务时间
         $scope.taskAddClick = function () {
             $scope.$broadcast("to-addTask", $scope.timeSpans);
         };
@@ -215,32 +263,10 @@ myApp.controller('rootController',
                                 $scope.$broadcast("to-editTask", directiveScope.task);
                             });
 
-                            element.bind('click', function (event) {
-                                event.stopPropagation();
-
-                                console.log("删除")
-                                //logTaskEvent('task-click', directiveScope.task);
-                                //$scope.$broadcast("to-editTask", directiveScope.task);
-                            });
 
                         }
 
-                        if (directiveName === 'ganttRowLabel') {
-                            element.bind('dblclick', function (event) {
-                                event.stopPropagation();
 
-                                $scope.$broadcast("to-addTask", directiveScope.row);
-                                //logRowEvent('row-click', directiveScope.row);
-                            });
-
-                            element.bind('mousedown touchstart', function(event) {
-                                event.stopPropagation();
-                                $scope.live.row = directiveScope.row.model;
-                                $scope.$digest();
-                                $scope.$broadcast("to-addTask", directiveScope.row);
-                            });
-
-                        }
                     });
 
 
@@ -255,10 +281,10 @@ myApp.controller('rootController',
         $scope.timeType = {
             updatedTime: $scope.today, //更新以后的时间
             data: [
-                {"value": "year", "name": "当年"},
-                {"value": "month", "name": "当月"},
-                {"value": "week", "name": "当周"},
-                {"value": "day", "name": "今天"}
+                {"value": "year", "name": "年视图"},
+                {"value": "month", "name": "月视图"},
+                {"value": "week", "name": "周视图"},
+                {"value": "day", "name": "天视图"}
             ],
             upClick: function (o) {
                 console.log("上" + o);
@@ -287,11 +313,24 @@ myApp.controller('rootController',
                     to: this.updatedTime
                 };
 
-                $scope.dataQuery({timeScale: scale, timeSpans: $scope.timeSpans, userType: $scope.userType});
+                $scope.dataQuery({
+                    timeScale: $scope.options.scale,
+                    timeSpans: $scope.timeSpans,
+                    userType: $scope.userType
+                })
                 // console.log(this.updatedTime);
 
             }
         };
+
+
+        //颜色下拉菜单
+        $scope.colorList = [
+            {"value": {color: "#CD2C9C"}, "name": "重要任务"},
+            {"value": {color: "#00CF00"}, "name": "一般任务"},
+            {"value": {color: "#FF0000"}, "name": "紧急任务"},
+            {"value": {color: "#47D7FF"}, "name": "例行任务"}
+        ]
 
 
         //控制当前日历显示规模
@@ -317,7 +356,7 @@ myApp.controller('rootController',
                 }
             ];
 
-            $scope.dataQuery({timeScale: newVal, timeSpans: $scope.timeSpans, userType: $scope.userType})
+            $scope.dataQuery({timeScale: $scope.options.scale, timeSpans: $scope.timeSpans, userType: $scope.userType})
 
         });
 
@@ -369,7 +408,10 @@ myApp.controller('rootController',
             }
         };
 
-
+        // Event handler
+        var logRowEvent = function (eventName, row) {
+            $log.info('[Event] ' + eventName + ': ' + row.model.name);
+        };
         // Event handler
         function logTaskEvent(eventName, task) {
             console.log('[Event] ' + eventName + ': ' + task.model.name);
@@ -438,8 +480,11 @@ myApp.controller('rootController',
         //};
 
         $scope.$on('to-rootController', function (e, task) {
-            console.log(task)
-            $scope.rowEdit = task;
+            console.log(task.model)
+            $scope.dataQuery({timeScale: $scope.options.scale, timeSpans: $scope.timeSpans, userType: $scope.userType})
+
+
+            //$scope.rowEdit = task;
         });
 
 
@@ -459,6 +504,11 @@ myApp.controller('rootController',
         };
 
 
+        //创建任务按钮
+        $scope.addTaskClick = function () {
+            $scope.$broadcast("to-addTask", $scope.timeSpans);
+        }
+
     }]);
 
 
@@ -466,13 +516,14 @@ myApp.controller('rootController',
 myApp.controller('editTask',
     ['$scope', '$log', 'lh_ajax', '$timeout', function ($scope, $log, lh_ajax, $timeout) {
 
+
+        $scope.editFrom = {};
         $scope.$on('to-editTask', function (e, task) {
 
             console.log(task.model);
             console.log(task);
 
 
-            $scope.editFrom = {};
             $scope.rowEdit = task;
 
             $scope.editFrom = {
@@ -480,7 +531,7 @@ myApp.controller('editTask',
                 from: task.model.from, //开始时间
                 to: task.model.to, //结束时间
                 color: task.model.color,
-                id:  task.model.id
+                id: task.model.id
             };
 
             $("#editTask").modal("show");
@@ -488,22 +539,44 @@ myApp.controller('editTask',
         });
 
 
-        $scope.close = function (id) {
+        //删除任务
+        $scope.delClick = function () {
+            //对话框
+            layer.msg('你要删除当前任务吗？', {
+                time: 0, //不自动关闭
+                btn: ['确认删除', '不删除'],
+                yes: function (index) {
+                    layer.close(index);
 
-            console.log($scope.rowEdit.row.tasks)
-            console.log($scope.rowEdit.model)
-            $scope.rowEdit.model = [];
-            console.log($scope.rowEdit.model)
+                    //给服务器发消息删除
+                    $scope.dataQuery({
+                        data: $scope.rowEdit.model,
+                        action: "del"
+                    });
+
+
+                    $("#editTask").modal("hide");
+                    $scope.$emit('to-rootController', $scope.rowEdit);
+                }
+            });
         };
+
 
         //点击修改任务按钮
         $scope.editClick = function () {
-
+            console.log("修改")
             //$scope.rowEdit 这个值在主控制器里已经声明过了
             $scope.rowEdit.model.name = $scope.editFrom.name;
             $scope.rowEdit.model.from = moment($scope.editFrom.from);
             $scope.rowEdit.model.to = moment($scope.editFrom.to);
             $scope.rowEdit.model.color = $scope.editFrom.color;
+
+            //给服务器发消息修改
+            $scope.dataQuery({
+                data: $scope.editFrom,
+                action: "update"
+            });
+
 
             //发消息给主控制器
             $scope.$emit('to-rootController', $scope.rowEdit);
@@ -519,17 +592,20 @@ myApp.controller('editTask',
 myApp.controller('addTask',
     ['$scope', '$log', 'lh_ajax', '$timeout', function ($scope, $log, lh_ajax, $timeout) {
 
-        $scope.$on('to-addTask', function (e, task) {
+        $scope.editFrom = {}
+        $scope.$on('to-addTask', function (e, timeSpans) {
 
-            console.log(task);
+            console.log(timeSpans);
             $("#addTask").modal("show");
-            //var ss =$scope.editFrom;
-            //ss={};
+            $scope.editFrom = {
+                from: timeSpans.from,
+                to: timeSpans.to,
+
+            }
 
 
         });
 
-        $scope.editFrom = {};
 
         //点击修改任务按钮
         $scope.editClick = function () {
@@ -538,10 +614,19 @@ myApp.controller('addTask',
             $scope.rowEdit.name = $scope.editFrom.name;
             $scope.rowEdit.from = moment($scope.editFrom.from);
             $scope.rowEdit.to = moment($scope.editFrom.to);
-            $scope.rowEdit.color = $scope.editFrom.color;
+            $scope.rowEdit.color = $scope.editFrom.selected.value.color;
+
+
+            //给服务器发消息修改
+            $scope.dataQuery({
+                data: $scope.editFrom,
+                action: "add"
+            });
+
+            console.log($scope.rowEdit)
 
             //发消息给主控制器
-            $scope.$emit('to-addTesk', $scope.rowEdit);
+            $scope.$emit('to-rootController', $scope.rowEdit);
             $("#addTask").modal("hide");
 
 

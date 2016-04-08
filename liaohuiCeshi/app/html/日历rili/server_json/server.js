@@ -25,63 +25,91 @@ var proxy = http.createServer(function (req, res) {
 
     //获取接收的参数
     var getQuery = url.parse(req.url, true).query;  //方法二arg => { aa: '001', bb: '002'
-    var getQuery2 = url.parse(req.url).query;  //方法二arg => { aa: '001', bb: '002'
+    //var getQuery2 = url.parse(req.url).query;  //方法二arg => { aa: '001', bb: '002'
 
-    console.log(getQuery2);
-    console.log(getQuery.timeScale.toString());
-    console.log(getQuery.timeSpans.toString());
-    console.log(getQuery.userType.toString());
+    //console.log(getQuery2);
+    //console.log(getQuery.timeScale.toString());
+    //console.log(getQuery.timeSpans.toString());
+    //console.log(getQuery.userType.toString());
+    //console.log(getQuery.data.toString());
+    aa(getQuery.timeScale);
+    aa(getQuery.timeSpans);
+    aa(getQuery.userType);
+    aa(getQuery.data);
+    aa(getQuery.action);
 
 
-    if(getQuery.userType==='person'){
-
-        //获取时间类型
-        switch (getQuery.timeScale) {
-            case "day":
-                console.log(getQuery.timeScale.toString());
-                jsonTo(res, 'person/day.json');
-                break;
-            case "week":
-                console.log(getQuery.timeScale.toString());
-                jsonTo(res, 'person/week.json');
-                break;
-            case "month":
-                console.log(getQuery.timeScale.toString());
-                jsonTo(res, 'person/month.json');
-                break;
-            case "year":
-                console.log(getQuery.timeScale.toString());
-                jsonTo(res, 'person/year.json');
-                break;
-            default :
-                console.log(getQuery.timeScale);
-                jsonTo(res, 'person/day.json'.toString());
+    function aa(o) {
+        if (o) {
+            console.log(o.toString());
         }
-    }else if(getQuery.userType==='leader'){
-        //获取时间类型
-        switch (getQuery.timeScale) {
-            case "day":
-                console.log(getQuery.timeScale.toString());
-                jsonTo(res, 'leader/day.json');
-                break;
-            case "week":
-                console.log(getQuery.timeScale.toString());
-                jsonTo(res, 'leader/week.json');
-                break;
-            case "month":
-                console.log(getQuery.timeScale.toString());
-                jsonTo(res, 'leader/month.json');
-                break;
-            case "year":
-                console.log(getQuery.timeScale.toString());
-                jsonTo(res, 'leader/year.json');
-                break;
-            default :
-                console.log(getQuery.timeScale);
-                jsonTo(res, 'leader/day.json'.toString());
-        }
+
     }
 
+
+    if(aa(getQuery.action)){
+        res.writeHead(200, {'Content-Type': 'application/json'});
+
+        var ss = {
+            "status": 1,
+            "info": "操作成功",
+
+            "data": ""
+        };
+        //输出数据
+        res.end(ss.toString());
+    }else{
+
+
+        if (getQuery.userType === 'person') {
+
+            //获取时间类型
+            switch (getQuery.timeScale) {
+                case "day":
+                    console.log(getQuery.timeScale.toString());
+                    jsonTo(res, 'person/day.json');
+                    break;
+                case "week":
+                    console.log(getQuery.timeScale.toString());
+                    jsonTo(res, 'person/week.json');
+                    break;
+                case "month":
+                    console.log(getQuery.timeScale.toString());
+                    jsonTo(res, 'person/month.json');
+                    break;
+                case "year":
+                    console.log(getQuery.timeScale.toString());
+                    jsonTo(res, 'person/year.json');
+                    break;
+                default :
+                    console.log(getQuery.timeScale);
+                    jsonTo(res, 'person/day.json'.toString());
+            }
+        } else if (getQuery.userType === 'leader') {
+            //获取时间类型
+            switch (getQuery.timeScale) {
+                case "day":
+                    console.log(getQuery.timeScale.toString());
+                    jsonTo(res, 'leader/day.json');
+                    break;
+                case "week":
+                    console.log(getQuery.timeScale.toString());
+                    jsonTo(res, 'leader/week.json');
+                    break;
+                case "month":
+                    console.log(getQuery.timeScale.toString());
+                    jsonTo(res, 'leader/month.json');
+                    break;
+                case "year":
+                    console.log(getQuery.timeScale.toString());
+                    jsonTo(res, 'leader/year.json');
+                    break;
+                default :
+                    console.log(getQuery.timeScale);
+                    jsonTo(res, 'leader/day.json'.toString());
+            }
+        }
+    }
 
 
 
