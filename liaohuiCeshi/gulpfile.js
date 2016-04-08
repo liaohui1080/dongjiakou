@@ -25,7 +25,7 @@ var jsArr = [
 
 
     //弹出层 提示框 加载状态 提示信息
-    'lh_public/layer/pc/layer.js',
+    'lh_js_diy/layer/pc/layer.js',
 
     'bower_components/ng-notify/dist/ng-notify.min.js',//提示信息
 
@@ -112,7 +112,7 @@ var cssArr = [
     'bower_components/angular-gantt/dist/angular-gantt-plugins.css',
 
     //弹出层 提示框 加载状态 提示信息
-    'lh_public/layer/pc/skin/layer.css',
+    'lh_js_diy/layer/pc/skin/layer.css',
 
     'app/css/css.css' // 我自己写的css
 
