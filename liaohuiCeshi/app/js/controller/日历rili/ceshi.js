@@ -53,8 +53,8 @@ myApp.controller('rootController',
 
         $scope.live = {};
 
-        //var taskUrl = "/proxy/127.0.0.1:1337";
-        var taskUrl = "server_json/leader/day.json";
+        //var taskUrl = "/proxy/127.0.0.1:1337"; //连接测试服务器
+        var taskUrl = "server_json/leader/day.json"; //连接默认数据
 
         //控制btn加载状态
         $scope.isSubmitting = null;

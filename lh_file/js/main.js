@@ -21243,11 +21243,6 @@ var lhFactory = (function () {
 
                         if(o.infoShow){
 
-                            //ngNotify.set(infoSuccess, {
-                            //    position: 'top',
-                            //    duration: 1500,
-                            //    type: "success"
-                            //});
 
                             layer.msg(infoSuccess);
                         }
@@ -21257,11 +21252,7 @@ var lhFactory = (function () {
                     } else {
                         if(o.infoShow) {
 
-                            //ngNotify.set(infoError, {
-                            //    position: 'top',
-                            //    duration: 1500,
-                            //    type: "warn"
-                            //});
+
 
                             layer.msg(infoError, function(){
                                 //回震动提示的
@@ -21294,11 +21285,7 @@ var lhFactory = (function () {
 
                         if(o.infoShow){
 
-                            ngNotify.set(infoSuccess, {
-                                position: 'top',
-                                duration: 1500,
-                                type: "success"
-                            });
+                            layer.msg(infoSuccess);
                         }
 
                         o.success(data, status, headers, config);
@@ -21306,10 +21293,8 @@ var lhFactory = (function () {
                     } else {
                         if(o.infoShow) {
 
-                            ngNotify.set(infoError, {
-                                position: 'top',
-                                duration: 1500,
-                                type: "warn"
+                            layer.msg(infoError, function(){
+                                //回震动提示的
                             });
                         }
 
