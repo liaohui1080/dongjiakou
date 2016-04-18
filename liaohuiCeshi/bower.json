@@ -22,7 +22,7 @@
     "ng-notify": "^0.7.2",
     "angular-object-table": "^0.2.2",
     "ng-file-upload": "^12.0.4",
-    "wangEditor": "^2.0.16",
+    "wangEditor": "^2.1.3",
     "angular-bootstrap-grid-tree": "*",
     "angular-bootstrap-nav-tree": "*",
     "angular-ui-switch": "^0.1.1",

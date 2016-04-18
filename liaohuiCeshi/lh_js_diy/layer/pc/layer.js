@@ -64,7 +64,7 @@ var layer = {
     node[iscss ? 'href' : 'src'] = /^http:\/\//.test(module) ? module : layer.path + module;
     node.id = id;
     if(!$('#'+ id)[0]){
-      head.appendChild(node);
+      //head.appendChild(node);
     }
     //轮询加载就绪
     ;(function poll() {

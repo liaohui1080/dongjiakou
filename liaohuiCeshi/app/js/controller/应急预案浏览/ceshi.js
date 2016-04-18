@@ -12,10 +12,10 @@ myApp.factory("lh_ajax", lhFactory.ajax2); //新ajax服务
 
 myApp.controller('rootController', ['$scope', '$log', 'lh_ajax', '$timeout', function ($scope, $log, lh_ajax, $timeout) {
 
+    $scope.editorContent = '';
+
     //加载侧边
     var sideListUrl = 'server_json/side_list.json';
-
-
     var sideListHttp = function () {
         lh_ajax.get({
             url: sideListUrl,
@@ -194,7 +194,9 @@ myApp.controller('rootController', ['$scope', '$log', 'lh_ajax', '$timeout', fun
             }
         });
 
-    }
+    };
+
+
 
     //左侧列表 是否显示 编辑按钮
     $("#sideList").on("click", "li i", function (e) {

@@ -64,6 +64,10 @@ var jsArr = [
     'bower_components/angular-strap/dist/angular-strap.tpl.js',
 
 
+    //编辑器
+    //'bower_components/wangEditor/dist/js/wangEditor.min.js',
+
+
     'p/js/service/*.js',  //模块
     'app/js/factory/*.js',  //服务
     'app/js/filter/*.js',  //服务
@@ -110,6 +114,9 @@ var cssArr = [
     //ganttt 图用到的
     'bower_components/angular-gantt/dist/angular-gantt.css',
     'bower_components/angular-gantt/dist/angular-gantt-plugins.css',
+
+    //编辑器
+    //'bower_components/wangEditor/dist/css/wangEditor.min.css',
 
     //弹出层 提示框 加载状态 提示信息
     'lh_js_diy/layer/pc/skin/layer.css',

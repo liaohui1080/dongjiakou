@@ -45,7 +45,6 @@
 </head>
 <body ng-app="myApp">
 
-
 <!-- BEGIN PAGE -->
 <div class="page-content" ng-controller="rootController">
 
@@ -151,6 +150,7 @@
             <div class="panel panel-default" ng-hide="listContentData">
                 <div class="panel-body text-center">没有数据</div>
             </div>
+
             <div class="panel panel-default" ng-repeat="lc in listContentData">
                 <div class="panel-heading " style="padding-top: 5px; padding-bottom: 5px;">
                     <div class="row">
@@ -181,6 +181,7 @@
                 </div>
                 <div class="panel-body">
                     {{listContentEdit}}
+
                     <form ng-show="listContentEdit">
                         <div class="form-group">
                             <label for="exampleInputEmail1">标题</label>
@@ -212,6 +213,7 @@
             </div>
 
 
+            <!--新建内容-->
             <div class="panel panel-primary" ng-show="listContentAdd">
                 <div class="panel-heading " style="padding-top: 5px; padding-bottom: 5px;">
                     <div class="row">
@@ -238,6 +240,7 @@
                         </div>
                         <div class="form-group">
                             <label>内容</label>
+
                                         <textarea class="form-control" ng-model="formListContentAdd.content"
                                                   placeholder=""></textarea>
                         </div>
@@ -340,6 +343,7 @@
 <script src="../../../../lh_file/js/main.js"></script>
 
 
+<!--<script src="../../../bower_components/wangEditor/dist/js/wangEditor.min.js"></script>-->
 <script src="../../js/controller/应急预案浏览/ceshi.js"></script>
 </body>
 </html>
