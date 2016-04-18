@@ -65,7 +65,7 @@ var jsArr = [
 
 
     //编辑器
-    //'bower_components/wangEditor/dist/js/wangEditor.min.js',
+    'lh_js_diy/wangEditor/dist/js/wangEditor.js',
 
 
     'p/js/service/*.js',  //模块
@@ -116,7 +116,7 @@ var cssArr = [
     'bower_components/angular-gantt/dist/angular-gantt-plugins.css',
 
     //编辑器
-    //'bower_components/wangEditor/dist/css/wangEditor.min.css',
+    'lh_js_diy/wangEditor/dist/css/wangEditor.css',
 
     //弹出层 提示框 加载状态 提示信息
     'lh_js_diy/layer/pc/skin/layer.css',

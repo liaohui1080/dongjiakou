@@ -82,6 +82,30 @@
 * [js](liaohuiCeshi/app/js/controller/应急预案浏览)
 
 
+---
+
+##### 编辑器 wangEdit
+    需要引入的控件
+    编辑器的文件已经合并到了 main.js main.css
+    另外字体font文件夹,必须放到 main.css 同一个目录里面
+    
+    //直接在当前js页面,引入指令
+    myApp.directive("wangEdit", wangEditDirective.wangEdit); //加载编辑器
+    
+    //html写法 ,ng-model="editcontent" 是为了获取用户输入内容的
+    edit-data="editcontent" 是初始化编辑器内容的
+     parameter= []  是控制显示菜单内容的
+    <div ng-model="editcontent"
+                     wang-edit="true"
+                     edit-data="editcontent"
+                     parameter="['source','bold','underline','italic','strikethrough','eraser','forecolor','bgcolor']"></div>
+                <div ng-bind="editcontent"></div>
+    
+   
+* [demo](http://liaohui1080.github.io/dongjiakou/liaohuiCeshi/app/html/编辑器)
+* [html](liaohuiCeshi/app/html/编辑器)
+* [js](liaohuiCeshi/app/js/controller/编辑器)
+
 ##代码实例
 
     ###过滤器

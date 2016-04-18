@@ -1,6 +1,6 @@
 require.config({
     paths: {
-        jquery: '../../../dist/js/lib/jquery-1.10.2.min',
+        jquery: '../../../dist/js/lib/jquery-1.10.2.min.js',
         wangEditor: '../../../dist/js/wangEditor.min'
     }
 });
