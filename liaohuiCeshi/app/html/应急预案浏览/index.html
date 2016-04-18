@@ -180,7 +180,7 @@
 
                 </div>
                 <div class="panel-body">
-                    {{listContentEdit}}
+
 
                     <form ng-show="listContentEdit">
                         <div class="form-group">
@@ -190,15 +190,22 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">内容</label>
-                                        <textarea class="form-control" ng-model="lc.content"
-                                                  placeholder="{{lc.content}}"></textarea>
+                                        <!--<input class="form-control" ng-model="lc.content"-->
+                                                  <!--placeholder="{{lc.content}}"></input>-->
+
+                            <div ng-model="lc.content"
+                                 wang-edit="true"
+                                 edit-data="lc.content"
+                                 parameter="['source','bold','underline','italic','strikethrough','eraser','forecolor','bgcolor']"></div>
+
+
                         </div>
 
 
                     </form>
 
 
-                    <div ng-bind="lc.content" ng-hide="listContentEdit"></div>
+                    <div ng-bind-html="lc.content" ng-hide="listContentEdit"></div>
 
 
                 </div>
@@ -241,8 +248,14 @@
                         <div class="form-group">
                             <label>内容</label>
 
-                                        <textarea class="form-control" ng-model="formListContentAdd.content"
-                                                  placeholder=""></textarea>
+                                        <!--<textarea class="form-control" ng-model="formListContentAdd.content"-->
+                                                  <!--placeholder=""></textarea>-->
+
+                            <div ng-model="formListContentAdd.content"
+                                 wang-edit="true"
+                                 edit-data="formListContentAdd.content"
+                                 parameter="['source','bold','underline','italic','strikethrough','eraser','forecolor','bgcolor']"></div>
+
                         </div>
 
 

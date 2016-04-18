@@ -7,7 +7,8 @@ var myApp = angular.module('myApp', [
 
 //factory  服务添加位置
 myApp.factory("lh_ajax", lhFactory.ajax2); //新ajax服务
-
+myApp.directive("wangEdit", wangEditDirective.wangEdit); //加载编辑器
+myApp.directive("wangedit2", wangEditDirective.wangEdit); //加载编辑器
 
 
 myApp.controller('rootController', ['$scope', '$log', 'lh_ajax', '$timeout', function ($scope, $log, lh_ajax, $timeout) {
@@ -128,6 +129,7 @@ myApp.controller('rootController', ['$scope', '$log', 'lh_ajax', '$timeout', fun
     //右侧内容 点击编辑的时候 copy这一行的数据. 以便于在取消的时候恢复数据
     $scope.copyListContent=function(row){
         $scope.abc= angular.copy(row.lc);
+
     };
 
 

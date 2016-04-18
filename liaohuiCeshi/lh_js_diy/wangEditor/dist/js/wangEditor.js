@@ -56,7 +56,7 @@
             }
 
             var $elem = isElement(elemId) ? $(elemId) : $('#' + elemId);
-            console.log($elem);
+            //console.log($elem);
             //var $elem = $('#' + elemId);
             if ($elem.length !== 1) {
                 return;
