@@ -16,9 +16,9 @@ ul,
 code,
 pre, 
 li {
-  -webkit-border-radius: 0 !important;
-     -moz-border-radius: 0 !important;
-          border-radius: 0 !important;
+  /*-webkit-border-radius: 0 !important;*/
+     /*-moz-border-radius: 0 !important;*/
+          /*border-radius: 0 !important;*/
 }
 
 /***
@@ -33,9 +33,9 @@ Buttons & Dropdown Buttons
   -webkit-box-shadow: none !important;
      -moz-box-shadow: none !important;
           box-shadow: none !important;
-  -webkit-border-radius: 0 !important;
-     -moz-border-radius: 0 !important;
-          border-radius: 0 !important;
+  /*-webkit-border-radius: 0 !important;*/
+     /*-moz-border-radius: 0 !important;*/
+          /*border-radius: 0 !important;*/
           text-shadow: none;
 }
 
@@ -397,9 +397,9 @@ Popover
 }
 
 .popover .popover-title {
-    -webkit-border-radius: 0 !important;
-     -moz-border-radius: 0 !important;
-          border-radius: 0 !important;
+    /*-webkit-border-radius: 0 !important;*/
+     /*-moz-border-radius: 0 !important;*/
+          /*border-radius: 0 !important;*/
           margin: 0 !important;
 }
 
@@ -662,9 +662,9 @@ Dropdown Menu Badges
 }
 
 .dropdown-menu > li > a > .badge.badge-roundless {
-   -webkit-border-radius: 0 !important;
-      -moz-border-radius: 0 !important;
-           border-radius: 0 !important;
+   /*-webkit-border-radius: 0 !important;*/
+      /*-moz-border-radius: 0 !important;*/
+           /*border-radius: 0 !important;*/
 }
 
 /* end: sidebar menu badges */
@@ -701,7 +701,7 @@ label {
   color: #333333;
   background-color: #ffffff;
   border: 1px solid #e5e5e5;
-  border-radius: 0;
+  /*border-radius: 0;*/
   -webkit-box-shadow: none;
   box-shadow: none;
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
@@ -729,7 +729,7 @@ fieldset[disabled] .form-control {
   color: #333333;
   background-color: #ffffff;
   border: 1px solid #e5e5e5;
-  border-radius: 0;
+  /*border-radius: 0;*/
   -webkit-box-shadow: none;
   box-shadow: none;
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
@@ -952,9 +952,9 @@ h7 .label {
 }
 
 .badge.badge-roundless {
-   -webkit-border-radius: 0 !important;
-      -moz-border-radius: 0 !important;
-           border-radius: 0 !important;
+   /*-webkit-border-radius: 0 !important;*/
+      /*-moz-border-radius: 0 !important;*/
+           /*border-radius: 0 !important;*/
 }
 
 .badge-default,

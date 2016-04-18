@@ -21226,16 +21226,121 @@ var lhFactory = (function () {
 
 
             "get": function (o) {
-               // cfpLoadingBar.start();
-                var load=layer.msg('正在努力加载中', {icon: 16});
+                cfpLoadingBar.start();
                 $http({
                     ignoreLoadingBar: true,
                     method: 'get',
                     url: o.url,
                     params: o.data
                 }).success(function (data, status, headers, config) {
-                   // cfpLoadingBar.complete();
-                   layer.close(load);
+                    cfpLoadingBar.complete();
+
+                    var infoSuccess = o.infoSuccess ? o.infoSuccess : data.info ? data.info : "成功";
+                    var infoError = o.infoSuccess ? o.infoSuccess : data.info ? data.info :  '数据格式错误';
+
+                    if (data.status == 1) {
+
+                        if(o.infoShow){
+
+                            ngNotify.set(infoSuccess, {
+                                position: 'top',
+                                duration: 1500,
+                                type: "success"
+                            });
+                        }
+
+                        o.success(data, status, headers, config);
+
+                    } else {
+                        if(o.infoShow) {
+
+                            ngNotify.set(infoError, {
+                                position: 'top',
+                                duration: 1500,
+                                type: "warn"
+                            });
+                        }
+
+                    }
+
+
+                }).error(function (e) {
+                    alert("服务器错误");
+                    //console.log(e);
+                });
+            },
+            "post": function (o) {
+                cfpLoadingBar.start();
+                $http({
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                    method: "post",
+                    url: o.url,
+                    params: o.params, //这个是url后缀 ?key=val的,不一定会用到
+                    data: jQuery.param(o.data) //把json数据 序列化
+                }).success(function (data, status, headers, config) {
+                    cfpLoadingBar.complete();
+
+                    var infoSuccess = o.infoSuccess ? o.infoSuccess : data.info ? data.info : "成功";
+                    var infoError = o.infoSuccess ? o.infoSuccess : data.info ? data.info :  '数据格式错误';
+
+                    if (data.status == 1) {
+
+                        if(o.infoShow){
+
+                            ngNotify.set(infoSuccess, {
+                                position: 'top',
+                                duration: 1500,
+                                type: "success"
+                            });
+                        }
+
+                        o.success(data, status, headers, config);
+
+                    } else {
+                        if(o.infoShow) {
+
+                            ngNotify.set(infoError, {
+                                position: 'top',
+                                duration: 1500,
+                                type: "warn"
+                            });
+                        }
+
+                    }
+
+
+                }).error(function (e) {
+                    alert("服务器错误");
+                    //console.log(e);
+                });
+            }
+        };
+
+        return ajax;
+    }];
+
+
+    /* 使用 layer  进度加载 和 提示框
+     * {url:url地址,infoSuccess:成功消息内容,infoError:失败消息内容 ,infoShow:true false 控制是否显示 ,success:成功方法}
+     *
+     *
+     * */
+    var ajax2 = ["$http", function ($http) {
+
+        var ajax = {
+
+
+            "get": function (o) {
+                // cfpLoadingBar.start();
+                var load=layer.load(1);
+                $http({
+                    ignoreLoadingBar: true,
+                    method: 'get',
+                    url: o.url,
+                    params: o.data
+                }).success(function (data, status, headers, config) {
+                    // cfpLoadingBar.complete();
+                    layer.close(load);
                     var infoSuccess = o.infoSuccess ? o.infoSuccess : data.info ? data.info : "成功";
                     var infoError = o.infoSuccess ? o.infoSuccess : data.info ? data.info :  '数据格式错误';
 
@@ -21268,7 +21373,7 @@ var lhFactory = (function () {
                 });
             },
             "post": function (o) {
-                cfpLoadingBar.start();
+                var load=layer.load(1);
                 $http({
                     headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                     method: "post",
@@ -21276,7 +21381,7 @@ var lhFactory = (function () {
                     params: o.params, //这个是url后缀 ?key=val的,不一定会用到
                     data: jQuery.param(o.data) //把json数据 序列化
                 }).success(function (data, status, headers, config) {
-                    cfpLoadingBar.complete();
+                    layer.close(load);
 
                     var infoSuccess = o.infoSuccess ? o.infoSuccess : data.info ? data.info : "成功";
                     var infoError = o.infoSuccess ? o.infoSuccess : data.info ? data.info :  '数据格式错误';
@@ -21311,9 +21416,11 @@ var lhFactory = (function () {
         return ajax;
     }];
 
+
     return {
         http: http,
-        ajax: ajax
+        ajax: ajax,
+        ajax2: ajax2,
 
     };
 
