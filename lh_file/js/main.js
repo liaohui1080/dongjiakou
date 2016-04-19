@@ -29582,7 +29582,7 @@ var wangEditDirective = (function () {
 
                 //点击编辑器的时候,清空编辑器的值,然后把默认值重新给编辑器
                 element.on("click",function(e){
-                   
+
                     editor.$txt.html(scope.editData);
                 });
 
