@@ -106,6 +106,23 @@
 * [html](liaohuiCeshi/app/html/编辑器)
 * [js](liaohuiCeshi/app/js/controller/编辑器)
 
+
+---
+
+##### 我的消息页面
+    需要引入的控件
+    //factory  服务添加位置
+    myApp.factory("lh_ajax", lhFactory.ajax2); //新ajax服务,使用新的 加载状态 和提示状态
+    myApp.filter("timeFormat", lhFilter.timeFormat); //新ajax服务
+    
+  
+    
+   
+* [demo](http://liaohui1080.github.io/dongjiakou/liaohuiCeshi/app/html/我的消息)
+* [html](liaohuiCeshi/app/html/我的消息)
+* [js](liaohuiCeshi/app/js/controller/我的消息)
+
+
 ##代码实例
 
     ###过滤器

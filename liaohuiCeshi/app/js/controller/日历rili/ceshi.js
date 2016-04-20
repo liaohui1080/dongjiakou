@@ -357,7 +357,7 @@ myApp.controller('rootController',
 
 
         //加载颜色列表
-        $scope.colorList={};
+        $scope.colorList=[];
         lh_ajax.get({
             url: 'server_json/color_list.json',
             success: function (msg) {

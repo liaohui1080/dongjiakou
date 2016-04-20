@@ -91,10 +91,20 @@ var lhFilter=(function(){
     }];
 
 
+    //时间年月日星期分秒  timeFormat:'YYYY年MM月DD日 DD=星期,必须大写星期才能输出正确 H:mm:ss'
+    var timeFormat=[function () {
+        return function (input, str) {
+            return moment(input).format(str)
+        }
+
+    }];
+
+
     return {
         uiSelectPropsFilter:uiSelectPropsFilter,
         YNtoHanzi:YNtoHanzi,
         YNtoZaixian:YNtoZaixian,
+        timeFormat:timeFormat,
         pageStart:pageStart
     };
 

@@ -1,0 +1,85 @@
+{
+  "status": 1,
+  "info":"修改我的消息成功",
+  "data": [
+    {
+      "messageName": "消息5",
+      "messageStatus": "1",
+      "firstName": "测试用户1",
+      "internalId": null,
+      "createBy": "0001",
+      "resourcesId": null,
+      "messageTypeId": "06",
+      "description": "任务通知",
+      "messageId": "0006",
+      "disposePartyId": "superAdmin",
+      "createDate": "2016-04-20"
+    },
+    {
+      "messageName": "消息5",
+      "messageStatus": "0",
+      "firstName": "测试用户3",
+      "internalId": null,
+      "createBy": "0003",
+      "resourcesId": null,
+      "messageTypeId": "05",
+      "description": "通知单",
+      "messageId": "0005",
+      "disposePartyId": "superAdmin",
+      "createDate": "2016-04-20"
+    },
+    {
+      "messageName": "消息4",
+      "messageStatus": "2",
+      "firstName": "测试用户4",
+      "internalId": null,
+      "createBy": "0004",
+      "resourcesId": null,
+      "messageTypeId": "04",
+      "description": "作业计划",
+      "messageId": "0004",
+      "disposePartyId": "superAdmin",
+      "createDate": "2016-04-20"
+    },
+    {
+      "messageName": "消息3",
+      "messageStatus": "1",
+      "firstName": "测试用户3",
+      "internalId": null,
+      "createBy": "0003",
+      "resourcesId": null,
+      "messageTypeId": "03",
+      "description": "巡检计划",
+      "messageId": "0003",
+      "disposePartyId": "superAdmin",
+      "createDate": "2016-04-20"
+    },
+    {
+      "messageName": "消息2",
+      "messageStatus": "0",
+      "firstName": "测试用户2",
+      "internalId": null,
+      "createBy": "0002",
+      "resourcesId": null,
+      "messageTypeId": "02",
+      "description": "整改计划",
+      "messageId": "0002",
+      "disposePartyId": "superAdmin",
+      "createDate": "2016-04-20"
+    },
+    {
+      "messageName": "消息1",
+      "messageStatus": "3",
+      "firstName": "测试用户1",
+      "internalId": null,
+      "createBy": "0001",
+      "resourcesId": null,
+      "messageTypeId": "01",
+      "description": "隐患排查",
+      "messageId": "0001",
+      "disposePartyId": "superAdmin",
+      "createDate": "2016-04-20"
+    }
+  ]
+
+}
