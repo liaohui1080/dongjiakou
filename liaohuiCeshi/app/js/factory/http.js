@@ -58,10 +58,10 @@ var lhFactory = (function () {
 
     /*
     * {url:url地址,infoSuccess:成功消息内容,infoError:失败消息内容 ,infoShow:true false 控制是否显示 ,success:成功方法}
-    *
+    *   使用angualr的  'cfpLoadingBar', 'ngNotify' 才能运行
     *
     * */
-    var ajax = ["$http", 'cfpLoadingBar', 'ngNotify', function ($http, cfpLoadingBar, ngNotify) {
+    var ajax2 = ["$http", 'cfpLoadingBar', 'ngNotify', function ($http, cfpLoadingBar, ngNotify) {
 
         var ajax = {
 
@@ -161,12 +161,14 @@ var lhFactory = (function () {
     }];
 
 
+
+
     /* 使用 layer  进度加载 和 提示框
      * {url:url地址,infoSuccess:成功消息内容,infoError:失败消息内容 ,infoShow:true false 控制是否显示 ,success:成功方法}
      *
      *
      * */
-    var ajax2 = ["$http", function ($http) {
+    var ajax = ["$http", function ($http) {
 
         var ajax = {
 
