@@ -153,6 +153,7 @@ var lhFactory = (function () {
                 }).error(function (e) {
                     alert("服务器错误");
                     //console.log(e);
+
                 });
             }
         };
@@ -211,8 +212,10 @@ var lhFactory = (function () {
 
 
                 }).error(function (e) {
-                    alert("服务器错误");
-                    //console.log(e);
+                    alert("服务器数据格式错误"+e);
+                    layer.msg("服务器数据格式错误."+e, function(){
+                        //回震动提示的
+                    });
                 });
             },
             "post": function (o) {
@@ -250,8 +253,11 @@ var lhFactory = (function () {
 
 
                 }).error(function (e) {
-                    alert("服务器错误");
+                    alert("服务器数据格式错误"+e);
                     //console.log(e);
+                    layer.msg("服务器数据格式错误."+e, function(){
+                        //回震动提示的
+                    });
                 });
             }
         };

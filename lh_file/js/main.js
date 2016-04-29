@@ -29223,7 +29223,7 @@ var lhFactory = (function () {
 
     /*
     * {url:url地址,infoSuccess:成功消息内容,infoError:失败消息内容 ,infoShow:true false 控制是否显示 ,success:成功方法}
-    *
+    *   使用angualr的  'cfpLoadingBar', 'ngNotify' 才能运行
     *
     * */
     var ajax2 = ["$http", 'cfpLoadingBar', 'ngNotify', function ($http, cfpLoadingBar, ngNotify) {
@@ -29318,6 +29318,7 @@ var lhFactory = (function () {
                 }).error(function (e) {
                     alert("服务器错误");
                     //console.log(e);
+
                 });
             }
         };
@@ -29376,8 +29377,10 @@ var lhFactory = (function () {
 
 
                 }).error(function (e) {
-                    alert("服务器错误");
-                    //console.log(e);
+                    alert("服务器数据格式错误"+e);
+                    layer.msg("服务器数据格式错误."+e, function(){
+                        //回震动提示的
+                    });
                 });
             },
             "post": function (o) {
@@ -29415,8 +29418,11 @@ var lhFactory = (function () {
 
 
                 }).error(function (e) {
-                    alert("服务器错误");
+                    alert("服务器数据格式错误"+e);
                     //console.log(e);
+                    layer.msg("服务器数据格式错误."+e, function(){
+                        //回震动提示的
+                    });
                 });
             }
         };

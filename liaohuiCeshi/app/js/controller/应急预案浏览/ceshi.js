@@ -6,7 +6,7 @@ var myApp = angular.module('myApp', [
 
 
 //factory  服务添加位置
-myApp.factory("lh_ajax", lhFactory.ajax2); //新ajax服务
+myApp.factory("lh_ajax", lhFactory.ajax); //新ajax服务
 myApp.directive("wangEdit", wangEditDirective.wangEdit); //加载编辑器
 myApp.directive("wangedit2", wangEditDirective.wangEdit); //加载编辑器
 
@@ -17,6 +17,7 @@ myApp.controller('rootController', ['$scope', '$log', 'lh_ajax', '$timeout', fun
 
     //加载侧边
     var sideListUrl = 'server_json/side_list.json';
+    // var sideListUrl = 'http://www.baidu.com';
     var sideListHttp = function () {
         lh_ajax.get({
             url: sideListUrl,
