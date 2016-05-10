@@ -53,7 +53,7 @@ myApp.controller('rootController',
 
         $scope.live = {};
 
-        //var taskUrl = "/proxy/127.0.0.1:1337"; //连接测试服务器
+        // var taskUrl = "/proxy/127.0.0.1:1337"; //连接测试服务器
         var taskUrl = "server_json/leader/day.json"; //连接默认数据
 
         //控制btn加载状态
@@ -100,7 +100,8 @@ myApp.controller('rootController',
             //    data:"给服务器发送的 数据,"
             //      action:"del" 或者 "updtae" 删除 或者修改稿的操作
             //};
-            //console.log(o);
+            // info =  true  : false  用于控制提示是否出现
+            console.log(o);
 
 
 
@@ -585,11 +586,9 @@ myApp.controller('editTask',
                 yes: function (index) {
                     layer.close(index);
 
+                    $scope.rowEdit.model.action="del";
                     //给服务器发消息删除
-                    $scope.ajaxInfo({
-                        data: $scope.rowEdit.model,
-                        action: "del"
-                    },true);
+                    $scope.ajaxInfo($scope.rowEdit.model,true);
 
 
 
@@ -606,15 +605,16 @@ myApp.controller('editTask',
             console.log("修改")
             //$scope.rowEdit 这个值在主控制器里已经声明过了
             $scope.rowEdit.model.name = $scope.editFrom.name;
-            $scope.rowEdit.model.from = moment($scope.editFrom.from);
-            $scope.rowEdit.model.to = moment($scope.editFrom.to);
+            $scope.rowEdit.model.from = moment($scope.editFrom.from).format("YYYY-MM-DD H:mm:ss");
+            $scope.rowEdit.model.to = moment($scope.editFrom.to).format("YYYY-MM-DD H:mm:ss");
             $scope.rowEdit.model.color = $scope.editFrom.color;
 
+
+            //动作
+            $scope.rowEdit.model.action = "update";
+
             //给服务器发消息修改
-            $scope.ajaxInfo({
-                data: $scope.rowEdit.model,
-                action: "update"
-            },true);
+            $scope.ajaxInfo($scope.rowEdit.model,true);
 
             //发消息给主控制器
             $scope.$emit('to-rootController', $scope.rowEdit);
@@ -647,22 +647,22 @@ myApp.controller('addTask',
 
         //点击修改任务按钮
         $scope.editClick = function () {
-            $scope.rowEdit = [];
+            $scope.rowEdit = {};
             //$scope.rowEdit 这个值在主控制器里已经声明过了
             $scope.rowEdit.name = $scope.editFrom.name;
-            $scope.rowEdit.from = moment($scope.editFrom.from);
-            $scope.rowEdit.to = moment($scope.editFrom.to);
+            $scope.rowEdit.from = moment($scope.editFrom.from).format("YYYY-MM-DD H:mm:ss");
+            $scope.rowEdit.to = moment($scope.editFrom.to).format("YYYY-MM-DD H:mm:ss");
             $scope.rowEdit.color = $scope.editFrom.selected.value.color;
 
 
+            $scope.rowEdit.action =  "add";
+            console.log($scope.rowEdit)
+
             //给服务器发消息修改
 
-            $scope.ajaxInfo({
-                data: $scope.rowEdit.model,
-                action: "add"
-            },true);
+            $scope.ajaxInfo($scope.rowEdit,true);
 
-            console.log($scope.rowEdit)
+            // console.log($scope.rowEdit)
 
             //发消息给主控制器
             $scope.$emit('to-rootController', $scope.rowEdit);
