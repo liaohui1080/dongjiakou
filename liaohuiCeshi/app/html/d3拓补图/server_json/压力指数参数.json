@@ -1,0 +1,64 @@
+{
+  "status": 1,
+  "info": "重大危险源",
+  "data": [
+    {
+      "action": "查看",
+      "name": "甲醛",
+      "position": "位置-甲醛合成区GT-7050",
+      "type": "CO",
+      "status": "报警",
+      "handleStatus": "已通知",
+      "feedbackStatus": "未反馈",
+      "fromTime": "2015/12/11 14:33:23",
+      "toTime": "2015/12/11 14:33:23",
+    },
+    {
+      "action": "查看",
+      "name": "甲醛",
+      "position": "位置-甲醛合成区GT-7050",
+      "type": "CO",
+      "status": "报警",
+      "handleStatus": "已通知",
+      "feedbackStatus": "未反馈",
+      "fromTime": "2015/12/11 14:33:23",
+      "toTime": "2015/12/11 14:33:23",
+    },
+    {
+      "action": "查看",
+      "name": "甲醛",
+      "position": "位置-甲醛合成区GT-7050",
+      "type": "CO",
+      "status": "报警",
+      "handleStatus": "已通知",
+      "feedbackStatus": "未反馈",
+      "fromTime": "2015/12/11 14:33:23",
+      "toTime": "2015/12/11 14:33:23",
+    },
+    {
+      "action": "查看",
+      "name": "甲醛",
+      "position": "位置-甲醛合成区GT-7050",
+      "type": "CO",
+      "status": "报警",
+      "handleStatus": "已通知",
+      "feedbackStatus": "未反馈",
+      "fromTime": "2015/12/11 14:33:23",
+      "toTime": "2015/12/11 14:33:23",
+    },
+    {
+      "action": "查看",
+      "name": "甲醛",
+      "position": "位置-甲醛合成区GT-7050",
+      "type": "CO",
+      "status": "报警",
+      "handleStatus": "已通知",
+      "feedbackStatus": "未反馈",
+      "fromTime": "2015/12/11 14:33:23",
+      "toTime": "2015/12/11 14:33:23",
+    }
+  ]
+}
+
+
+

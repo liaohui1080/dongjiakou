@@ -1,0 +1,55 @@
+{
+  "name":"中国",
+  "children":
+  [
+    {
+      "name":"二级1" ,
+      "children":
+      [
+        {"name":"三级"},
+        {"name":"三级","children":
+        [
+          {"name":"四级级"},
+          {"name":"四级级"}
+        ]}
+      ]
+    },
+
+    {
+      "name":"二级2" ,
+      "children":
+      [
+        {"name":"三级"},
+        {"name":"三级"}
+      ]
+    },
+
+    {
+      "name":"二级3" ,
+      "children":
+      [
+
+      ]
+    },
+
+    {
+      "name":"二级4" ,
+      "children":
+      [
+
+      ]
+    },
+
+
+    {
+      "name":"浙江" ,
+      "children":
+      [
+        {"name":"三级"},
+        {"name":"三级"}
+      ]
+    }
+  ]
+}
+
+

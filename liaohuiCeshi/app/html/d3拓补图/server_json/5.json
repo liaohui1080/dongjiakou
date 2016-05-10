@@ -1,0 +1,50 @@
+
+
+
+{
+  "status": 1,
+  "info": "网络拓补图",
+  "data": {
+    "name": "主节点",
+    "size": 40,
+    "children": [
+      {"name": "一级节点" ,"info":"asdfasdfasd罚担罚阿打发沙发的啊上的发上的发生地方","status":1},
+      {"name": "一级节点" ,"info":"asdfasdfasd罚担罚阿打发沙发的啊上的发上的发生地方","status":1},
+      {"name": "一级节点" ,"info":"asdfasdfasd罚担罚阿打发沙发的啊上的发上的发生地方","status":1},
+      {"name": "一级节点" ,"info":"asdfasdfasd罚担罚阿打发沙发的啊上的发上的发生地方","status":1},
+      {"name": "一级节点" ,"info":"asdfasdfasd罚担罚阿打发沙发的啊上的发上的发生地方","status":1},
+      {"name": "一级节点" ,"info":"asdfasdfasd罚担罚阿打发沙发的啊上的发上的发生地方","status":1},
+      {"name": "一级节点" ,"info":"asdfasdfasd罚担罚阿打发沙发的啊上的发上的发生地方","status":1},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"},
+      {"name": "一级节点"}
+    ]
+  }
+}
+

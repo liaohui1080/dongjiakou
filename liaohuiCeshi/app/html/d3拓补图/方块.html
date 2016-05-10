@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="../../pagePublic/metronic/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+          type="text/css"/>
+
+    <link href="alibaba_icon/iconfont.css" rel='stylesheet'>
+    <style>
+
+       .rect{
+            fill: #67ff4b;
+        }
+        .bg{
+            fill: #ffc9a1;
+        }
+
+    </style>
+</head>
+<body >
+    <div class="fangkuai">
+
+    </div>
+
+
+
+    <!-- END PAGE -->
+
+
+    <script src="../../pagePublic/metronic/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="../../../bower_components/d3/d3.js"></script>
+
+
+
+
+
+    <script>
+
+        fangkuai()
+        //方块
+        function  fangkuai() {
+            var width=200;
+            var height=100;
+            var dataset = [ 250 , 210 , 170 , 130 , 90 ];
+
+            var svg = d3.select(".fangkuai").append("svg")
+                    .attr("width", width )
+                    .attr("height", height)
+                    .attr("class", "bg")
+                    .attr("transform", "translate(0,0)");
+
+
+
+
+
+            //插入一个正方形
+            svg.selectAll("rect")
+                    .data(dataset)
+                    .enter()
+                    .append("rect")
+                    .attr("class","rect")
+                    .attr("width", 10 )
+                    .attr("height", 10)
+                    //确定图形 离边界的距离
+                    .attr("transform", function (d,i) {
+                        console.log(d)
+                        return "translate("+i*12+",0)"
+                    })
+
+
+        }
+
+    </script>
+</body>
+</html>
