@@ -6,7 +6,7 @@ var myApp = angular.module('myApp', [
 
 
 //factory  服务添加位置
-myApp.factory("lh_ajax", lhFactory.ajax2); //新ajax服务
+myApp.factory("lh_ajax", lhFactory.ajax); //新ajax服务
 myApp.filter("timeFormat", lhFilter.timeFormat); //新ajax服务
 
 

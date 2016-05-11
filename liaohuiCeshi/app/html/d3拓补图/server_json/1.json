@@ -1,0 +1,32 @@
+{
+  "name": "起点",
+  "children": [
+    {
+      "name": "第一个",
+      "children": [
+        {
+          "name": "1",
+          "size": 10,
+          "children": [
+            {"name": "AgglomerativeCluster", "size": 0}
+
+          ]
+        },
+        {
+          "name": "2",
+          "children": [
+            {"name": "BetweennessCentrality", "size": 0}
+
+          ]
+        },
+        {
+          "name": "3",
+          "children": [
+            {"name": "AspectRatioBanker", "size": 0}
+          ]
+        }
+      ]
+    }
+
+  ]
+}

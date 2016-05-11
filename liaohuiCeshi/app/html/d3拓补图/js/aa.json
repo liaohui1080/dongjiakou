@@ -1,0 +1,47 @@
+{
+
+  "branchset": [
+    {"name": "主进程","length": 0.01,"color":"Bacteria","branchset": [
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"},
+      {"name": "主进程","length": 0.01,"color":"Bacteria"}
+
+    ]},
+
+    {"name": "主进程","length": 0.01,"color":"Bacteria"}
+
+  ]
+}

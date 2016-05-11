@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="../../pagePublic/metronic/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+          type="text/css"/>
+    <!--<link href="../../pagePublic/metronic/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet"-->
+    <!--type="text/css"/>-->
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+    <link href="../../pagePublic/metronic/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css"
+          rel="stylesheet" type="text/css"/>
+    <!-- END PAGE LEVEL PLUGIN STYLES -->
+
+    <!-- BEGIN THEME STYLES -->
+
+    <!--控制是否圆角-->
+    <link href="../../pagePublic/metronic/assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/plugins.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/pages/tasks.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/themes/default.css" rel="stylesheet" type="text/css"
+          id="style_color"/>
+    <link href="../../pagePublic/metronic/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+    <!-- END THEME STYLES -->
+
+
+    <link href="alibaba_icon/iconfont.css" rel='stylesheet'>
+    <link href="../../../../lh_file/css/main.min.css" rel='stylesheet'>
+    <style>
+
+
+        /*网络拓补图动画*/
+        @keyframes root-node-4 {
+
+            0% {
+                -webkit-transform: rotate(360deg);
+            }
+            /*50% {*/
+            /*-webkit-transform: rotate(180deg);*/
+            /*}*/
+            100% {
+                -webkit-transform: rotate(0deg);
+            }
+        }
+
+        .root-node-4 {
+            animation: root-node-4 5s linear infinite;
+        }
+
+        @keyframes root-node-7 {
+
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            50% {
+                -webkit-transform: rotate(180deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        .root-node-7 {
+            animation: root-node-7 3s linear infinite;
+        }
+
+        @keyframes root-node-3 {
+
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+
+        }
+
+        .root-node-3 {
+            animation: root-node-3 6s linear infinite;
+        }
+
+        /*网络拓补图动画 end*/
+
+
+
+
+
+        .node {
+            font: 12px sans-serif;
+            /*fill: #54f071;*/
+            /*background-image: url("../../images/server/donghua.gif");*/
+        }
+
+        .yuan {
+            fill: #183357;
+            stroke: #204A75;
+            stroke-width: 1.5px;
+
+        }
+
+        .yuan-children {
+            fill: #003372;
+            stroke: #003372;
+            stroke-width: 1.5px;
+        }
+
+        .yuan-root {
+            fill: #142d3b;
+
+            /*background-image: url("../../images/server/shexiangtou.png");*/
+        }
+
+        .yuan-status-high {
+            color: #0096FC;
+        }
+
+        .yuan-status-low {
+            fill: #e01f46;
+            color: #e01f46;
+        }
+
+        .shexiangtou {
+            fill: #204A75;
+            stroke-width: 1.5px;
+        }
+
+        .shexiangtou-status-low {
+            fill: #E01919;
+            color: #E01919;
+        }
+
+        .text {
+            fill: #C9C9C9;
+            /*stroke: steelblue;*/
+            stroke-width: 1.5px;
+        }
+
+        .info-show {
+            fill: #ff000e;
+            z-index: 999;
+            fill-opacity: 0.0;
+        }
+
+        .link {
+            fill: none;
+            stroke: #1F2D3B;
+            stroke-width: 1.5px;
+
+        }
+
+        .dianbo .line {
+            fill: #0096FC;
+            stroke: #0096FC;
+            stroke-width: 1.5px;
+        }
+
+        body, .page-content {
+            background-color: #000117;
+        }
+
+        .panel-default {
+            background-color: #0F2136;
+            border: 1px solid #173452;
+
+            background: -webkit-linear-gradient(top, transparent 19px, #121b34 20px),
+            -webkit-linear-gradient(left, transparent 19px, #121b34 20px);
+            background: -moz-linear-gradient(top, transparent 19px, #121b34 20px),
+            -moz-linear-gradient(left, transparent 19px, #121b34 20px);
+            background-size: 20px 20px;
+        }
+
+        .panel-default .panel-heading {
+            background-color: #152D4D;
+            border-bottom: 1px solid #173452;
+        }
+
+        .panel-default .panel-info {
+            background-color: #08121B;
+            border-bottom: 1px solid #173452;
+            color: #0096FC;
+            overflow: hidden;
+
+        }
+
+        .panel-default .panel-info-bottom {
+            background-color: #08121B;
+            border-top: 1px solid #173452;
+            color: #0096FC;
+            overflow: hidden;
+        }
+
+        .panel-default .panel-info .table tr td {
+            border: none;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        /*提示框*/
+        .tooltip {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px;
+            height: auto;
+            font-family: simsun;
+            font-size: 12px;
+
+            /*text-align: center;*/
+            /*border-style: solid;*/
+            border-width: 1px;
+            background-color: #29ABE2;
+
+            /*border-radius: 5px;*/
+            z-index: 999;
+        }
+
+        .tooltip .tooltip-title {
+            padding: 5px;
+            /*border-bottom: 1px solid #152a38;*/
+        }
+
+        .tooltip .tooltip-body {
+
+            padding: 5px;
+            padding-top: 0;
+        }
+
+        /*白色边框*/
+        .border-bule {
+            border-color: #173452;
+        }
+
+        .table-bordered {
+            border-color: #173452;
+        }
+
+        .table-bordered tbody tr td {
+            color: #0096FC;
+            border-color: #173452;
+        }
+
+        .table-bordered thead tr th {
+            color: #0096FC;
+            border-color: #173452;
+        !important;
+        }
+
+    </style>
+</head>
+<body ng-app="myApp">
+
+<div class="page-content" ng-controller="rootController">
+
+    <!--图形提示框-->
+    <div class="tooltip">
+        <div class="tooltip-title">标题</div>
+        <div class="tooltip-body">标题</div>
+    </div>
+
+    <!-- BEGIN PAGE HEADER-->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+            <h3 class="page-title">
+                d3图形
+                <small>statistics and more</small>
+            </h3>
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <i class="icon-home"></i>
+                    <a href="#">Home</a>
+                    <span class="icon-angle-right"></span>
+                </li>
+                <li><a href="#">Dashboard</a></li>
+            </ul>
+
+            <!-- END PAGE TITLE & BREADCRUMB-->
+        </div>
+    </div>
+    <!-- END PAGE HEADER-->
+    <!-- CONTENT BODY GOES HERE >>>> -->
+
+
+    <div class="row">
+        <div class=" col-md-6 ">
+            <div class="panel panel-default tuxingWidth2 ">
+                <div class="panel-heading clearfix">
+
+                    <span class="text-info">网络拓补图</span>
+                    <div class="pull-right">
+                        <ul class="list-inline " style="margin: 0">
+                            {{shuaxin}}
+                            <li class="yuan-status-high"><i class="iconfont">&#xe60a;</i> 网络正常</li>
+                            <li class="yuan-status-low"><i class="iconfont">&#xe60a;</i> 网络断开</li>
+                            <li class="text-info" ng-click="topologyClick()" style="cursor: pointer"><i
+                                    class="iconfont">&#xe60d;</i> 刷新
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!--<div class="panel-info " style="height: 80px">-->
+                    <!--<table class="table" style="margin-left: 10px">-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                    <!--</table>-->
+                <!--</div>-->
+
+                <!--网络拓补图-->
+                <div class="panel-body tuxingWidth ">
+                    <div class="tuxing"></div>
+                </div>
+
+                <div class="panel-footer panel-info-bottom" style="padding-left: 0 ; padding-right: 0; height:30px">
+                    <div class="dianbo" style="margin-top: -35px"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class=" col-md-6 ">
+            <div class="panel panel-default tuxingWidth2 ">
+                <div class="panel-heading clearfix">
+
+                    <span class="text-info">摄像头视图</span>
+                    <div class="pull-right">
+                        <ul class="list-inline " style="margin: 0">
+                            {{shuaxin}}
+                            <li class="yuan-status-high"><i class="iconfont">&#xe60c;</i> 视频正常</li>
+                            <li class="yuan-status-low"><i class="iconfont">&#xe60c;</i> 视频断开</li>
+                            <li class="text-info" ng-click="videoClick()" style="cursor: pointer"><i class="iconfont">
+                                &#xe60d;</i> 刷新
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!--<div class="panel-info " style="height: 80px">-->
+                    <!--<table class="table" style="margin-left: 10px">-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                            <!--<td>adsfa</td>-->
+                        <!--</tr>-->
+                    <!--</table>-->
+                <!--</div>-->
+
+                <!--网络拓补图-->
+                <div class="panel-body tuxingWidth ">
+                    <div class="shexiangtou"></div>
+                </div>
+
+                <div class="panel-footer panel-info-bottom" style="padding-left: 0 ; padding-right: 0; height:30px">
+                    <div class="dianbo" style="margin-top: -35px"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class=" col-md-6 ">
+            <div class="row">
+                <div class="col-sm-5"><h4 class="text-primary">相邻重大危险源</h4></div>
+                <div class="col-sm-7">
+                    <div class="pull-right" style="padding-top: 8px">
+                        <button class="btn btn-primary btn-xs " ng-click="neighborHazardClick()"><i class="iconfont">&#xe60d;</i> 刷新</button>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered ">
+                <thead>
+                <tr>
+                    <th><span class="text-info">#</span></th>
+                    <th><span class="text-info">操作</span></th>
+                    <th><span class="text-info">名称</span></th>
+                    <th><span class="text-info">安装位置</span></th>
+                    <th><span class="text-info">气体类型</span></th>
+                    <th><span class="text-info">状态</span></th>
+                    <th><span class="text-info">处理状态</span></th>
+                    <th><span class="text-info">反馈状态</span></th>
+                    <th><span class="text-info">开始时间</span></th>
+                    <th><span class="text-info">结束时间</span></th>
+                </tr>
+                </thead>
+                <tr ng-repeat="item in neighborHazardItem">
+                    <td>1</td>
+                    <td><span class="text-warning">查看</span></td>
+                    <td ng-bind="item.name">甲醛</td>
+                    <td ng-bind="item.position">甲醛合成区GT-7050</td>
+                    <td ng-bind="item.type">CO</td>
+                    <td>
+                        <span class="text-danger" ng-if="item.status=='报警'">报警</span>
+                        <span ng-if="item.status!='报警'">正常</span>
+                    </td>
+                    <td>
+                        <span class="text-success" ng-if="item.handleStatus=='已通知'">已通知</span>
+                        <span class="text-danger" ng-if="item.handleStatus!='已通知'">未通知</span>
+                    </td>
+                    <td>
+                        <span class="text-success" ng-if="item.feedbackStatus=='已反馈'">已反馈</span>
+                        <span class="text-danger" ng-if="item.feedbackStatus!='已反馈'">未反馈</span>                    </td>
+                    <td>2015/12/11 14:33:23</td>
+                    <td>2015/12/11 14:33:23</td>
+                </tr>
+                <!--<tr>-->
+                    <!--<td>2</td>-->
+                    <!--<td><span class="text-warning">查看</span></td>-->
+                    <!--<td>甲醛</td>-->
+                    <!--<td>甲醛合成区GT-7050</td>-->
+                    <!--<td>CO</td>-->
+                    <!--<td>报警</td>-->
+                    <!--<td>已通知</td>-->
+                    <!--<td>未反馈</td>-->
+                    <!--<td>2015/12/11 14:33:23</td>-->
+                    <!--<td>未结束</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>3</td>-->
+                    <!--<td><span class="text-warning">查看</span></td>-->
+                    <!--<td>甲醛</td>-->
+                    <!--<td>甲醛合成区GT-7050</td>-->
+                    <!--<td>CO</td>-->
+                    <!--<td>报警</td>-->
+                    <!--<td>已通知</td>-->
+                    <!--<td>未反馈</td>-->
+                    <!--<td>2015/12/11 14:33:23</td>-->
+                    <!--<td>未结束</td>-->
+                <!--</tr>-->
+
+            </table>
+        </div>
+
+
+        <div class=" col-md-6 ">
+            <!--<h4 class="text-info">压力容器指数参数</h4>-->
+            <div class="row">
+                <div class="col-sm-5"><h4 class="text-primary">压力容器指数参数</h4></div>
+                <div class="col-sm-7">
+                    <div class="pull-right" style="padding-top: 8px">
+                        <button class="btn btn-primary btn-xs "><i class="iconfont">&#xe60d;</i> 刷新</button>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered ">
+                <thead>
+                <tr>
+                    <th><span class="text-info">#</span></th>
+                    <th><span class="text-info">10.11</span></th>
+                    <th><span class="text-info">10.12</span></th>
+                    <th><span class="text-info">10.13</span></th>
+                    <th><span class="text-info">10.14</span></th>
+                    <th><span class="text-info">10.15</span></th>
+                </tr>
+                </thead>
+                <tr>
+                    <td>压力</td>
+                    <td><span class="text-success">-287.33</span></td>
+                    <td>93%</td>
+                    <td>7.8%</td>
+                    <td>55</td>
+                    <td>44</td>
+
+                </tr>
+                <tr>
+                    <td>甲烷</td>
+                    <td><span class="text-success">-287.33</span></td>
+                    <td>93%</td>
+                    <td>7.8%</td>
+                    <td>55</td>
+                    <td>44</td>
+                </tr>
+                <tr>
+                    <td>温度</td>
+                    <td><span class="text-success">-287.33</span></td>
+                    <td>93%</td>
+                    <td>7.8%</td>
+                    <td>55</td>
+                    <td>44</td>
+                </tr>
+                <tr>
+                    <td>温度</td>
+                    <td><span class="text-success">-287.33</span></td>
+                    <td>93%</td>
+                    <td>7.8%</td>
+                    <td>55</td>
+                    <td>44</td>
+                </tr>
+                <tr>
+                    <td>温度</td>
+                    <td><span class="text-success">-287.33</span></td>
+                    <td>93%</td>
+                    <td>7.8%</td>
+                    <td>55</td>
+                    <td>44</td>
+                </tr>
+
+            </table>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <!-- <div class="col-md-12 jianceWidth">
+            <div class="jiance" style="background-color:#fff"></div>
+        </div> -->
+        <div class="col-md-12">
+
+            <div class="row">
+                <div class="col-md-5"><h4 class="text-primary">实时监测</h4></div>
+                <div class="col-md-7">
+                    <div class="pull-right" style="padding-top: 8px">
+                        <button class="btn btn-primary btn-xs " ng-click="clickLoadeChart()"><i class="iconfont">&#xe60d;</i> 刷新</button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div id="main" style="height:400px;"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!--显示实时视频-->
+    <div class="row">
+
+
+
+        <div class="col-md-2"><img src="../../images/user.png" alt="..." class="img-rounded" style="width: 100%"></div>
+        <div class="col-md-2"><img src="../../images/user.png" alt="..." class="img-rounded" style="width: 100%"></div>
+        <div class="col-md-2"><img src="../../images/user.png" alt="..." class="img-rounded" style="width: 100%"></div>
+        <div class="col-md-2"><img src="../../images/user.png" alt="..." class="img-rounded" style="width: 100%"></div>
+        <div class="col-md-2"><img src="../../images/user.png" alt="..." class="img-rounded" style="width: 100%"></div>
+        <div class="col-md-2"><img src="../../images/user.png" alt="..." class="img-rounded" style="width: 100%"></div>
+    </div> style="width: 100%"
+</div>
+<!-- END PAGE -->
+
+
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="../../pagePublic/metronic/assets/plugins/respond.min.js"></script>
+<script src="../../pagePublic/metronic/assets/plugins/excanvas.min.js"></script>
+<![endif]-->
+<script src="../../pagePublic/metronic/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="../../pagePublic/metronic/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<!-- END CORE../../pagePublic/metronic/ PLUGINS -->
+<!-- BEGIN PA../../pagePublic/metronic/GE LEVEL PLUGINS -->
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/flot/jquery.flot.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/flot/jquery.flot.resize.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap-daterangepicker/moment.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
+<!-- IMPORTAN../../pagePublic/metronic/T! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
+<script src="../../pagePublic/metronic/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<!-- END PAGE../../pagePublic/metronic/ LEVEL PLUGINS -->
+<!-- BEGIN PA../../pagePublic/metronic/GE LEVEL SCRIPTS -->
+<script src="../../pagePublic/metronic/assets/scripts/app.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/scripts/index.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/scripts/tasks.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+
+
+<script src="../../../../angular.js"></script>
+
+<script src="../../../configCeshi.js"></script>
+<script src="../../../../lh_file/js/main.js"></script>
+
+
+<script src="../../../bower_components/d3/d3.js"></script>
+<script src="../../pagePublic/echarts/echarts.js"></script>
+<!--<script src="../../pagePublic/echarts/dark.js"></script>-->
+<script src="../../js/controller/d3拓补图/ceshi.js"></script>
+
+</body>
+</html>

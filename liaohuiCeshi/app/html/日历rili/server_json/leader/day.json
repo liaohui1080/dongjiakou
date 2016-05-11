@@ -14,8 +14,8 @@
           "content": "<img class='img-circle' style='width: 20px;' ng-src='../../images/user.png' > <span>{{$index}}用户名字</span>",
           "taskId":"任务id1",
           "color": "#93C47D",
-          "from": "2016-04-06T00:00:00",
-          "to": "2016-04-06T04:00:00",
+          "from": "2016-04-06 01:00:00",
+          "to": "2016-04-06 04:00:00",
           "data": ""
         },
         {

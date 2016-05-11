@@ -26,6 +26,7 @@
     "angular-bootstrap-grid-tree": "*",
     "angular-bootstrap-nav-tree": "*",
     "angular-ui-switch": "^0.1.1",
-    "ng-bs-animated-button": "^2.0.3"
+    "ng-bs-animated-button": "^2.0.3",
+    "d3": "^3.5.16"
   }
 }
