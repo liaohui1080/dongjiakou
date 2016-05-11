@@ -558,8 +558,6 @@ myApp.controller('editTask',
         $scope.editFrom = {};
         $scope.$on('to-editTask', function (e, task) {
 
-            console.log(task.model);
-            console.log(task);
 
 
             $scope.rowEdit = task;
@@ -567,10 +565,12 @@ myApp.controller('editTask',
             $scope.editFrom = {
                 name: task.model.name,
                 from: task.model.from, //开始时间
-                to: task.model.to, //结束时间
+                to:     task.model.to, //结束时间
                 color: task.model.color,
                 id: task.model.id
             };
+
+            console.log($scope.editFrom )
 
             $("#editTask").modal("show");
 
@@ -605,19 +605,25 @@ myApp.controller('editTask',
             console.log("修改")
             //$scope.rowEdit 这个值在主控制器里已经声明过了
             $scope.rowEdit.model.name = $scope.editFrom.name;
-            $scope.rowEdit.model.from = moment($scope.editFrom.from).format("YYYY-MM-DD H:mm:ss");
-            $scope.rowEdit.model.to = moment($scope.editFrom.to).format("YYYY-MM-DD H:mm:ss");
+            $scope.rowEdit.model.from = moment($scope.editFrom.from);
+            $scope.rowEdit.model.to = moment($scope.editFrom.to);
+            // $scope.rowEdit.model.to = "2016-04-06 20:00:00";
             $scope.rowEdit.model.color = $scope.editFrom.color;
-
 
             //动作
             $scope.rowEdit.model.action = "update";
 
+
+            //给ajax发送数据, copy一份数据到新的内存, 然后修改里面的 from to 时间格式
+            var ajaxRowEdit=angular.copy($scope.rowEdit.model);
+            ajaxRowEdit.from=moment($scope.editFrom.from).format("YYYY-MM-DD H:mm:ss");
+            ajaxRowEdit.to = moment($scope.editFrom.to).format("YYYY-MM-DD H:mm:ss");
+
             //给服务器发消息修改
-            $scope.ajaxInfo($scope.rowEdit.model,true);
+            $scope.ajaxInfo(ajaxRowEdit,true);
 
             //发消息给主控制器
-            $scope.$emit('to-rootController', $scope.rowEdit);
+            $scope.$emit('to-rootController', $scope.rowEdit.model);
             $("#editTask").modal("hide");
 
 
