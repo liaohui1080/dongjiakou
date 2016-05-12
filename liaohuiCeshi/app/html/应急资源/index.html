@@ -44,7 +44,7 @@
     <link href="../../../../lh_file/css/main.min.css" rel='stylesheet'>
 
     <style>
-        .input-group-padding-0 {
+        .input-group-padding-0{
             padding: 0;
             margin: 0;
         }
@@ -54,438 +54,898 @@
 
 <div class="page-content" ng-controller="rootController">
 
-    <!-- BEGIN PAGE HEADER-->
-    <div class="row">
-        <div class="col-md-12">
-            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-            <h3 class="page-title">
-                应急资源
-                <small>statistics and more</small>
-            </h3>
-            <ul class="page-breadcrumb breadcrumb">
-                <li>
-                    <i class="icon-home"></i>
-                    <a href="#">Home</a>
-                    <span class="icon-angle-right"></span>
-                </li>
-                <li><a href="#">Dashboard</a></li>
-            </ul>
+    <div class="col-md-12">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+        <h3 class="page-title">
+            应急资源 <small>Emergency resources</small>
+        </h3>
+        <div class="row" style="background:#F8F8F8 ;height: 40px;">
+            <div class="col-md-12">
+                <div class="clearfix pull-right" style="margin-top: 3px;">
 
-            <!-- END PAGE TITLE & BREADCRUMB-->
+
+                    <a href="#" class="btn btn-sm red"><i class="fa fa-trash"></i> 删除</a>
+                </div>
+            </div>
         </div>
+        <!-- 内容开始  -->
+        <div class="row margin-top-20 profile">
+            <div class="col-md-6">
+                <div class="row profile">
+                    <div class="col-md-12">
+                        <div class="portlet box purple" style="margin-top:0px !important;border:1px solid #f47564;">
+                            <div class="portlet-title">
+                                <div class="caption">应急专家库</div>
+                                <div class="tools">
+                                    <a class="collapse" href=""></a>
+                                    <a class="reload" href=""></a>
+                                    <a class="remove" href=""></a>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <div class="row">
+                                    <div class=" col-xs-offset-6 col-md-6">
+                                        <div class="form-group"><input type="text" class="form-control " placeholder="搜索..."></div>
+
+                                    </div>
+                                </div>
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="scroller" style="height: 350px; overflow: hidden; width: auto;" data-always-visible="1" data-rail-visible1="1">
+                                    <div class="row">
+                                        <div class="col-md-10 user-info">
+                                            <img src="assets/img/avatar.png" class="img-circle img-responsive" style="border-radius:50% !important;">
+                                            <div class=" details">
+                                                <div>
+                                                    <span style="font-size:16px"><strong>刘晓东</strong></span>/<span>国家级专家</span>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-danger label-sm label-mini">爆炸事故</span>
+                                                </div>
+                                                <div>
+                                                    <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                        <li>
+                                                            <i class="fa fa-tags"></i>
+                                                            应急信息科
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-graduation-cap"></i>
+                                                            信息管理
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-map-marker"></i>
+                                                            山东省青岛市
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-fax"></i>
+                                                            15110121399
+                                                        </li>
+
+                                                    </ul>
+                                                    <i class="fa fa-ambulance"></i> <span style="font-size:10px; ">预计需达现场1小时10分钟</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="portfolio-btn">
+                                                <a class="btn bigicn-only btn-danger">
+                                                    <i class="fa fa-phone" style="font-size:24px"></i>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 user-info">
+                                            <img src="assets/img/avatar.png" class="img-circle img-responsive" style="border-radius:50% !important;">
+                                            <div class=" details">
+                                                <div>
+                                                    <span style="font-size:16px"><strong>朱辉</strong></span>/<span>企业级专家</span>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">毒气泄漏</span>
+                                                </div>
+                                                <div>
+                                                    <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                        <li>
+                                                            <i class="fa fa-tags"></i>
+                                                            应急信息科
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-graduation-cap"></i>
+                                                            信息管理
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-map-marker"></i>
+                                                            山东省淄博市
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-fax"></i>
+                                                            15110189546
+                                                        </li>
+
+                                                    </ul>
+                                                    <i class="fa fa-ambulance"></i> <span style="font-size:10px; ">预计需达现场3小时10分钟</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="portfolio-btn">
+                                                <a class="btn bigicn-only btn-danger">
+                                                    <i class="fa fa-phone" style="font-size:24px"></i>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 user-info">
+                                            <img src="assets/img/avatar.png" class="img-circle img-responsive" style="border-radius:50% !important;">
+                                            <div class=" details">
+                                                <div>
+                                                    <span style="font-size:16px"><strong>裴广福</strong></span>/<span>国家级专家</span>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-warning label-sm label-mini">火灾事故</span>
+                                                </div>
+                                                <div>
+                                                    <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                        <li>
+                                                            <i class="fa fa-tags"></i>
+                                                            应急信息科
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-graduation-cap"></i>
+                                                            信息管理
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-map-marker"></i>
+                                                            山东省日照市
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-fax"></i>
+                                                            13589721399
+                                                        </li>
+
+                                                    </ul>
+                                                    <i class="fa fa-ambulance"></i> <span style="font-size:10px; ">预计需达现场2小时10分钟</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="portfolio-btn">
+                                                <a class="btn bigicn-only btn-danger">
+                                                    <i class="fa fa-phone" style="font-size:24px"></i>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 user-info">
+                                            <img src="assets/img/avatar.png" class="img-circle img-responsive" style="border-radius:50% !important;">
+                                            <div class=" details">
+                                                <div>
+                                                    <span style="font-size:16px"><strong>王俊飞</strong></span>/<span>企业级专家</span>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-danger label-sm label-mini">爆炸事故</span>
+                                                </div>
+                                                <div>
+                                                    <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                        <li>
+                                                            <i class="fa fa-tags"></i>
+                                                            应急信息科
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-graduation-cap"></i>
+                                                            信息管理
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-map-marker"></i>
+                                                            青岛海晶化工集团宿舍
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-fax"></i>
+                                                            15189541399
+                                                        </li>
+
+                                                    </ul>
+                                                    <i class="fa fa-ambulance"></i> <span style="font-size:10px; ">预计需达现场10分钟</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="portfolio-btn">
+                                                <a class="btn bigicn-only btn-danger">
+                                                    <i class="fa fa-phone" style="font-size:24px"></i>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 user-info">
+                                            <img src="assets/img/avatar.png" class="img-circle img-responsive" style="border-radius:50% !important;">
+                                            <div class=" details">
+                                                <div>
+                                                    <span style="font-size:16px"><strong>鲍国旺</strong></span>/<span>企业级专家</span>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-danger label-sm label-mini">爆炸事故</span>
+                                                </div>
+                                                <div>
+                                                    <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                        <li>
+                                                            <i class="fa fa-tags"></i>
+                                                            装备管理科
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-graduation-cap"></i>
+                                                            信息管理
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-map-marker"></i>
+                                                            青岛钢铁集团3#宿舍
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-fax"></i>
+                                                            1511015051
+                                                        </li>
+
+                                                    </ul>
+                                                    <i class="fa fa-ambulance"></i> <span style="font-size:10px; ">预计需达现场10分钟</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="portfolio-btn">
+                                                <a class="btn bigicn-only btn-danger">
+                                                    <i class="fa fa-phone" style="font-size:24px"></i>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 user-info">
+                                            <img src="assets/img/avatar.png" class="img-circle img-responsive" style="border-radius:50% !important;">
+                                            <div class=" details">
+                                                <div>
+                                                    <span style="font-size:16px"><strong>魏子龙</strong></span>/<span>企业级专家</span>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-warning label-sm label-mini">火灾事故</span>
+                                                </div>
+                                                <div>
+                                                    <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                        <li>
+                                                            <i class="fa fa-tags"></i>
+                                                            青岛钢铁集团
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-graduation-cap"></i>
+                                                            信息管理
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-map-marker"></i>
+                                                            青岛钢铁集团4#宿舍
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-fax"></i>
+                                                            15010008569
+                                                        </li>
+
+                                                    </ul>
+                                                    <i class="fa fa-ambulance"></i> <span style="font-size:10px; ">预计需达现场10分钟</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="portfolio-btn">
+                                                <a class="btn bigicn-only btn-danger">
+                                                    <i class="fa fa-phone" style="font-size:24px"></i>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 应急专家信息接收 -->
+                                </div><div class="slimScrollBar" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 258.439px; background: rgb(161, 178, 189);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="portlet box" style="border:1px solid #92d168;">
+                    <div class="portlet-title" style="background-color:#92d168;">
+                        <div class="caption">医疗救护</div>
+                        <div class="tools">
+                            <a class="collapse" href=""></a>
+                            <a class="reload" href=""></a>
+                            <a class="remove" href=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row">
+                            <div class=" col-xs-offset-6 col-md-6">
+                                <div class="form-group"><input type="text" class="form-control " placeholder="搜索..."></div>
+                            </div>
+                        </div>
+                        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="scroller" style="height: 350px; overflow: hidden; width: auto;" data-always-visible="1" data-rail-visible1="1">
+
+                            <div class="row portfolio-block">
+                                <div class="col-md-10">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/y1.jpg">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>青岛市人民医院</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">三级甲等</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 青岛市</li>
+                                                <li><i class="fa fa-user-md"></i> 门玉清</li>
+                                                <li><i class="fa fa-fax"></i> 13809360866</li>
+                                                <li><i class="fa fa-ambulance"></i> 预计需22分钟到达</li>
+                                            </ul>
+                                            <i class="fa fa-medkit"></i> <span>救护车2辆、救护医师1名、护士5名、呼吸机1台、救护担架3副</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"> <i class="fa fa-phone" style="font-size:24px"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portfolio-block">
+                                <div class="col-md-10">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/y2.jpg">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>青岛市海慈医院</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info label-sm label-mini">一级甲等</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 董家口经济区</li>
+                                                <li><i class="fa fa-user-md"></i> 刘福清</li>
+                                                <li><i class="fa fa-fax"></i> 2831065</li>
+                                                <li><i class="fa fa-ambulance"></i> 预计需32分钟到达</li>
+                                            </ul>
+                                            <i class="fa fa-medkit"></i> <span>救护车1辆、救护医师1名、护士3名、呼吸机1台、救护担架3副</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"> <i class="fa fa-phone" style="font-size:24px"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portfolio-block">
+                                <div class="col-md-10">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/y3.jpg">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>青岛市中心医院</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">三级甲等</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 董家口经济区</li>
+                                                <li><i class="fa fa-user-md"></i> 朱凤喜</li>
+                                                <li><i class="fa fa-fax"></i> 15109360520</li>
+                                                <li><i class="fa fa-ambulance"></i> 预计需42分钟到达</li>
+                                            </ul>
+                                            <i class="fa fa-medkit"></i> <span>救护车3辆、救护医师2名、护士8名、呼吸机3台、救护担架3副</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"> <i class="fa fa-phone" style="font-size:24px"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portfolio-block">
+                                <div class="col-md-10">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/y4.jpg">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>青岛市西海岸医院</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">三级甲等</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 青岛市</li>
+                                                <li><i class="fa fa-user-md"></i> 张海燕</li>
+                                                <li><i class="fa fa-fax"></i> 13801515747</li>
+                                                <li><i class="fa fa-ambulance"></i> 预计需12分钟到达</li>
+                                            </ul>
+                                            <i class="fa fa-medkit"></i> <span>救护车2辆、救护医师1名、护士5名、呼吸机1台、救护担架3副</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"> <i class="fa fa-phone" style="font-size:24px"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portfolio-block">
+                                <div class="col-md-10">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/y5.jpg">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>青岛海晶化工集团救护队</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">企业救护</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 董家口经济区</li>
+                                                <li><i class="fa fa-user-md"></i> 郑智化</li>
+                                                <li><i class="fa fa-fax"></i> 15184847571</li>
+                                                <li><i class="fa fa-ambulance"></i> 预计需5分钟到达</li>
+                                            </ul>
+                                            <i class="fa fa-medkit"></i> <span>救护车2辆、救护医师1名、护士5名、呼吸机1台、救护担架3副</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"> <i class="fa fa-phone" style="font-size:24px"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portfolio-block">
+                                <div class="col-md-10">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/y6.jpg">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>管委会救护队</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">专业救护</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 董家口经济区</li>
+                                                <li><i class="fa fa-user-md"></i>杨成功</li>
+                                                <li><i class="fa fa-fax"></i> 1396542566</li>
+                                                <li><i class="fa fa-ambulance"></i> 预计需5分钟到达</li>
+                                            </ul>
+                                            <i class="fa fa-medkit"></i> <span>救护车2辆、救护医师1名、护士5名、呼吸机1台、救护担架3副</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"> <i class="fa fa-phone" style="font-size:24px"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--医疗救护结束-->
+                        </div><div class="slimScrollBar" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 221.92px; background: rgb(161, 178, 189);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="portlet box" style="border:1px solid #5dbbe8;">
+                    <div class="portlet-title" style="background-color:#5dbbe8;">
+                        <div class="caption">应急队伍</div>
+                        <div class="tools">
+                            <a class="collapse" href=""></a>
+                            <a class="reload" href=""></a>
+                            <a class="remove" href=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row">
+                            <div class=" col-xs-offset-6 col-md-6">
+                                <div class="form-group"><input type="text" class="form-control " placeholder="搜索..."></div>
+                            </div>
+                        </div>
+                        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="scroller" style="height: 350px; overflow: hidden; width: auto;" data-always-visible="1" data-rail-visible1="1">
+                            <div class="row portfolio-block">
+                                <div class="col-md-10">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/x1.jpg">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>青岛海晶化工集团消防救护队</strong></span>-<span>特级-专业队</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info label-sm label-mini">综合事故类</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 青岛海晶化工集团有限公司</li>
+                                                <li><i class="fa fa-user"></i> 白子画</li>
+                                                <li><i class="fa fa-fax"></i> 13805817466</li>
+                                            </ul>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-truck"></i> 3辆</li>
+                                                <li><i class="fa fa-users"></i> 1个中队、3个小队共计43人</li>
+                                                <li><i class="fa fa-ambulance"></i> 预计10分钟到达</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"> <i class="fa fa-phone" style="font-size:24px"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portfolio-block">
+                                <div class="col-md-10">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/x2.jpg">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>青岛消防支队</strong></span>-<span>特级-专业队</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">毒气泄漏</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 青岛市消防部队大院</li>
+                                                <li><i class="fa fa-user"></i> 孙东胜</li>
+                                                <li><i class="fa fa-fax"></i> 13887972510</li>
+                                            </ul>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-truck"></i> 1辆</li>
+                                                <li><i class="fa fa-users"></i> 1个中队、1个小队共计20人</li>
+                                                <li><i class="fa fa-ambulance"></i> 预计10分钟到达</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"> <i class="fa fa-phone" style="font-size:24px"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portfolio-block">
+                                <div class="col-md-10">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/x3.jpg">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>青岛钢铁集团消防救护队</strong></span>-<span>一级-兼职队</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-info label-sm label-mini">综合事故类</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 青岛钢铁集团</li>
+                                                <li><i class="fa fa-user"></i> 王广臣</li>
+                                                <li><i class="fa fa-fax"></i> 13801528244</li>
+                                            </ul>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-truck"></i> 3辆</li>
+                                                <li><i class="fa fa-users"></i> 1个中队、三个小队共计53人</li>
+                                                <li><i class="fa fa-ambulance"></i> 预计10分钟到达</li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"> <i class="fa fa-phone" style="font-size:24px"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portfolio-block">
+                                <div class="col-md-10">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/x4.jpg">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>管委会消防大队</strong></span>-<span>特级-专业队</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">综合事故类</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 青岛董家口管委会消防部</li>
+                                                <li><i class="fa fa-user"></i> 边丹</li>
+                                                <li><i class="fa fa-fax"></i> 15001083222</li>
+                                            </ul>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-truck"></i> 3辆</li>
+                                                <li><i class="fa fa-users"></i> 1个中队、三个小队共计43人</li>
+                                                <li><i class="fa fa-ambulance"></i> 预计10分钟到达</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"> <i class="fa fa-phone" style="font-size:24px"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--应急队伍信息结束-->
+                        </div><div class="slimScrollBar" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 332.88px; background: rgb(161, 178, 189);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="portlet box" style="border:1px solid #f2c926">
+                    <div class="portlet-title" style="background-color:#f2c926">
+                        <div class="caption">应急通讯录</div>
+                        <div class="tools">
+                            <a class="collapse" href=""></a>
+                            <a class="reload" href=""></a>
+                            <a class="remove" href=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row">
+                            <div class=" col-xs-offset-6 col-md-6">
+                                <div class="form-group"><input type="text" class="form-control " placeholder="搜索..."></div>
+                            </div>
+                        </div>
+                        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="scroller" style="height: 350px; overflow: hidden; width: auto;" data-always-visible="1" data-rail-visible1="1">
+                            <div class="row">
+                                <div class="col-md-10 user-info">
+                                    <img src="assets/img/avatar.png" class="img-circle img-responsive" style="border-radius:50% !important;">
+                                    <div class=" details">
+                                        <div>
+                                            <span style="font-size:16px"><strong>杨永生</strong></span>/<span>青岛海晶化工集团有限公司</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">救护队长</span>
+                                        </div>
+                                        <div>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-tags"></i> 应急信息科</li>
+
+                                                <li><i class="fa fa-map-marker"></i> 董家口经济园区蓝领公寓4-302房间</li>
+                                                <li><i class="fa fa-mobile"></i> 15110121387</li>
+                                            </ul>
+                                            <i class="fa fa-ambulance"></i> <span style="font-size:10px; ">预计需达现场10分钟</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"><i class="fa fa-phone" style="font-size:24px"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10 user-info">
+                                    <img src="assets/img/avatar.png" class="img-circle img-responsive" style="border-radius:50% !important;">
+                                    <div class=" details">
+                                        <div>
+                                            <span style="font-size:16px"><strong>樟子松</strong></span>/<span>青岛海晶化工集团有限公司</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">救护队长</span>
+                                        </div>
+                                        <div>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-tags"></i> 应急信息科</li>
+
+                                                <li><i class="fa fa-map-marker"></i> 董家口经济园区蓝领公寓4-302房间</li>
+                                                <li><i class="fa fa-mobile"></i> 15110121854</li>
+                                            </ul>
+                                            <i class="fa fa-ambulance"></i> <span style="font-size:10px; ">预计需达现场10分钟</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"><i class="fa fa-phone" style="font-size:24px"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10 user-info">
+                                    <img src="assets/img/avatar.png" class="img-circle img-responsive" style="border-radius:50% !important;">
+                                    <div class=" details">
+                                        <div>
+                                            <span style="font-size:16px"><strong>郑先峰</strong></span>/<span>青岛海晶化工集团有限公司</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">救护队长</span>
+                                        </div>
+                                        <div>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-tags"></i> 应急信息科</li>
+
+                                                <li><i class="fa fa-map-marker"></i> 董家口经济园区蓝领公寓5-302房间</li>
+                                                <li><i class="fa fa-mobile"></i> 15150218971</li>
+                                            </ul>
+                                            <i class="fa fa-ambulance"></i> <span style="font-size:10px; ">预计需达现场10分钟</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"><i class="fa fa-phone" style="font-size:24px"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10 user-info">
+                                    <img src="assets/img/avatar.png" class="img-circle img-responsive" style="border-radius:50% !important;">
+                                    <div class=" details">
+                                        <div>
+                                            <span style="font-size:16px"><strong>张万年</strong></span>/<span>青岛钢铁控股集团责任有限公司</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">救护队长</span>
+                                        </div>
+                                        <div>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-tags"></i> 应急信息科</li>
+
+                                                <li><i class="fa fa-map-marker"></i> 董家口经济园区蓝领公寓8-302房间</li>
+                                                <li><i class="fa fa-mobile"></i> 15110898250</li>
+                                            </ul>
+                                            <i class="fa fa-ambulance"></i> <span style="font-size:10px; ">预计需达现场10分钟</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"><i class="fa fa-phone" style="font-size:24px"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10 user-info">
+                                    <img src="assets/img/avatar.png" class="img-circle img-responsive" style="border-radius:50% !important;">
+                                    <div class=" details">
+                                        <div>
+                                            <span style="font-size:16px"><strong>程紫城</strong></span>/<span>青岛海晶化工集团有限公司</span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-success label-sm label-mini">救护队长</span>
+                                        </div>
+                                        <div>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-tags"></i> 应急信息科</li>
+
+                                                <li><i class="fa fa-map-marker"></i> 董家口经济园区蓝领公寓4-302房间</li>
+                                                <li><i class="fa fa-mobile"></i> 151108258747</li>
+                                            </ul>
+                                            <i class="fa fa-ambulance"></i> <span style="font-size:10px; ">预计需达现场10分钟</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"><i class="fa fa-phone" style="font-size:24px"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 应急通讯结束 -->
+                        </div><div class="slimScrollBar" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 310.127px; background: rgb(161, 178, 189);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet box grey" style="border:1px solid #c3a279">
+                    <div class="portlet-title" style="background-color:#c3a279">
+                        <div class="caption">应急资源</div>
+                        <div class="tools">
+                            <a class="collapse" href=""></a>
+                            <a class="reload" href=""></a>
+                            <a class="remove" href=""></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="row">
+                            <div class=" col-xs-offset-6 col-md-6">
+                                <div class="form-group"><input type="text" class="form-control " placeholder="搜索..."></div>
+                            </div>
+                        </div>
+                        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="scroller" style="height: 350px; overflow: hidden; width: auto;" data-always-visible="1" data-rail-visible1="1">
+                            <div class="row portfolio-block">
+                                <div class="col-md-7">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/2.jpg" alt="">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>干粉灭火器</strong></span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-warning label-sm label-mini">火灾事故</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 青岛海晶化工集团3#仓库</li>
+                                                <li><i class="fa fa-map-marker"></i> 青岛海晶化工集团有限公司</li>
+                                                <li><i class="fa fa-user"></i> 张杰</li>
+                                                <li><i class="fa fa-fax"></i> 15110121399</li>
+                                                <li><i class="fa fa-tags"></i> 手提式</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="portfolio-info"><span>99</span>瓶</div>
+                                    <div class="portfolio-info"><span>12</span>KG</div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"><i class="fa fa-phone" style="font-size:24px"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portfolio-block">
+                                <div class="col-md-7">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/1.jpg" alt="" style="width:74px;height:64px;">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>二氧化碳灭火器</strong></span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-warning label-sm label-mini">火灾事故</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 青岛海晶化工集团3#仓库</li>
+                                                <li><i class="fa fa-map-marker"></i> 青岛海晶化工集团有限公司</li>
+                                                <li><i class="fa fa-user"></i> 张杰</li>
+                                                <li><i class="fa fa-fax"></i> 15110121399</li>
+                                                <li><i class="fa fa-tags"></i> 手提式</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="portfolio-info"><span>69</span>瓶</div>
+                                    <div class="portfolio-info"><span>12</span>KG</div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"><i class="fa fa-phone" style="font-size:24px"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portfolio-block">
+                                <div class="col-md-7">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/3.jpg" alt="">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>消防炮</strong></span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-warning label-sm label-mini">火灾事故</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 青岛海晶化工集团3#仓库</li>
+                                                <li><i class="fa fa-map-marker"></i> 青岛海晶化工集团有限公司</li>
+                                                <li><i class="fa fa-user"></i> 张杰</li>
+                                                <li><i class="fa fa-fax"></i> 15110121399</li>
+                                                <li><i class="fa fa-tags"></i> 推车式</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="portfolio-info"><span>87</span>台</div>
+                                    <div class="portfolio-info"><span>12</span>KG</div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"><i class="fa fa-phone" style="font-size:24px"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portfolio-block">
+                                <div class="col-md-7">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/4.jpg" alt="">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>消防卷盘</strong></span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-warning label-sm label-mini">火灾事故</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 青岛海晶化工集团3#仓库</li>
+                                                <li><i class="fa fa-map-marker"></i> 青岛海晶化工集团有限公司</li>
+                                                <li><i class="fa fa-user"></i> 张杰</li>
+                                                <li><i class="fa fa-fax"></i> 15110121399</li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="portfolio-info"><span>15</span>盘</div>
+                                    <div class="portfolio-info"><span>50</span>M</div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"><i class="fa fa-phone" style="font-size:24px"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row portfolio-block">
+                                <div class="col-md-7">
+                                    <div class="portfolio-text">
+                                        <img src="assets/img/profile/portfolio/5.jpg" alt="">
+                                        <div class="portfolio-text-info">
+                                            <span style="font-size:16px"><strong>悬挂式七氟丙烷灭火装置</strong></span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="label label-warning label-sm label-mini">火灾事故</span>
+                                            <ul class="list-inline blog-tags" style="margin-bottom:3px; margin-top:5px;">
+                                                <li><i class="fa fa-map-marker"></i> 青岛海晶化工集团3#仓库</li>
+                                                <li><i class="fa fa-map-marker"></i> 青岛海晶化工集团有限公司</li>
+                                                <li><i class="fa fa-user"></i> 张杰</li>
+                                                <li><i class="fa fa-fax"></i> 15110121399</li>
+                                                <li><i class="fa fa-tags"></i> 悬挂式</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="portfolio-info"><span>34</span>台</div>
+                                    <div class="portfolio-info"><span>30</span>KG</div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="portfolio-btn">
+                                        <a class="btn bigicn-only btn-danger"><i class="fa fa-phone" style="font-size:24px"></i> </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><div class="slimScrollBar" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 283.565px; background: rgb(161, 178, 189);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 内容结束     -->
     </div>
-    <!-- END PAGE HEADER-->
 
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="padding-top: 5px; padding-bottom: 5px">
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <div class="panel-title" style="margin-top: 4px">应急专家库</div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" ng-model="expertSearch" placeholder="搜索">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div><!-- /input-group -->
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="panel-body panel-scroll " style=" height: 300px;">
-
-
-                    <div ng-repeat="item in expert | filter:expertSearch">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#" ng-if="item.img">
-                                    <img
-                                            class="media-object img-circle" data-src="holder.js/64x64" alt="64x64"
-                                            style="max-width: 44px; max-height: 44px;"
-                                            src="../../images/1.jpg" data-holder-rendered="true">
-
-                                </a>
-
-                                <a href="#" ng-if="!item.img">
-                                    <img
-                                            class="media-object img-circle" data-src="holder.js/64x64" alt="64x64"
-                                            style="max-width: 44px; max-height: 44px;"
-                                            src="../../images/avatar.png" data-holder-rendered="true">
-
-                                </a>
-
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">{{item.name}}
-                                    <small>/{{item.small}} <span class="label label-danger label-sm label-mini">{{item.type}}</span></small>
-                                </h4>
-                                <ul class="list-inline">
-                                    <li ng-repeat="msg in item.msg" class=" text-muted"><i class="fa {{msg.icon}}"></i>
-                                        {{msg.name}}
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="media-right">
-
-                                <button ng-click="clickCall(item)"
-                                        class="btn btn-info " style="width: 64px; height: 64px;"><i
-                                        class="fa fa-phone"
-                                        style="font-size: 25px"></i>
-                                </button>
-
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
-
-                </div>
-
-
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="padding-top: 5px; padding-bottom: 5px">
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <div class="panel-title" style="margin-top: 4px">医疗救护</div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" ng-model="rescueSearch" placeholder="搜索">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div><!-- /input-group -->
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="panel-body panel-scroll " style=" height: 300px;">
-
-
-                    <div ng-repeat="item in rescue | filter:rescueSearch">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#" ng-if="item.img">
-                                    <img
-                                            class="media-object img-circle" data-src="holder.js/64x64" alt="64x64"
-                                            style="max-width: 44px; max-height: 44px;"
-                                            src="../../images/1.jpg" data-holder-rendered="true">
-
-                                </a>
-
-                                <a href="#" ng-if="!item.img">
-                                    <img
-                                            class="media-object img-circle" data-src="holder.js/64x64" alt="64x64"
-                                            style="max-width: 44px; max-height: 44px;"
-                                            src="../../images/avatar.png" data-holder-rendered="true">
-
-                                </a>
-
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">{{item.name}}
-                                    <small>/{{item.small}} <span class="label label-danger label-sm label-mini">{{item.type}}</span></small>
-                                </h4>
-                                <ul class="list-inline">
-                                    <li ng-repeat="msg in item.msg" class=" text-muted"><i class="fa {{msg.icon}}"></i>
-                                        {{msg.name}}
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="media-right">
-
-                                <button ng-click="clickCall(item)"
-                                        class="btn btn-info " style="width: 64px; height: 64px;"><i
-                                        class="fa fa-phone"
-                                        style="font-size: 25px"></i>
-                                </button>
-
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
-
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="padding-top: 5px; padding-bottom: 5px">
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <div class="panel-title" style="margin-top: 4px">应急队伍</div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" ng-model="ranksSearch" placeholder="搜索">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div><!-- /input-group -->
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="panel-body panel-scroll " style=" height: 300px;">
-
-
-                    <div ng-repeat="item in ranks | filter:ranksSearch">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#" ng-if="item.img">
-                                    <img
-                                            class="media-object img-circle" data-src="holder.js/64x64" alt="64x64"
-                                            style="max-width: 44px; max-height: 44px;"
-                                            src="../../images/1.jpg" data-holder-rendered="true">
-
-                                </a>
-
-                                <a href="#" ng-if="!item.img">
-                                    <img
-                                            class="media-object img-circle" data-src="holder.js/64x64" alt="64x64"
-                                            style="max-width: 44px; max-height: 44px;"
-                                            src="../../images/avatar.png" data-holder-rendered="true">
-
-                                </a>
-
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">{{item.name}}
-                                    <small>/{{item.small}} <span class="label label-danger label-sm label-mini">{{item.type}}</span></small>
-                                </h4>
-                                <ul class="list-inline">
-                                    <li ng-repeat="msg in item.msg" class=" text-muted"><i class="fa {{msg.icon}}"></i>
-                                        {{msg.name}}
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="media-right">
-
-                                    <button ng-click="clickCall(item)"
-                                            class="btn btn-info " style="width: 64px; height: 64px;"><i
-                                            class="fa fa-phone"
-                                            style="font-size: 25px"></i>
-                                    </button>
-
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
-
-                </div>
-
-
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="padding-top: 5px; padding-bottom: 5px">
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <div class="panel-title" style="margin-top: 4px">应急通讯录</div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" ng-model="bookListSearch" placeholder="搜索">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div><!-- /input-group -->
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="panel-body panel-scroll " style=" height: 300px;">
-
-
-                    <div ng-repeat="item in bookList | filter:bookListSearch">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#" ng-if="item.img">
-                                    <img
-                                            class="media-object img-circle" data-src="holder.js/64x64" alt="64x64"
-                                         style="max-width: 44px; max-height: 44px;"
-                                         src="../../images/1.jpg" data-holder-rendered="true">
-
-                                </a>
-
-                                <a href="#" ng-if="!item.img">
-                                    <img
-                                         class="media-object img-circle" data-src="holder.js/64x64" alt="64x64"
-                                         style="max-width: 44px; max-height: 44px;"
-                                         src="../../images/avatar.png" data-holder-rendered="true">
-
-                                </a>
-
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">{{item.name}}
-                                    <small>/{{item.small}} <span class="label label-danger label-sm label-mini">{{item.type}}</span></small>
-                                </h4>
-                                <ul class="list-inline">
-                                    <li ng-repeat="msg in item.msg" class=" text-muted"><i class="fa {{msg.icon}}"></i>
-                                        {{msg.name}}
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="media-right">
-
-                                    <button ng-click="clickCall(item)"
-                                            class="btn btn-info " style="width: 64px; height: 64px;"><i
-                                            class="fa fa-phone"
-                                            style="font-size: 25px"></i>
-                                    </button>
-
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
-
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-
-    <!--底部表格-->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading" style="padding-top: 5px; padding-bottom: 5px">
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <div class="panel-title" style="margin-top: 4px">应急资源</div>
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" ng-model="all" placeholder="Search for...">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div><!-- /input-group -->
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="panel-body panel-scroll " >
-
-                    <table  style=" margin-top: -20px;"
-                            object-table
-
-                           data="resources"
-
-                           search="false"
-
-
-                           paging="true"
-
-                           display="15"
-                           fields="name,img,type"
-                           headers="name,img,type"
-                           add-filter=" | filter:$owner.all"
-
-                    >
-                        <thead class="hidden" >
-                        <tr>
-
-                            <th></th>
-
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-
-                        <td >
-                            <div class="media" style="margin-top: 10px">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object img-circle" data-src="holder.js/64x64" alt="64x64"
-                                             style="max-width: 64px; max-height: 64px;"
-                                             src="../../images/avatar.png" data-holder-rendered="true">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">{{item.name}}
-                                        <small><span class="label label-danger label-sm label-mini">{{item.type}}</span>
-                                        </small>
-                                    </h4>
-
-                                    <ul class="list-inline">
-
-
-                                        <li class=" text-muted"><i class="fa fa-tags"></i> 应急信息科</li>
-                                        <li class=" text-muted"><i class="fa fa-book"></i> 信息管理</li>
-                                        <li class=" text-muted"><i class="fa fa-map-marker"></i> 山东省青岛市</li>
-                                        <li class=" text-muted"><i class="fa  fa-phone-square"></i> 0980-899987</li>
-                                        <li class=" text-muted"><i class="fa fa-ambulance"></i> 预计半小时能赶到现场</li>
-
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </td>
-
-                        <td style="text-align: center;">
-                            <h3 style="width: 100px">
-                                <span class="text-info">{{item.parameter[0]}}</span>
-                                <small>{{item.parameter[1]}}</small>
-                            </h3>
-                        </td>
-                        <td style="text-align: center;">
-                            <h3 style="width: 100px"><span class="text-info">{{item.parameter2[0]}}</span>
-                                <small>{{item.parameter2[1]}}</small>
-                            </h3>
-
-                        </td>
-
-
-                        <td style="text-align: center;">
-                            <button class="btn btn-info " style="width: 64px; height: 64px;">
-                                <i class="fa fa-phone" style="font-size: 25px"></i></button>
-                        </td>
-                        </tr>
-                        </tbody>
-
-
-                    </table>
-
-
-                </div>
-
-
-            </div>
-        </div>
-
-    </div>
 </div>
 
 </div>
