@@ -155,13 +155,13 @@ comments: true
 
 ---
 
-##### 应急救援页面
+##### 应急资源页面
     需要引入的控件
     'objectTable',
    
-* [demo](http://liaohui1080.github.io/dongjiakou/liaohuiCeshi/app/html/应急救援)
-* [html](https://github.com/liaohui1080/dongjiakou/tree/gh-pages/liaohuiCeshi/app/html/应急救援)
-* [js](https://github.com/liaohui1080/dongjiakou/tree/gh-pages/liaohuiCeshi/app/js/controller/应急救援)
+* [demo](http://liaohui1080.github.io/dongjiakou/liaohuiCeshi/app/html/应急资源)
+* [html](https://github.com/liaohui1080/dongjiakou/tree/gh-pages/liaohuiCeshi/app/html/应急资源)
+* [js](https://github.com/liaohui1080/dongjiakou/tree/gh-pages/liaohuiCeshi/app/js/controller/应急资源)
 
 ## 代码实例
 
