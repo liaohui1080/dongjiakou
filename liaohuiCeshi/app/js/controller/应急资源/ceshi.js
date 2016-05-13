@@ -13,6 +13,27 @@ $('.panel-scroll').slimScroll({
 });
 
 
+//由于objectTable不支持嵌套循环, 所以在表格里用这个指令来显示子循环
+myApp.directive("xunhuan",function(){
+    return {
+        restrict:"EA",
+        scope: {
+            data: "="
+
+        },
+        link:function(scope,ele,attr,ctrl){
+
+            angular.forEach(scope.data, function(value) {
+                console.log(value)
+                ele.append('<li class=" text-muted">' +
+                    '<i class="fa '+value.icon+'"></i>' +
+                    '' +value.name+'' +
+                    '</li>');
+            });
+
+        }
+    }
+});
 
 //factory  服务添加位置
 myApp.factory("lh_ajax", lhFactory.ajax); //新ajax服务
