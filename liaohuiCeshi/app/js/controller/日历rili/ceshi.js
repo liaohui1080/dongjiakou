@@ -1,9 +1,8 @@
 var myApp = angular.module('myApp', [
-    "angular-loading-bar", //加载进度条=
-    'ngNotify',//弹出提示
+
+    'jp.ng-bs-animated-button',
     "ngSanitize", // 输出html
     "w5c.validator",
-    'jp.ng-bs-animated-button',
     "ui.select", // 下拉菜单
     'gantt',
     'gantt.table',
@@ -48,46 +47,66 @@ myApp.factory("lh_ajax", lhFactory.ajax); //新ajax服务
 myApp.controller('rootController',
     ['$scope', '$log', 'lh_ajax', '$timeout', function ($scope, $log, lh_ajax, $timeout) {
 
-        console.log("日历");
 
 
-        $scope.live = {};
+
+
+        //初始化 变量
+        $scope.data = ''; //gantt图数据
+        $scope.options = ''; //gantt图配置
+        $scope.dataQuery = ''; //切换时间规模事件
+        $scope.timeType = '';   //切换时间规模 选择按钮
+
+        $scope.todays = store.get("o") ? moment(store.get("o").timeSpans.from) : new Date();  //获取今天日期
+
+
+        $scope.timeSpans = ''; //声明时间跨度
+        $scope.userType = $("#userType").val(); //声明用户类型
+
+
+        //给时间跨度设置默认的开始时间和结束时间
+        $scope.timeSpans = {
+            from: store.get("o") ? moment(store.get("o").timeSpans.from) : $scope.todays,  //获取今天日期
+            to: store.get("o") ? moment(store.get("o").timeSpans.to) : $scope.todays  //获取今天日期
+        };
+
+        // $scope.timeSpans = {
+        //     from: moment(store.get("o").timeSpans.from),  //获取今天日期
+        //     to: moment(store.get("o").timeSpans.to)  //获取今天日期
+        // };
+
+
 
         // var taskUrl = "/proxy/127.0.0.1:1337"; //连接测试服务器
-        var taskUrl = "server_json/person/day.json"; //连接默认数据
+        var taskUrl = "/proxy/192.168.1.136:8080/myportal/control/findMyTask"; //连接测试服务器
+        // var taskUrl = "server_json/person/month.json"; //连接默认数据
 
-        //控制btn加载状态
-        $scope.isSubmitting = null;
-        $scope.result = null;
-
-
-        //从服务器获取数据, 然后直接绑定到日历上
-        $scope.data = []; //填充给 日历
+        //ajax方法, 用于获取服务器数据
         $scope.ajax = function (o, fn) {
             //o={
             //    timeScale:"", //时间规模 ,控制 年 月  日  周 的数据范围加载
             //    userType:"",  //用户类型
             //    timeSpans:{from:"开始",to:"结束"} //时间间隔
             //    data:"给服务器发送的 数据,"
-            //      action:"del" 或者 "updtae" 删除 或者修改稿的操作
+            //     action:"del" 或者 "updtae" 删除 或者修改稿的操作
             //};
             //console.log(o);
-
 
 
             lh_ajax.get({
                 url: taskUrl,
                 data: o,
-                infoShow:false,
+                infoShow: false,
                 success: function (msg) {
-                    //console.log("啊上的发上的");
                     $scope.data = msg.data;
-
+                    $scope.dataQuery(store.get("o"));
+                    console.log($scope.data);
                     if (fn) {
                         fn(msg)
                     }
                 }
             });
+
         };
 
 
@@ -121,173 +140,85 @@ myApp.controller('rootController',
         };
 
 
-        //获取今天日期
-        $scope.today = new Date();
-        //$scope.rowEdit = {}; //初始化任务行内容
-        $scope.timeSpans = null; //声明时间跨度
-        $scope.userType = $("#userType").val(); //声明用户类型
 
-        //给时间跨度设置默认的开始时间和结束时间
-        $scope.timeSpans = {
-            from: moment($scope.today),
-            to: moment($scope.today)
+
+        //把当前的所有参数都写进 本地缓存
+        $scope.setStore = function (o) {
+            store.set("o", o);
         };
 
-        $scope.isSubmittings = null;
-        $scope.results = null;
-        //返回当天按钮
-        $scope.todayBtn = {
-            buttonDefaultClass: 'btn-primary btn-sm', //默认状态
-            buttonSubmittingClass: 'btn-primary btn-sm', // 加载状态
-            buttonDefaultText: '今天', //默认文字
-            buttonSubmittingText: "正在加载", //加载文字
-            buttonSuccessText: "完成",  //成功文字
-            buttonErrorText: "错误",  //成功文字
-            buttonSuccessClass: 'btn-success btn-sm' //成功状态
+        //向本地缓存写入数据, 然后在获取数据
+        $scope.setStoreAjax = function (o) {
 
-        };
-
-        $scope.todayClick = function () {
-            $scope.options.scale='day';
-            $scope.ajax({
-                timeScale: 'day',
-                timeSpans: {
-                    from: moment($scope.today),
-                    to: moment($scope.today)
-                },
-                userType: $scope.userType
-            }, function () {
-                $scope.results = 'success';
-            });
-        };
+            async.series([
+                    function (callback) {
 
 
-        //日期查询按钮
-        $scope.dataQueryBtn = {
-            buttonDefaultClass: 'btn-primary btn-sm', //默认状态
-            buttonSubmittingClass: 'btn-primary btn-sm', // 加载状态
-            buttonDefaultText: '查询', //默认文字
-            buttonSubmittingText: "正在加载", //加载文字
-            buttonSuccessText: "正在加载",  //成功文字
-            buttonErrorText: "起始时间不能大于结束时间",  //成功文字
-            buttonSuccessClass: 'btn-success btn-sm' //成功状态
+                        $scope.dataQuery(o);
 
-        };
 
-        //返回今天的任务计划
-        $scope.dataQueryClick = function () {
-            $scope.isSubmitting = true;
-            var scale = $scope.options.scale; //获取当前选择的时间规模
+                        callback(null)
 
-            var from = moment($scope.timeSpans.from).unix();
-            var to = moment($scope.timeSpans.to).unix();
 
-            //判断起始时间是否大于结束时间
-            if (from > to) {
-                //alert("起始时间不能大于结束时间")
-                $scope.result = 'error';
-            } else {
+                    }],
+                function (err, result) {
+                    $scope.ajax(store.get("o"));
 
-                $scope.ajax({timeScale: scale, timeSpans: $scope.timeSpans, userType: $scope.userType}, function () {
-                    $scope.result = 'success';
+
                 });
-            }
-            //console.log(from + "----" + to);
-
         };
 
 
-        //增加任务时间
-        $scope.taskAddClick = function () {
-            $scope.$broadcast("to-addTask", $scope.timeSpans);
-        };
-
-        //时间跨度, 在这个跨度之内只显示背景色, 可以用来标注节假日,或者特殊日子
-        //$scope.timespans = [
-        //    {
-        //        from: new Date(2013, 9, 7, 0, 0, 0),
-        //        to: new Date(2013, 9, 7, 0, 0, 0),
-        //        name: 'Sprint 1 Timespan'
-        //        //priority: undefined,
-        //        //classes: [],
-        //        //data: undefined
-        //    }
-        //];
-
-        $scope.options = {};
+        // console.log(store.get("o").timeScale)
+        // $.cookie('scale')?$.cookie('scale') : 'day', //默认显示时间规模
         $scope.options = {
 
-            scale: 'day', //默认显示时间规模
+            scale: store.get("o") ? store.get("o").timeScale : "day", //默认显示时间规模
             labelsEnabled: true, //是否显示侧边
             daily: false, //每日
             draw: false,
             readOnly: false,
             zoom: undefined,
-            //headers: undefined,
+            getToday: '',
+            headers: undefined,
             width: false,
             drawTaskFactory: function () { //直接增加任务进度的地方
                 return {
                     //id: utils.randomUuid(),  // Unique id of the task.
                     name: '新任务', // Name shown on top of each task.
                     color: '#AA8833', // Color of the task in HEX format (Optional).
-
                     //from:"",
                     //to:"",
-
-
                 };
             },
 
-            //drawTaskFactory: function (o) { //直接增加任务进度的地方
-            //    console.log(o)
-            //    return {
-            //        name: o.name,
-            //        color: o.color,
-            //        from: o.from,
-            //        to: o.to
-            //    };
-            //},
 
             api: function (api) {
-                $scope.api = api;
+                $scope.api = api; //把事件传给 gantt图
+
+
+                //初始化事件
                 api.core.on.ready($scope, function () {
 
-                    //api.tasks.on.change($scope, addEventName('tasks.on.change', logTaskEvent));
-                    //api.tasks.on.add($scope, addEventName('tasks.on.add', logTaskEvent));
-                    //api.tasks.on.rowChange($scope, addEventName('tasks.on.rowChange', logTaskEvent));
-                    api.tasks.on.remove($scope, addEventName('tasks.on.remove', function (e, dask) {
-                        //$scope.rowEdit = dask;
-                        console.log(dask)
-
-                    }));
 
                     if (api.tasks.on.moveBegin) {
-                        //api.tasks.on.moveBegin($scope, addEventName('tasks.on.moveBegin', logTaskEvent));
-                        //api.tasks.on.move($scope, addEventName('tasks.on.move', logTaskEvent));
-                        //api.tasks.on.moveEnd($scope, addEventName('tasks.on.moveEnd', logTaskEvent));
 
-                        //api.tasks.on.resizeBegin($scope, addEventName('tasks.on.resizeBegin', logTaskEvent));
-                        //api.tasks.on.resize($scope, addEventName('tasks.on.resize', logTaskEvent));
-                        //api.tasks.on.resizeEnd($scope, addEventName('tasks.on.resizeEnd', logTaskEvent));
-                        //console.log($scope)
-                        api.tasks.on.resize($scope, addEventName('tasks.on.resize', function (e, dask) {
+                        //任务缩放的时候运行
+                        api.tasks.on.resize($scope, function (e, dask) {
                             //$scope.rowEdit = dask;
                             $scope.$broadcast("to-editTask", dask);
 
-                        }));
-
-                        //api.tasks.on.resizeEnd($scope, addEventName('tasks.on.resize', function (e, dask) {
-                        //    $scope.rowEdit = dask;
-                        //    $scope.$broadcast("to-editTask", dask);
-                        //
-                        //}));
+                        });
                     }
 
-
+                    //给节点绑定事件
                     api.directives.on.new($scope, function (directiveName, directiveScope, element, dAttrs, dController) {
+
+                        //判断 现在是否运行了 ganttTask 任务
                         if (directiveName === 'ganttTask') {
 
 
+                            //绑定一个双击事件
                             element.bind('dblclick', function (event) {
                                 event.stopPropagation();
 
@@ -308,57 +239,342 @@ myApp.controller('rootController',
         };
 
 
-        //当前显示规模切换
-        $scope.timeType = {};
+        //返回当天按钮事件
+        $scope.todayClick = function () {
+            async.series([
+                    function (callback) {
 
+                        $scope.timeSpans = {
+                            from: moment(new Date()),
+                            to: moment(new Date())
+                        };
+
+                        $scope.dataQuery({
+                            timeScale: 'day',
+                            timeSpans: $scope.timeSpans,
+                            userType: $scope.userType,
+                            from: moment(new Date()).format("YYYY-MM-DD H:mm:ss"),
+                            to: moment(new Date()).format("YYYY-MM-DD H:mm:ss")
+                        });
+                        callback(null)
+                    }],
+                function (err, result) {
+
+
+                    window.location.reload()
+
+                });
+        };
+
+
+    
+        //日期查询按钮事件
+        $scope.dataQueryClick = function () {
+
+
+
+            var from = moment($scope.timeSpans.from).unix();
+            var to = moment($scope.timeSpans.to).unix();
+
+
+
+
+
+            //判断起始时间是否大于结束时间
+            if (from > to) {
+                layer.msg("起始时间不能大于结束时间");
+            } else {
+
+
+
+                async.series([
+                        function (callback) {
+
+                            //判断是否显示月视图
+                            if((to - from )>604800){
+                                $scope.options.scale='month';
+
+                            }
+
+
+                            $scope.timeSpans={
+                                from:$scope.timeSpans.from,
+                                to:$scope.timeSpans.to
+                            };
+
+                            $scope.dataQuery({
+                                timeScale: $scope.options.scale,//获取当前选择的时间规模
+                                timeSpans: $scope.timeSpans,
+                                userType: $scope.userType,
+                                from: moment($scope.timeSpans.from).format("YYYY-MM-DD H:mm:ss"),
+                                to: moment($scope.timeSpans.to).format("YYYY-MM-DD H:mm:ss"),
+                            });
+                            callback(null)
+                        }],
+                    function (err, result) {
+
+
+                        window.location.reload()
+
+                    }
+                );
+
+            }
+            //console.log(from + "----" + to);
+
+        };
+
+
+        //时间规模切换 ,和 前进 后退 时间选择
         $scope.timeType = {
-            updatedTime: $scope.today, //更新以后的时间
+            updatedTime: $scope.todays, //更新以后的时间
             data: [
                 {"value": "year", "name": "年视图"},
                 {"value": "month", "name": "月视图"},
                 {"value": "week", "name": "周视图"},
                 {"value": "day", "name": "天视图"}
             ],
+            queryClick: function (row) {
+                console.log(row);
+                $scope.options.scale = row.value;
+
+                async.series([
+                        function (callback) {
+                            $scope.dataQuery({
+                                timeScale: row.value,
+                                timeSpans: $scope.timeSpans,
+                                userType: $scope.userType,
+                                from: moment($scope.todays).format("YYYY-MM-DD H:mm:ss"),
+                                to: moment($scope.todays).format("YYYY-MM-DD H:mm:ss")
+                            });
+                            callback(null)
+                        }],
+                    function (err, result) {
+
+
+                        window.location.reload()
+
+                    }
+                );
+
+
+            },
+
+
             upClick: function (o) {
+
                 console.log("上" + o);
+                var thisTimeType = $scope.timeType;
                 var scale = $scope.options.scale; //获取当前选择的时间规模
 
+                //日期往前
+                thisTimeType.updatedTime = moment(thisTimeType.updatedTime).subtract(1, scale);
 
-                this.updatedTime = moment(this.updatedTime).subtract(1, scale);
 
                 $scope.timeSpans = {
-                    from: this.updatedTime,
-                    to: this.updatedTime
+                    from: moment(thisTimeType.updatedTime),
+                    to: moment(thisTimeType.updatedTime)
                 };
+                async.series([
+                        function (callback) {
+                            $scope.dataQuery({
+                                timeScale: scale,
+                                timeSpans: $scope.timeSpans,
+                                userType: $scope.userType,
+                                from: moment(thisTimeType.updatedTime).format("YYYY-MM-DD H:mm:ss"),
+                                to: moment(thisTimeType.updatedTime).format("YYYY-MM-DD H:mm:ss")
+                            });
+                            callback(null)
+                        }],
+                    function (err, result) {
 
-                $scope.dataQuery({timeScale: scale, timeSpans: $scope.timeSpans, userType: $scope.userType});
-                //console.log(this.updatedTime);
+
+                        window.location.reload()
+
+                    });
 
             },
             lowClick: function (o) {
+
                 console.log("下" + o);
+                var thisTimeType = $scope.timeType;
                 var scale = $scope.options.scale; //获取当前选择的时间规模
 
-                this.updatedTime = moment(this.updatedTime).add(1, scale);
+                //日期往后
+                thisTimeType.updatedTime = moment(thisTimeType.updatedTime).add(1, scale);
+
 
                 $scope.timeSpans = {
-                    from: this.updatedTime,
-                    to: this.updatedTime
+                    from: moment(thisTimeType.updatedTime),
+                    to: moment(thisTimeType.updatedTime)
                 };
 
-                $scope.dataQuery({
-                    timeScale: $scope.options.scale,
-                    timeSpans: $scope.timeSpans,
-                    userType: $scope.userType
-                })
-                // console.log(this.updatedTime);
+
+                async.series([
+                        //往本地缓存写入数据
+                        function (callback) {
+                            $scope.dataQuery({
+                                timeScale: scale,
+                                timeSpans: $scope.timeSpans,
+                                userType: $scope.userType,
+                                from: moment(thisTimeType.updatedTime).format("YYYY-MM-DD H:mm:ss"),
+                                to: moment(thisTimeType.updatedTime).format("YYYY-MM-DD H:mm:ss")
+                            });
+                            callback(null)
+                        }],
+                    function (err, result) {
+
+                        //刷新当前页面
+                        window.location.reload()
+
+
+                    }
+                );
 
             }
         };
 
 
+        //时间规模切换,并且发送到服务器来获取当前规模的 数据
+        $scope.dataQuery = function (o, fn) {
+
+            switch (o.timeScale) {
+                //case "hour":
+                //    $scope.ajax({type: newVal});
+                //    $scope.options.headers = ['hour'];
+                //    break;
+                case "day":
+                    $scope.timeType.up = "上一天";
+                    $scope.timeType.low = "下一天";
+                    $scope.timeType.queryScale = '天视图';
+                    $scope.options.headers = ['hour'];
+                    $scope.setStore(o);
+                    if ($scope.data.length <= 0) {
+
+                        $scope.data = [
+                            {
+                                "name": "任务",
+                                "content": "任务",
+                                "classes": "gantt-row-milestone",
+                                "tasks": [
+                                    {
+                                        "name": "当前没有任务",
+                                        "color": "#fff",
+                                        "from": "2018-01-01T00:00:00",
+                                        "to": "2018-01-01T23:59:00",
+                                        "data": ""
+                                    }
+                                ]
+                            }
+                        ];
+                    }
+                    break;
+                case "week":
+                    $scope.options.headers = ['day'];
+                    $scope.timeType.up = "上一周";
+                    $scope.timeType.low = "下一周";
+                    $scope.timeType.queryScale = '周视图';
+
+                    $scope.setStore(o);
+                    if ($scope.data.length <= 0) {
+
+                        $scope.data = [
+                            {
+                                "name": "任务",
+                                "content": "任务",
+                                "classes": "gantt-row-milestone",
+                                "tasks": [
+                                    {
+                                        "name": "当前没有任务",
+                                        "color": "#fff",
+                                        "from": "2016-05-23T00:00:00",
+                                        "to": "2016-05-29T23:00:00",
+
+                                    }
+                                ]
+                            }
+                        ];
+                    }
+                    break;
+
+                case "month":
+
+                    $scope.options.headers = ['day'];
+                    $scope.timeType.up = "上一月";
+                    $scope.timeType.low = "下一月";
+
+                    $scope.timeType.queryScale = '月视图';
+                    $scope.setStore(o);
+
+                    console.log($scope.data.length)
+                    if ($scope.data.length <= 0) {
+
+                        $scope.data = [
+                            {
+                                "name": "任务",
+                                "content": "任务",
+                                "classes": "gantt-row-milestone",
+                                "tasks": [
+                                    {
+                                        "name": "当前没有任务",
+                                        "color": "#fff",
+                                        "from": "2018-12-01T00:00:00",
+                                        "to": "2018-12-31T23:00:00",
+
+                                    }
+                                ]
+                            }
+                        ];
+                    }
+
+
+                    break;
+                case "year":
+                    $scope.options.headers = ['month'];
+                    $scope.timeType.up = "上一年";
+                    $scope.timeType.low = "下一年";
+                    $scope.timeType.queryScale = '年视图';
+                    $scope.setStore(o);
+                    if ($scope.data.length <= 0) {
+
+                        $scope.data = [
+                            {
+                                "name": "任务",
+                                "content": "任务",
+                                "classes": "gantt-row-milestone",
+                                "tasks": [
+                                    {
+                                        "name": "当前没有任务",
+                                        "color": "#fff",
+                                        "from": "2018-01-01T00:00:00",
+                                        "to": "2018-12-31T23:00:00",
+                                        "data": ""
+                                    }
+                                ]
+                            }
+                        ];
+                    }
+                    break;
+                default :
+                    $scope.options.headers = ['hour'];
+                    $scope.timeType.up = "上一天";
+                    $scope.timeType.low = "下一天";
+                    $scope.setStore(o);
+                    console.log("data" + $scope.options.headers)
+            }
+        };
+
+
+        //页面第一次加载的时候 ,运行这个
+        $scope.setStoreAjax({
+            timeScale: $scope.options.scale,
+            timeSpans: $scope.timeSpans,
+            userType: $scope.userType,
+            from: moment($scope.timeSpans.from).format("YYYY-MM-DD H:mm:ss"),
+            to: moment($scope.timeSpans.to).format("YYYY-MM-DD H:mm:ss"),
+        });
         //加载颜色列表
-        $scope.colorList=[];
+        $scope.colorList='';
         lh_ajax.get({
             url: 'server_json/color_list.json',
             success: function (msg) {
@@ -370,183 +586,10 @@ myApp.controller('rootController',
 
 
 
-
-        //控制当前日历显示规模
-        var scaleWacth = $scope.$watch('options.scale', function (newVal, oleVal, scope) {
-            console.log(newVal);
-            console.log(oleVal)
-
-            //在切换的时候,给日历默认数据,以防止在 年 切换到 天的时候,出现数据挤在一块的问题
-            $scope.data = [
-                {
-                    "name": "任务",
-                    "content": "任务",
-                    "classes": "gantt-row-milestone",
-                    "tasks": [
-                        {
-                            "name": "任务1",
-                            "color": "#93C47D",
-                            "from": "2018-10-06T00:00:00",
-                            "to": "2018-10-06T04:00:00",
-                            "data": ""
-                        }
-                    ]
-                }
-            ];
-
-            $scope.dataQuery({timeScale: $scope.options.scale, timeSpans: $scope.timeSpans, userType: $scope.userType})
-
-        });
-
-
-        //时间规模切换,并且发送到服务器来获取当前规模的 数据
-        $scope.dataQuery = function (o) {
-
-            switch (o.timeScale) {
-                //case "hour":
-                //    $scope.ajax({type: newVal});
-                //    $scope.options.headers = ['hour'];
-                //    break;
-                case "day":
-
-                    $scope.timeType.up = "上一天";
-                    $scope.timeType.low = "下一天";
-
-
-                    $scope.options.headers = ['hour'];
-                    $scope.ajax(o);
-
-                    break;
-                case "week":
-                    $scope.options.headers = ['day'];
-                    $scope.timeType.up = "上一周";
-                    $scope.timeType.low = "下一周";
-                    $scope.ajax(o);
-
-                    break;
-                case "month":
-                    $scope.options.headers = ['day'];
-                    $scope.timeType.up = "上一月";
-                    $scope.timeType.low = "下一月";
-                    $scope.ajax(o);
-
-                    break;
-                case "year":
-                    $scope.options.headers = ['month'];
-                    $scope.timeType.up = "上一年";
-                    $scope.timeType.low = "下一年";
-                    $scope.ajax(o);
-
-                    break;
-                default :
-                    $scope.options.headers = ['hour'];
-                    $scope.timeType.up = "上一天";
-                    $scope.timeType.low = "下一天";
-                    $scope.ajax(o);
-            }
-        };
-
-        // Event handler
-        var logRowEvent = function (eventName, row) {
-            $log.info('[Event] ' + eventName + ': ' + row.model.name);
-        };
-        // Event handler
-        function logTaskEvent(eventName, task) {
-            console.log('[Event] ' + eventName + ': ' + task.model.name);
-
-
-            console.log(task);
-            //$scope.editFrom={};
-
-            //$scope.editFrom = {
-            //    name: task.model.name,
-            //    from: task.model.from, //开始时间
-            //    to: task.model.to, //结束时间
-            //    color: task.model.color
-            //};
-
-            //$scope.rowEdit=task.model;
-            $scope.editFrom = {};
-            $scope.editFrom = task.model;
-            //$scope.editFrom.id=task.row.model.id;
-            //console.log(task.row.model)
-            //console.log(task.model)
-            $("#editTask").modal("show");
-
-
-            //点击修改任务按钮
-            $scope.editClick = function () {
-
-                //$scope.rowEdit 这个值在主控制器里已经声明过了
-                //$scope.rowEdit.model.name = $scope.editFrom.name;
-                //$scope.rowEdit.model.from = moment($scope.editFrom.from);
-                //$scope.rowEdit.model.to = moment($scope.editFrom.to);
-                //$scope.rowEdit.model.color = $scope.editFrom.color;
-
-
-                //$scope.rowEdit.name = $scope.editFrom.name;
-                //$scope.rowEdit.from = moment($scope.editFrom.from);
-                //$scope.rowEdit.to = moment($scope.editFrom.to);
-                //$scope.rowEdit.color = $scope.editFrom.color;
-                //发消息给主控制器
-                //$scope.$emit('to-rootController', $scope.rowEdit);
-                $("#editTask").modal("hide");
-
-
-            };
-
-        };
-
-        //
-        //var logTaskEvent2 = function (eventName, task) {
-        //    console.log('[Event] ' + eventName + ': ' + task.model.name);
-        //    //$scope.live.taskJson = angular.toJson(task.model, true);
-        //    //$scope.live.rowJson = angular.toJson(task.row.model, true);
-        //    //
-        //    //
-        //    $("#editTime").modal("show");
-        //    $scope.rowEdit = task.model;
-        //    $scope.editFrom = {
-        //        taskName: task.model.name,
-        //        taskFrom: task.model.from, //开始时间
-        //        taskTo: task.model.to, //结束时间
-        //        taskColor: task.model.color
-        //    };
-        //
-        //
-        //    // console.log(task.model.from)
-        //};
-
-        $scope.$on('to-rootController', function (e, task) {
-            console.log(task.model)
-            $scope.dataQuery({timeScale: $scope.options.scale, timeSpans: $scope.timeSpans, userType: $scope.userType})
-
-
-            //$scope.rowEdit = task;
-        });
-
-
-        $scope.$on('to-addTesk', function (e, task) {
-            console.log(task)
-            //$scope.options.draw=true;
-            //$scope.options.drawTaskFactory(task);
-            $scope.rowEdit = task;
-        });
-
-
-        // Event utility function //显示事件名字
-        var addEventName = function (eventName, func) {
-            return function (data) {
-                return func(eventName, data);
-            };
-        };
-
-
         //创建任务按钮
         $scope.addTaskClick = function () {
             $scope.$broadcast("to-addTask", $scope.timeSpans);
         }
-
     }]);
 
 
@@ -665,7 +708,6 @@ myApp.controller('addTask',
             console.log($scope.rowEdit)
 
             //给服务器发消息修改
-
             $scope.ajaxInfo($scope.rowEdit,true);
 
             // console.log($scope.rowEdit)

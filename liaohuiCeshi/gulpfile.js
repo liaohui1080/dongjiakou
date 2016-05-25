@@ -68,7 +68,7 @@ var jsArr = [
     'lh_js_diy/wangEditor/dist/js/wangEditor.js',
 
 
-    'p/js/service/*.js',  //模块
+    'app/js/service/*.js',  //模块
     'app/js/factory/*.js',  //服务
     'app/js/filter/*.js',  //服务
     'app/js/directive/*.js', //指令

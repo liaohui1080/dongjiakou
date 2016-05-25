@@ -1,0 +1,25 @@
+
+
+阿的沙发的撒阿凡达
+
+<div gantt data=data
+     api="options.api"
+     show-side="options.labelsEnabled"
+     daily="options.daily"
+     current-date="getToday"
+     view-scale="options.scale"
+     headers="options.headers"
+     column-width="options.zoom"
+>      <!--column-width="getColumnWidth(options.width, options.scale, options.zoom)"-->
+    <gantt-table></gantt-table>
+
+    <gantt-tooltips></gantt-tooltips>
+
+
+    <gantt-movable enabled="options.readOnly"></gantt-movable>
+    <gantt-draw-task
+            enabled="options.draw"
+            move-threshold="2"
+            task-factory="options.drawTaskFactory">
+    </gantt-draw-task>
+</div>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+    <link href="../../pagePublic/bootstarp/css/bootstrap.css" rel='stylesheet'>
+    <!--<link href="../../../bower_components/ng-bs-animated-button/ng-bs-animated-button.css" rel='stylesheet'>-->
+
+    <!--<link href="../../../bower_components/angular-gantt/dist/angular-gantt.css" rel='stylesheet'>-->
+    <!--<link href="../../../bower_components/angular-gantt/dist/angular-gantt-plugins.css" rel='stylesheet'>-->
+    <!--<link href="../../../lh_public/layer/pc/skin/layer.css" rel='stylesheet'>-->
+    <link href="../../../../lh_file/css/main.min.css" rel='stylesheet'>
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="rootController">
+
+    <!--<div gantt data=data></div>-->
+    <!---->
+
+    <!--<div gantt headers="['month', 'week', 'day']" data=data></div>-->
+
+    <!-- Datetime example -->
+
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+
+            企业 和 人员 显示切换参数
+            <input id="userType" value="person">
+            <div class="checkbox">
+
+                <label>
+                    <input type="checkbox" ng-model="options.labelsEnabled" value="false"> 侧边显示
+                </label>
+
+
+                <label>
+                    <input type="checkbox" ng-model="options.draw"> 增加任务开关
+                </label>
+                <label>
+                    <input type="checkbox" ng-model="options.readOnly"> 任务移动开关
+                    <button type="button" class="btn btn-default" ng-model="options.readOnly" bs-checkbox>Read
+                        Only
+                    </button>
+                </label>
+
+
+            </div>
+        </div>
+
+        <div class="row clearfix">
+
+            <div class="col-md-2">
+                <div class="row">
+                    <!--根据当前时间规模显示 时间-->
+                    <div class="col-md-2" ng-if="userType=='person'">
+                        <img class="img-circle" style="width: 40px;" ng-src="../../images/user.png">
+                    </div>
+                    <div class="col-md-10">
+
+                        <h4 ng-if="options.scale=='day'">
+
+                            <span ng-bind="timeType.updatedTime | timeFormat:'YYYY年MM月DD日 ddd'"></span>
+                        </h4>
+                        <h4 ng-if="options.scale=='week'">
+
+                            <span ng-bind="timeType.updatedTime | timeFormat:'YYYY年 第w周'"></span>
+                        </h4>
+                        <h4 ng-if="options.scale=='month'">
+
+                            <span ng-bind="timeType.updatedTime | timeFormat:'YYYY年MM月'"></span>
+                        </h4>
+                        <h4 ng-if="options.scale=='year'">
+
+                            <span ng-bind="timeType.updatedTime | timeFormat:'YYYY年'"></span>
+                        </h4>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-10">
+
+
+                <ul class="list-inline pull-right">
+
+                    <li>
+
+
+                    </li>
+
+                    <li>
+
+                        <form class="form-inline">
+                            范围:
+                            <div class="form-group">
+
+                                <input type="datetime" class="form-control input-sm"
+                                       ng-model="timeSpans.from"
+                                       data-autoclose="1"
+                                       placeholder="开始日期"
+                                       data-date-format="yyyy年MM月dd日"
+
+                                       bs-datepicker>
+                            </div>
+                            <div class="form-group">
+                                到
+
+                            </div>
+                            <div class="form-group">
+
+                                <input type="datetime" class="form-control input-sm"
+                                       ng-model="timeSpans.to"
+                                       data-autoclose="1"
+                                       data-date-format="yyyy年MM月dd日"
+                                       placeholder="结束日期"
+                                       bs-datepicker>
+                            </div>
+                            <jp-ng-bs-animated-button
+                                    is-submitting="isSubmitting"
+                                    result="result" options="dataQueryBtn"
+                                    ng-click="dataQueryClick()"
+                            ></jp-ng-bs-animated-button>
+                        </form>
+
+
+                    </li>
+
+                    <li>
+
+                        <jp-ng-bs-animated-button
+                                is-submitting="isSubmittings"
+                                result="results" options="todayBtn"
+                                ng-click="todayClick()"
+                                ></jp-ng-bs-animated-button>
+
+
+                    </li>
+                    <li>
+
+                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default" ng-bind="timeType.up"
+                                    ng-click="timeType.upClick(options.scale)">上
+                            </button>
+                            <button type="button" class="btn btn-default" ng-model="options.scale" data-html="1"
+                                    bs-options="icon.value as icon.name for icon in timeType.data" bs-select>
+                                Action <span class="caret"></span>
+                            </button>
+                            <button type="button" class="btn btn-default" ng-bind="timeType.low"
+                                    ng-click="timeType.lowClick(options.scale)">下
+                            </button>
+                        </div>
+
+                    </li>
+                    <li>
+
+
+                        <!--<button type="button" class="btn btn-primary btn-sm" ng-model="options.draw" bs-checkbox>启用创建任务</button>-->
+
+                        <button class="btn btn-primary btn-sm" ng-click="addTaskClick()">启用创建任务</button>
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+        </div>
+
+{{options.scale}}
+{{options.headers}}
+        <div class="row" style="padding-top: 10px;">
+
+            <div class="col-md-12">
+                <a ui-sref="abc">到底多</a>
+                <a ui-sref="aaa">ddddd</a>
+                <div ui-view></div>
+                <!--<div gantt headers="[riqi]"  current-date="line"   data="data" auto-expand="left"></div>-->
+                <!--<div gantt   current-date="getToday"></div>-->
+
+                <!--gantt table-->
+                <!--<div gantt data=data-->
+                     <!--api="options.api"-->
+                     <!--show-side="options.labelsEnabled"-->
+                     <!--daily="options.daily"-->
+                     <!--current-date="getToday"-->
+                     <!--view-scale="options.scale"-->
+                     <!--headers="options.headers"-->
+                     <!--column-width="options.zoom"-->
+                <!--&gt;      &lt;!&ndash;column-width="getColumnWidth(options.width, options.scale, options.zoom)"&ndash;&gt;-->
+                    <!--<gantt-table></gantt-table>-->
+
+                    <!--<gantt-tooltips></gantt-tooltips>-->
+
+
+                    <!--<gantt-movable enabled="options.readOnly"></gantt-movable>-->
+                    <!--<gantt-draw-task-->
+                            <!--enabled="options.draw"-->
+                            <!--move-threshold="2"-->
+                            <!--task-factory="options.drawTaskFactory">-->
+                    <!--</gantt-draw-task>-->
+                <!--</div>-->
+                <!--.gantt table-->
+
+
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <!--<textarea class="form-control" style="height: 300px;" rows="10" ng-model="live.taskJson"></textarea>-->
+                    <!--<textarea class="form-control" rows="5" ng-model="live.rowJson"></textarea>-->
+                </div>
+
+            </div>
+        </div>
+        <div style="height: 300px; overflow: auto">
+            {{data}}
+        </div>
+    </div>
+
+
+
+    <!--修改时间-->
+    <div class="modal fade" id="editTask" ng-controller="editTask">
+        <form class=" w5c-form demo-form" role="form"
+              w5c-form-validate="editFrom.validateOptions" novalidate name="validateForm">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button ng-click="close(editFrom.id)" type="button" class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        {{editFrom.id}}
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label>Task Name</label>
+                                    <input type="text" class="form-control" ng-model="editFrom.name" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Task From Time</label>
+
+                                    <div class="form-group form-inline ">
+                                        <input type="text" size="10" class="form-control" ng-model="editFrom.from"
+                                               data-autoclose="1" bs-datepicker
+                                               placeholder="开始日期"
+                                               data-date-format="yyyy年MM月dd日">
+
+                                        <input type="text" class="form-control" size="8" ng-model="editFrom.from"
+                                               name="time"
+                                               bs-timepicker data-time-format="HH:mm" data-length="1"
+                                               data-minute-step="1"
+                                               data-arrow-behavior="picker">
+                                        <ul class="list-inline ">
+                                            <li>
+
+                                            </li>
+                                            <li>
+
+                                            </li>
+                                            <li>
+                                                到
+                                            </li>
+                                        </ul>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>Task From Time To</label>
+
+                                    <div class="form-group">
+                                        <input type="text" size="10" class="form-control" ng-model="editFrom.to"
+                                               data-autoclose="1" placeholder="Date" bs-datepicker
+                                               placeholder="结束日期"
+                                               data-date-format="yyyy年MM月dd日">
+                                        <input type="text" class="form-control" size="8" ng-model="editFrom.to"
+                                               name="time"
+                                               bs-timepicker data-time-format="HH:mm" data-length="1"
+                                               data-minute-step="1"
+                                               data-arrow-behavior="picker">
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Task Color</label>
+                                    <input type="text" class="form-control" ng-model="editFrom.color">
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-primary" ng-click="delClick()">删除</button>
+                        <button type="button" class="btn btn-primary" w5c-form-submit="editClick()">修改</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
+
+
+    <!--创建任务-->
+    <div class="modal fade "  id="addTask" ng-controller="addTask">
+        <form>
+            <div class="modal-dialog " style="width: 400px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label>Task Name</label>
+                                    <input type="text" class="form-control" ng-model="editFrom.name" value="asdfasd">
+                                </div>
+                                <div class="form-group" style="padding-bottom: 30px">
+                                    <label>Task From Time</label>
+
+                                    <ul class="list-inline" style="">
+                                        <li class="col-sm-8"> <input type="text" size="8"  class="form-control " ng-model="editFrom.from"
+                                                                      data-autoclose="1" bs-datepicker
+                                                                      placeholder="开始日期"
+                                                                      data-date-format="yyyy年MM月dd日">
+                                        </li>
+                                        <li class="col-sm-4">
+                                            <input type="text" class="form-control " size="8" ng-model="editFrom.from"
+                                                   name="time"
+                                                   bs-timepicker data-time-format="HH:mm" data-length="1"
+                                                   data-minute-step="1"
+                                                   data-arrow-behavior="picker">
+                                        </li>
+                                    </ul>
+
+
+
+
+
+                                </div>
+
+                                <div class="form-group" style="padding-bottom: 30px">
+                                    <label>Task From Time To</label>
+
+                                    <ul class="list-inline" style="">
+                                        <li class="col-sm-8"> <input type="text" size="10"  class="form-control " ng-model="editFrom.to"
+                                                                      data-autoclose="1" bs-datepicker
+                                                                      placeholder="开始日期"
+                                                                      data-date-format="yyyy年MM月dd日">
+                                        </li>
+                                        <li class="col-sm-4">
+                                            <input type="text" class="form-control " size="8" ng-model="editFrom.to"
+                                                   name="time"
+                                                   bs-timepicker data-time-format="HH:mm" data-length="1"
+                                                   data-minute-step="1"
+                                                   data-arrow-behavior="picker">
+                                        </li>
+                                    </ul>
+
+
+                                </div>
+
+
+                                <div class="form-group" >
+                                    <label >Task Color</label>
+                                    <div>{{editFrom.selected}}
+                                        <ui-select ng-model="editFrom.selected" theme="selectize"
+                                                   ng-disabled="disabled" style="width: 100%;"
+                                                   title="Choose a country">
+                                            <ui-select-match placeholder="任务颜色">{{$select.selected.name}}</ui-select-match>
+                                            <ui-select-choices repeat="country in colorList | filter: $select.search">
+
+                                                <span ng-style="country.value">
+                                                    <span class="glyphicon glyphicon-stop"></span>
+
+                                                </span>
+                                                <span ng-bind-html="country.name "></span>
+
+
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="editClick()">Save changes</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
+
+</div>
+
+
+
+<script src="../../pagePublic/jquery.js"></script>
+<!--本地存储 store2-->
+<script src="../../pagePublic/store/dist/store2.js"></script>
+
+<script src="../../pagePublic/metronic/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/bootstarp/js/bootstrap.min.js"></script>
+<!--<script src="../../../bower_components/moment/moment.js"></script>-->
+<!--<script src="../../../bower_components/moment/locale/zh-cn.js"></script>-->
+<!--<script src="../../../node_modules/async/dist/async.min.js"></script>-->
+
+<script src="../../../../angular.js"></script>
+
+
+<script src="../../../../lh_file/js/main.js"></script>
+
+<script src="../../../bower_components/ng-bs-animated-button/ng-bs-animated-button.js"></script>
+<script src="../../../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+<!--<script src="../../../bower_components/angular-moment/angular-moment.js"></script>-->
+
+
+
+<!--<script src="../../../bower_components/angular-gantt/dist/angular-gantt.js"></script>-->
+<!--<script src="../../../bower_components/angular-gantt/dist/angular-gantt-plugins.js"></script>-->
+<!--<script src="../../../bower_components/angular-strap/dist/angular-strap.js"></script>-->
+<script src="../../../bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+
+<script src="../../js/controller/日历rili/ceshi3.js"></script>
+</body>
+</html>

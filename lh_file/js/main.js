@@ -29164,6 +29164,10 @@ angular.module('gantt.tree.templates', []).run(['$templateCache', function($temp
     return window.wangEditor;
 });
 /**
+ * Created by liaohui1080 on 16/2/26.  service.js
+ */
+
+/**
  * Created by liaohui1080 on 16/2/26. factory.js
  *
  * 服务创建页面

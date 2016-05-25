@@ -116,159 +116,163 @@
     <!-- END PAGE HEADER-->
     <!-- CONTENT BODY GOES HERE >>>> -->
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default ">
 
-    <div class="panel panel-default ">
+                <div class="panel-heading">
+                    <div class="row">
 
-        <div class="panel-heading">
-            <div class="row">
+                        <div class="col-sm-6 col-md-6 ">
+                            <strong style="font-size: 25px" ng-if="today.updatedTime"
+                                    ng-bind="today.updatedTime | timeFormat:'YYYY年MM月DD日 ddd'"></strong>
+                            <strong style="font-size: 25px" ng-if="!today.updatedTime">今天</strong>
+                        </div>
+                        <div class="col-sm-6 col-md-6 ">
+                            <div class="btn-group pull-right" role="group">
+                                <button type="button" class="btn btn-default" ng-click="today.up()"> <</button>
+                                <button type="text" class="btn btn-default " disabled>
+                                    {{today.updatedTime | timeFormat:'YYYY年MM月DD日 ddd'}}
+                                </button>
+                                <button type="button" class="btn btn-default" ng-click="today.down()"> ></button>
+                            </div>
+                        </div>
 
-                <div class="col-sm-6 col-md-6 ">
-                    <strong style="font-size: 25px" ng-if="today.updatedTime"
-                            ng-bind="today.updatedTime | timeFormat:'YYYY年MM月DD日 ddd'"></strong>
-                    <strong style="font-size: 25px" ng-if="!today.updatedTime">今天</strong>
+
+                    </div>
                 </div>
-                <div class="col-sm-6 col-md-6 ">
-                    <div class="btn-group pull-right" role="group">
-                        <button type="button" class="btn btn-default" ng-click="today.up()"> <</button>
-                        <button type="text" class="btn btn-default " disabled>
-                            {{today.updatedTime | timeFormat:'YYYY年MM月DD日 ddd'}}
-                        </button>
-                        <button type="button" class="btn btn-default" ng-click="today.down()"> ></button>
+                <div class="panel-body" style="padding-top: 0; padding-bottom: 0">
+                    <div class="row" style="border-bottom: 1px solid #e4e4e4; " ng-repeat="ld in listDatas">
+
+                        <div class="col-md-2 col-sm-2 col-xs-12">
+
+                            <div style="border-right: 1px solid #e4e4e4; height: 90px; padding-top: 18px; padding-right: 15px">
+                                <div ng-if="ld.description=='任务通知'" class="msg-type msg-type_blue">
+                                    <strong>{{ld.description}}</strong>
+                                </div>
+
+                                <div ng-if="ld.description=='通知单'" class="msg-type msg-type_yellow">
+                                    <strong>{{ld.description}}</strong>
+                                </div>
+
+                                <div ng-if="ld.description=='作业计划'" class="msg-type msg-type_red">
+                                    <strong>{{ld.description}}</strong>
+                                </div>
+
+                                <div ng-if="ld.description=='巡检计划'" class="msg-type msg-type_green">
+                                    <strong>{{ld.description}}</strong>
+                                </div>
+
+                                <div ng-if="ld.description=='整改计划'" class="msg-type msg-type_purple">
+                                    <strong>{{ld.description}}</strong>
+                                </div>
+
+                                <div ng-if="ld.description=='隐患排查'" class="msg-type msg-type_blue"
+                                     style="background-color: #f0d310">
+                                    <strong>{{ld.description}}</strong>
+                                </div>
+
+
+                                <div class="text-center"><i class="fa fa-clock-o"></i> 15分钟前</div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <div class="list-inline" style="padding-top: 10px; overflow: hidden">
+                                <h4>h4. Bootstrap heading <small>Secondary text</small></h4>
+
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xs-12"  style="padding-top: 10px">
+
+                            <!--全亮-->
+                            <div ng-if="ld.messageStatus=='0'" class="pull-right">
+                                <ul class="list-inline" ng-click="[ld.messageStatus = '1' , changeStatus(ld)]">
+                                    <li>
+                                        <div class="circle" style="background-color: #f03f57"><span
+                                                class=" fa fa-pencil"></span></div>
+                                    </li>
+                                    <li>我知道了</li>
+                                </ul>
+
+                                <ul class="done light list-inline" ng-click="[ld.messageStatus = '2' , changeStatus(ld)]">
+                                    <li>
+                                        <div class="circle" style="background-color: #00b900"><span class=" fa fa-check"></span>
+                                        </div>
+                                    </li>
+                                    <li>已完成</li>
+                                </ul>
+                            </div>
+
+
+                            <!--全暗-->
+                            <div ng-if="ld.messageStatus=='3'" class="pull-right">
+                                <ul class="list-inline">
+                                    <li>
+                                        <div class="circle" style="background-color: #a6a6a6"><span
+                                                class=" fa fa-pencil"></span></div>
+                                    </li>
+                                    <li>我知道了</li>
+                                </ul>
+
+                                <ul class="list-inline">
+                                    <li>
+                                        <div class="circle" style="background-color: #a6a6a6"><span class=" fa fa-check"></span>
+                                        </div>
+                                    </li>
+                                    <li>已完成</li>
+                                </ul>
+                            </div>
+
+
+                            <!--亮暗-->
+                            <div ng-if="ld.messageStatus=='2'" class="pull-right">
+                                <ul class="list-inline" ng-click="[ld.messageStatus = '3' , changeStatus(ld)]">
+                                    <li>
+                                        <div class="circle" style="background-color: #f03f57"><span
+                                                class=" fa fa-pencil"></span></div>
+                                    </li>
+                                    <li>我知道了</li>
+                                </ul>
+
+                                <ul class=" list-inline">
+                                    <li>
+                                        <div class="circle" style="background-color: #a6a6a6"><span class=" fa fa-check"></span>
+                                        </div>
+                                    </li>
+                                    <li>已完成</li>
+                                </ul>
+                            </div>
+
+                            <!--暗亮-->
+                            <div ng-if="ld.messageStatus=='1'" class="pull-right">
+                                <ul class="list-inline">
+                                    <li>
+                                        <div class="circle" style="background-color: #a6a6a6"><span
+                                                class=" fa fa-pencil"></span></div>
+                                    </li>
+                                    <li>我知道了</li>
+                                </ul>
+
+                                <ul class="list-inline" ng-click="[ld.messageStatus = '3' , changeStatus(ld)]">
+                                    <li>
+                                        <div class="circle" style="background-color: #00b900"><span class=" fa fa-check"></span>
+                                        </div>
+                                    </li>
+                                    <li>已完成</li>
+                                </ul>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
 
 
             </div>
         </div>
-        <div class="panel-body" style="padding-top: 0; padding-bottom: 0">
-            <div class="row" style="border-bottom: 1px solid #e4e4e4; " ng-repeat="ld in listDatas">
-
-                <div class="col-md-2 col-sm-2 col-xs-12">
-
-                    <div style="border-right: 1px solid #e4e4e4; height: 90px; padding-top: 18px; padding-right: 15px">
-                        <div ng-if="ld.description=='任务通知'" class="msg-type msg-type_blue">
-                            <strong>{{ld.description}}</strong>
-                        </div>
-
-                        <div ng-if="ld.description=='通知单'" class="msg-type msg-type_yellow">
-                            <strong>{{ld.description}}</strong>
-                        </div>
-
-                        <div ng-if="ld.description=='作业计划'" class="msg-type msg-type_red">
-                            <strong>{{ld.description}}</strong>
-                        </div>
-
-                        <div ng-if="ld.description=='巡检计划'" class="msg-type msg-type_green">
-                            <strong>{{ld.description}}</strong>
-                        </div>
-
-                        <div ng-if="ld.description=='整改计划'" class="msg-type msg-type_purple">
-                            <strong>{{ld.description}}</strong>
-                        </div>
-
-                        <div ng-if="ld.description=='隐患排查'" class="msg-type msg-type_blue"
-                             style="background-color: #f0d310">
-                            <strong>{{ld.description}}</strong>
-                        </div>
-
-
-                        <div class="text-center"><i class="fa fa-clock-o"></i> 15分钟前</div>
-
-                    </div>
-                </div>
-                <div class="col-md-8 col-sm-8 col-xs-12">
-                    <div class="list-inline" style="padding-top: 10px; overflow: hidden">
-                        <h4>h4. Bootstrap heading <small>Secondary text</small></h4>
-
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-2 col-xs-12"  style="padding-top: 10px">
-
-                    <!--全亮-->
-                    <div ng-if="ld.messageStatus=='0'" class="pull-right">
-                        <ul class="list-inline" ng-click="[ld.messageStatus = '1' , changeStatus(ld)]">
-                            <li>
-                                <div class="circle" style="background-color: #f03f57"><span
-                                        class=" fa fa-pencil"></span></div>
-                            </li>
-                            <li>我知道了</li>
-                        </ul>
-
-                        <ul class="done light list-inline" ng-click="[ld.messageStatus = '2' , changeStatus(ld)]">
-                            <li>
-                                <div class="circle" style="background-color: #00b900"><span class=" fa fa-check"></span>
-                                </div>
-                            </li>
-                            <li>已完成</li>
-                        </ul>
-                    </div>
-
-
-                    <!--全暗-->
-                    <div ng-if="ld.messageStatus=='3'" class="pull-right">
-                        <ul class="list-inline">
-                            <li>
-                                <div class="circle" style="background-color: #a6a6a6"><span
-                                        class=" fa fa-pencil"></span></div>
-                            </li>
-                            <li>我知道了</li>
-                        </ul>
-
-                        <ul class="list-inline">
-                            <li>
-                                <div class="circle" style="background-color: #a6a6a6"><span class=" fa fa-check"></span>
-                                </div>
-                            </li>
-                            <li>已完成</li>
-                        </ul>
-                    </div>
-
-
-                    <!--亮暗-->
-                    <div ng-if="ld.messageStatus=='2'" class="pull-right">
-                        <ul class="list-inline" ng-click="[ld.messageStatus = '3' , changeStatus(ld)]">
-                            <li>
-                                <div class="circle" style="background-color: #f03f57"><span
-                                        class=" fa fa-pencil"></span></div>
-                            </li>
-                            <li>我知道了</li>
-                        </ul>
-
-                        <ul class=" list-inline">
-                            <li>
-                                <div class="circle" style="background-color: #a6a6a6"><span class=" fa fa-check"></span>
-                                </div>
-                            </li>
-                            <li>已完成</li>
-                        </ul>
-                    </div>
-
-                    <!--暗亮-->
-                    <div ng-if="ld.messageStatus=='1'" class="pull-right">
-                        <ul class="list-inline">
-                            <li>
-                                <div class="circle" style="background-color: #a6a6a6"><span
-                                        class=" fa fa-pencil"></span></div>
-                            </li>
-                            <li>我知道了</li>
-                        </ul>
-
-                        <ul class="list-inline" ng-click="[ld.messageStatus = '3' , changeStatus(ld)]">
-                            <li>
-                                <div class="circle" style="background-color: #00b900"><span class=" fa fa-check"></span>
-                                </div>
-                            </li>
-                            <li>已完成</li>
-                        </ul>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-
-
     </div>
+
 
 </div>
 <!-- END PAGE -->

@@ -37,6 +37,8 @@ var proxy = http.createServer(function (req, res) {
     aa(getQuery.userType);
     aa(getQuery.data);
     aa(getQuery.action);
+    aa(getQuery.from);
+    aa(getQuery.to);
 
 
     function aa(o) {
@@ -77,6 +79,7 @@ var proxy = http.createServer(function (req, res) {
                     break;
                 case "month":
                     console.log(getQuery.timeScale.toString());
+
                     jsonTo(res, 'person/month.json');
                     break;
                 case "year":

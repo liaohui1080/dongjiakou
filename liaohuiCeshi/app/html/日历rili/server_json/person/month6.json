@@ -1,0 +1,23 @@
+{
+  "status": 1,
+  "info": "任务日历数据 day",
+  "data": [
+    {
+      "name": "任务",
+      "content": "任务",
+      "classes": "gantt-row-milestone",
+      "tasks": [
+        {
+          "name": "任务1",
+          "color": "#93C47D",
+          "from": "2016-06-17 01:00:00",
+          "to": "2016-06-17 02:00:00",
+          "data": ""
+        }
+      ]
+    }
+  ]
+}
+
+
+
