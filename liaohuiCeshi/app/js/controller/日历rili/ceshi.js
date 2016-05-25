@@ -78,8 +78,8 @@ myApp.controller('rootController',
 
 
         // var taskUrl = "/proxy/127.0.0.1:1337"; //连接测试服务器
-        var taskUrl = "/proxy/192.168.1.136:8080/myportal/control/findMyTask"; //连接测试服务器
-        // var taskUrl = "server_json/person/month.json"; //连接默认数据
+        // var taskUrl = "/proxy/192.168.1.136:8080/myportal/control/findMyTask"; //连接测试服务器
+        var taskUrl = "server_json/person/month.json"; //连接默认数据
 
         //ajax方法, 用于获取服务器数据
         $scope.ajax = function (o, fn) {
