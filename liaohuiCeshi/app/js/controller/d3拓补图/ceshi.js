@@ -61,10 +61,10 @@ myApp.controller('rootController', ['$scope', '$log', 'lh_ajax', '$timeout', fun
     };
 
     //刷新相邻重大危险源事件
-    $scope.neighborHazardClick=function () {
+    $scope.neighborHazardClick = function () {
         neighborHazard()
-    }
-    
+    };
+
 
     //加载实时监控图表
     function loadeChart() {
@@ -99,11 +99,34 @@ myApp.controller('rootController', ['$scope', '$log', 'lh_ajax', '$timeout', fun
                 //清空svg
                 d3.select(".shexiangtou").html("");
                 //摄像头
-                shexiangtou(msg.data);
+                shexiangtou(msg.data)
+
+            }
+        });
+
+        lh_ajax.get({
+            url: "server_json/5.json",
+            success: function (msg) {
+                //清空svg
+
+                d3.select(".shexiangtou3").html("");
+                //摄像头
+
+                shexiangtou3(msg.data)
+            }
+        });
+
+
+        lh_ajax.get({
+            url: "server_json/7.json",
+            success: function (msg) {
+
+                //摄像头
+                shexiangtou2(msg.data)
             }
         })
-    }
 
+    }
 
 
     //相邻重大危险源
@@ -112,14 +135,13 @@ myApp.controller('rootController', ['$scope', '$log', 'lh_ajax', '$timeout', fun
             url: "server_json/重大危险源.json",
             success: function (msg) {
                 console.log(msg.data)
-                $scope.neighborHazardItem=msg.data;
+                $scope.neighborHazardItem = msg.data;
             }
         })
     }
 
+
 }]);
-
-
 
 
 //分子图
@@ -128,17 +150,17 @@ function force(data) {
 
     var width = $(".tuxingWidth").width(),
         height = 600,
-        root=data;
+        root = data;
 
     var force = d3.layout.force()
-        .linkDistance(100) //连接线距离
-        // .linkStrength(0.2) // 连接线坚固度
-        .friction(0.9) //摩擦系数
-        .charge(-600)  //节点的电荷数, 节点与节点点的间距
-        // .gravity(0.4)  //引力强度, 回导致 图形不能出现在正中央
-        .alpha(1)
-        .size([width, height])
-        .on("tick", tick)
+            .linkDistance(100) //连接线距离
+            // .linkStrength(0.2) // 连接线坚固度
+            .friction(0.9) //摩擦系数
+            .charge(-600)  //节点的电荷数, 节点与节点点的间距
+            // .gravity(0.4)  //引力强度, 回导致 图形不能出现在正中央
+            .alpha(1)
+            .size([width, height])
+            .on("tick", tick)
 
         ;
 
@@ -235,13 +257,13 @@ function force(data) {
                 tooltip.select('.tooltip-body').html(d.info);
 
             }).on("mousemove", function (d) {
-                /* 鼠标移动时，更改样式 left 和 top 来改变提示框的位置 */
+            /* 鼠标移动时，更改样式 left 和 top 来改变提示框的位置 */
 
-                tooltip.style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY + 20) + "px");
-                tooltip.select('.tooltip-title').html(d.name)
-                tooltip.select('.tooltip-body').html(d.info);
-            })
+            tooltip.style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY + 20) + "px");
+            tooltip.select('.tooltip-title').html(d.name)
+            tooltip.select('.tooltip-body').html(d.info);
+        })
             .on("mouseout", function (d) {
                 /* 鼠标移出时，将透明度设定为0.0（完全透明）*/
 
@@ -282,13 +304,13 @@ function force(data) {
                 tooltip.select('.tooltip-body').html(d.info);
 
             }).on("mousemove", function (d) {
-                /* 鼠标移动时，更改样式 left 和 top 来改变提示框的位置 */
+            /* 鼠标移动时，更改样式 left 和 top 来改变提示框的位置 */
 
-                tooltip.style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY + 20) + "px");
-                tooltip.select('.tooltip-title').html(d.name)
-                tooltip.select('.tooltip-body').html(d.info);
-            })
+            tooltip.style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY + 20) + "px");
+            tooltip.select('.tooltip-title').html(d.name)
+            tooltip.select('.tooltip-body').html(d.info);
+        })
             .on("mouseout", function (d) {
                 /* 鼠标移出时，将透明度设定为0.0（完全透明）*/
 
@@ -373,8 +395,8 @@ function force(data) {
     function tick() {
         // console.log("tick")
         link.attr("x1", function (d) {
-                return d.source.x;
-            })
+            return d.source.x;
+        })
             .attr("y1", function (d) {
                 return d.source.y;
             })
@@ -543,9 +565,9 @@ function shexiangtou(data) {
     //     .size([width, height]);
 
     var svg = d3.select(".shexiangtou").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("class", "bg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("class", "bg")
         ;
 
     // var link = svg.selectAll(".link"),
@@ -553,10 +575,10 @@ function shexiangtou(data) {
 
     update()
 
-   function update(error, root) {
+    function update(error, root) {
 
         // console.log(nodes);
-       //加载力学图布局
+        //加载力学图布局
         force = d3.layout.force()
             .nodes(nodes)
             .size([width, height])
@@ -696,8 +718,8 @@ function shexiangtou(data) {
 
             //更新节点坐标
             svg_nodes.attr("cx", function (d) {
-                    return d.x;
-                })
+                return d.x;
+            })
                 .attr("cy", function (d) {
                     return d.y;
                 });
@@ -713,8 +735,8 @@ function shexiangtou(data) {
 
             //更新摄像头坐标
             svg_shexiangtou.attr("x", function (d) {
-                    return d.x;
-                })
+                return d.x;
+            })
                 .attr("y", function (d) {
                     return d.y;
                 });
@@ -724,6 +746,343 @@ function shexiangtou(data) {
 
 }
 
+
+//摄像头3
+function shexiangtou3(data) {
+
+
+    var width = $(".tuxingWidth").width(),
+        height = 600,
+        root = data;
+
+    var force = d3.layout.force()
+            .linkDistance(100) //连接线距离
+            // .linkStrength(0.2) // 连接线坚固度
+            .friction(0.9) //摩擦系数
+            .charge(-600)  //节点的电荷数, 节点与节点点的间距
+            // .gravity(0.4)  //引力强度, 回导致 图形不能出现在正中央
+            .alpha(1)
+            .size([width, height])
+            .on("tick", tick)
+
+        ;
+
+    var svg = d3.select(".shexiangtou3").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("class", "bg");
+
+
+    var link = svg.selectAll(".link"),
+        node = svg.selectAll(".node");
+
+
+    // d3.json("server_json/5.json", function (error, json) {
+    //     if (error) throw error;
+    //
+    //     // if(json.status) root=json.data
+    //     root = json.status?json.data:alert("数据格式错误");
+    //     // console.log(json)
+    //
+    //     update();
+    // });
+    //
+
+    //执行创建节点方法
+    update();
+
+
+    function update() {
+
+
+        var nodes = flatten(root),
+            links = d3.layout.tree()
+                .links(nodes);
+
+        // Restart the force layout.
+        force.nodes(nodes)
+            .links(links)
+
+            .start();
+
+        // Update links.
+        // link = link.data(links, function (d) {
+        //     return d.target.id;
+        // });
+        // //
+        // link.exit().remove();
+        //
+        // link.enter().insert("line", ".node")
+        //     .attr("class", "link");
+
+        // Update nodes.
+        node = node.data(nodes, function (d) {
+            return d.id;
+        });
+
+        node.exit().remove();
+
+
+        //插入节点组
+        var nodeEnter = node.enter().append("g")
+            .attr("class", "node")
+            .on("click", click)
+            .call(force.drag);
+
+
+        //添加一个提示框
+        var tooltip = d3.select(".tooltip")
+
+        //插入圆形 到每个节点
+        nodeEnter.append("circle")
+            .attr("r", function (d) {
+                // console.log(d.size)
+
+                if (d.size) {
+                    return 62;
+                } else {
+                    return 14;
+                }
+
+            })
+
+            .on("mouseover", function (d) {
+                /*
+                 鼠标移入时，
+                 （1）通过 selection.html() 来更改提示框的文字
+                 （2）通过更改样式 left 和 top 来设定提示框的位置
+                 （3）设定提示框的透明度为1.0（完全不透明）
+                 */
+
+                tooltip.style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY + 20) + "px")
+                    .style("opacity", 1.0)
+                tooltip.select('.tooltip-title').html(d.name)
+                tooltip.select('.tooltip-body').html(d.info);
+
+            }).on("mousemove", function (d) {
+            /* 鼠标移动时，更改样式 left 和 top 来改变提示框的位置 */
+
+            tooltip.style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY + 20) + "px");
+            tooltip.select('.tooltip-title').html(d.name)
+            tooltip.select('.tooltip-body').html(d.info);
+        })
+            .on("mouseout", function (d) {
+                /* 鼠标移出时，将透明度设定为0.0（完全透明）*/
+
+                tooltip.style("opacity", 0.0);
+            });
+
+
+        //给圆添加颜色
+        node.select("circle")
+            .attr("class", color);
+
+
+        //给每个节点插入图片
+        nodeEnter.append("image")
+            .attr("opacity", 0.6)
+            .attr("width", 16)
+            .attr("height", 16)
+            .attr("xlink:href", "../../images/server/shexiangtou.png")
+
+            .attr("transform", "translate(-8,-8)")
+            .on("mouseover", function (d) {
+                /*
+                 鼠标移入时，
+                 （1）通过 selection.html() 来更改提示框的文字
+                 （2）通过更改样式 left 和 top 来设定提示框的位置
+                 （3）设定提示框的透明度为1.0（完全不透明）
+                 */
+
+                tooltip.style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY + 20) + "px")
+                    .style("opacity", 1.0)
+                tooltip.select('.tooltip-title').html(d.name)
+                tooltip.select('.tooltip-body').html(d.info);
+
+            }).on("mousemove", function (d) {
+            /* 鼠标移动时，更改样式 left 和 top 来改变提示框的位置 */
+
+            tooltip.style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY + 20) + "px");
+            tooltip.select('.tooltip-title').html(d.name)
+            tooltip.select('.tooltip-body').html(d.info);
+        })
+            .on("mouseout", function (d) {
+                /* 鼠标移出时，将透明度设定为0.0（完全透明）*/
+
+                tooltip.style("opacity", 0.0);
+            });
+
+        //寻找主节点, 使用 filter 过滤所有的节点, 知道找到最后一个节点, 使用i来选择对于的节点
+        var rootNode = node.filter(function (d, i) {
+            if (i == (node.size() - 1)) { //如果i== 最后一个节点 (node.size 获取节点数)
+                return i; //返回选中的节点
+            }
+        });
+
+
+        rootNode.append("image")
+            // .attr("class", "root-node-7")
+            .attr("width", 124)
+            .attr("height", 124)
+            .attr("xlink:href", "../../images/shexiangtou3.png")
+            .attr("transform", function (d, i) {
+                return "translate(-62,-62)"
+            });
+
+
+    }
+
+    function tick() {
+        // console.log("tick")
+        link.attr("x1", function (d) {
+            return d.source.x;
+        })
+            .attr("y1", function (d) {
+                return d.source.y;
+            })
+            .attr("x2", function (d) {
+                return d.target.x;
+            })
+            .attr("y2", function (d) {
+                return d.target.y;
+            });
+
+        //
+        // link.attr("x1", function (d) {
+        //         return width/2;
+        //     })
+        //     .attr("y1", function (d) {
+        //         return height/2;
+        //     })
+        //     .attr("x2", function (d) {
+        //         return d.target.x;
+        //     })
+        //     .attr("y2", function (d) {
+        //         return d.target.y;
+        //     });
+
+
+        // node.attr("x1", function (d) {
+        //         return width/2;
+        //     })
+        //     .attr("y1", function (d) {
+        //         return height/2;
+        //     })
+        //     .attr("x2", function (d) {
+        //         return d.target.x;
+        //     })
+        //     .attr("y2", function (d) {
+        //         return d.target.y;
+        //     });
+
+        // node.attr("transform", function (d) {
+        //     // return "translate(" + d.x + "," + d.y + ")";
+        //     return "translate(" + d.x + "," + d.y + ")";
+        // });
+
+        node.attr("transform", function (d) {
+            // console.log(d.x+"+++++++++++"+d.y)
+            // console.log(d.x+(width/2) +"----"+d.y+(height/2))
+
+            // if(d.y>height){
+            //     return "translate(" + d.x + "," + height+ ")";
+            // }else{
+            //     return "translate(" + d.x + "," + d.y + ")";
+            // }
+            // $(".abc").css({top:d.y+70 , left:d.x-30})
+
+            return "translate(" + d.x + "," + d.y + ")";
+            // return "translate(" + (width)/2 + "," + (height)/2  + ")";
+        });
+
+
+        // node.attr("x", function (d) {
+        //         return d.x;
+        //     })
+        //     .attr("y", function (d) {
+        //         return d.y;
+        //     });
+
+    }
+
+    function color(d) {
+        // console.log(d)
+
+        //如果有下级数据, 则显示这里
+        if (d.children) {
+
+            //如果状态存在,则说明服务不通 显示low
+            if (d.status) {
+                return "yuan-status-low";
+
+
+            } else { //状态不存在,则说明服务器通着,
+
+                //如果size存在说明 是主节点, 显示主节点颜色
+                if (d.size) {
+                    // return "yuan-root";
+
+                } else { //显示一般节点颜色
+                    return "yuan";
+                }
+            }
+
+
+        } else { //没有下级数据
+
+            if (d.status) {
+                return "yuan-status-low";
+            } else {
+                return "yuan-children";
+            }
+
+
+        }
+
+    }
+
+// Toggle children on click.
+    function click(d) {
+        // console.log("click");
+        if (d3.event.defaultPrevented) return; // ignore drag
+        if (d.children) {
+            d._children = d.children;
+            d.children = null;
+        } else {
+            d.children = d._children;
+            d._children = null;
+        }
+        update();
+    }
+
+
+    // //显示提示信息
+    // function infoShow(d) {
+    //     console.log(d)
+    //     console.log("显示提示信息");
+    //     node.append("text")
+    // }
+
+// Returns a list of all nodes under the root.
+    function flatten(root) {
+        var nodes = [], i = 0;
+
+        function recurse(node) {
+            if (node.children) node.children.forEach(recurse);
+            if (!node.id) node.id = ++i;
+            nodes.push(node);
+        }
+
+        recurse(root);
+        return nodes;
+    }
+
+    return {"update": update}
+}
 
 //电波
 function dianbo() {
@@ -801,140 +1160,7 @@ function quxiantu(o) {
     // myChart.grid(20,20,0,0)
     window.onresize = myChart.resize;
 
-    var option2 = {
-        // 全图默认背景
-        // backgroundColor: '#1b1b1b',
 
-        // 默认色板
-        // color: [
-        //     '#FE8463', '#9BCA63', '#FAD860', '#60C0DD', '#0084C6',
-        //     '#D7504B', '#C6E579', '#26C0C0', '#F0805A', '#F4E001',
-        //     '#B5C334'
-        // ],
-        //边距网格
-        grid: {
-            x: 60,
-            y: 50,
-            x2: 30,
-            y2: 40
-        },
-
-        // 图表标题
-        // title: {
-        //     text: "实时监测",
-        //     textStyle: {
-        //         fontWeight: 'normal',
-        //         color: '#3a87ad' ,         // 图例文字颜色
-        //         fontSize:18,
-        //     },
-        //     x:"left",
-        //     y:"top",
-        // },
-
-        // 图例
-        legend: {
-            textStyle: {
-                color: '#3a87ad',         // 图例文字颜色
-                fontSize: 13,
-            },
-            data: ['意向', '预购', '成交'],
-            x: "left",
-            y: "top",
-        },
-
-
-        //工具条
-        toolbox: {
-            show: true,
-            feature: {
-                mark: {show: true},
-                dataView: {show: true, readOnly: false},
-                magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                restore: {show: true},
-                saveAsImage: {show: true}
-            },
-            x: "right",
-            y: "top",
-        },
-
-
-        // 提示框
-        tooltip: {
-            backgroundColor: 'rgba(250,250,250,0.8)',     // 提示背景颜色，默认为透明度为0.7的黑色
-            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                type: 'line',         // 默认为直线，可选为：'line' | 'shadow'
-                lineStyle: {          // 直线指示器样式设置
-                    color: '#aaa'
-                },
-                crossStyle: {
-                    color: '#aaa'
-                },
-                shadowStyle: {                     // 阴影指示器样式设置
-                    color: 'rgba(200,200,200,0.2)'
-                }
-            },
-            textStyle: {
-                color: '#333'
-            }
-        },
-
-
-        xAxis: [
-            {
-
-                splitLine: {
-                    lineStyle: {       // 属性lineStyle控制线条样式
-                        color: '#173452'
-                    }
-                },
-                //设置坐标轴文字颜色
-                axisLabel: {
-                    textStyle: {color: "#0096FC"}
-                },
-                type: 'category',
-                boundaryGap: false,
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-            }
-        ],
-        yAxis: [
-            {
-                type: 'value',
-                //设置坐标轴边框颜色
-                splitLine: {
-                    lineStyle: {       // 属性lineStyle控制线条样式
-                        color: '#173452'
-                    }
-                },
-                //设置坐标轴文字颜色
-                axisLabel: {
-                    textStyle: {color: "#0096FC"}
-                }
-            }
-        ],
-        series: [
-            {
-                name: '成交',
-                type: 'line',
-                smooth: true,
-                itemStyle: {normal: {color: "#FFFF00", areaStyle: {color: '#FFFF00'}}},
-                data: [10, 12, 21, 54, 260, 830, 0]
-            },
-            {
-                name: '预购',
-                type: 'line',
-                smooth: true,
-                itemStyle: {normal: {color: "#8B2BCC", areaStyle: {color: '#8B2BCC'}}},
-                data: [0, 182, 434, 791, 390, 30, 10, 40, 900, 100, 300, 200, 500]
-            },
-            {
-                name: '意向',
-                type: 'line',
-                smooth: true,
-                itemStyle: {normal: {color: "#00D7FB", areaStyle: {color: '#00D7FB'}}},
-                data: [1000, 800, 601, 234, 120, 90, 20]
-            }
-        ]
-    };
     var option = {
         // 全图默认背景
         // backgroundColor: '#1b1b1b',
@@ -1100,5 +1326,283 @@ function quxiantu(o) {
 
 
     myChart.setOption(option);
+}
+
+
+//摄像头2
+function shexiangtou2(o) {
+    var myChart = echarts.init(document.getElementById('shexiangtou2'));
+    // 过渡---------------------
+    myChart.showLoading({
+        text: '正在努力的读取数据中...',    //loading话术
+    });
+    myChart.hideLoading();
+    // myChart.grid(20,20,0,0)
+    window.onresize = myChart.resize;
+
+    //
+    // var hours = ['12', '1a', '2a', '3a', '4a', '5a', '6a',
+    //     '7a', '8a', '9a', '10a', '11a',
+    //     '12p', '1p', '2p', '3p', '4p', '5p',
+    //     '6p', '7p', '8p', '9p', '10p', '11p'];
+
+    var hours = [];
+    var days = ['', '', '', '', '', '', '', ''];
+
+
+    var canshu = o.error;
+
+    var canshu2 = o.success;
+
+
+    //获取随机数
+    var para = newRandomNumbersWithNoRepeat(0, canshu.length + canshu2.length, canshu.length + canshu2.length);//生成1到2000范围内
+    // var para=newRandomNumbersWithNoRepeat(0,100,100);//生成1到2000范围内
+    console.log(para)
+    // console.log(para2)
+
+
+    //获取随机数
+
+
+    var data = [];
+    var data2 = [];
+
+    for (var hours1 = 0; hours1 < canshu.length + canshu2.length; hours1++) {
+        // console.log(idata)
+
+
+        hours.push([hours1])
+
+    }
+
+//把摄像头信息添加到data里
+    for (var idata = 0; idata < canshu.length; idata++) {
+        // console.log(canshu[idata].name)
+        data.push([para[idata], idata, 0, canshu[idata].name, canshu[idata].info])
+
+        hours.push([idata])
+        // data2.push([0.5,idata,0])
+    }
+
+
+
+    //把摄像头信息添加到data2里
+    for (var idata2 = canshu.length; idata2 <canshu.length + canshu2.length; idata2++) {
+
+        data2.push([para[idata2],idata2,0])
+
+    }
+
+    //给data2追加摄像头文字信息
+    for(var idata3=0; idata3<data2.length ; idata3++){
+
+        data2[idata3].push(canshu2[idata3].name,canshu2[idata3].info)
+
+    }
+
+
+
+
+    var option = {
+
+
+
+        legend: {
+            textStyle: {
+                color: '#3a87ad',         // 图例文字颜色
+                fontSize: 13,
+            },
+            itemWidth: 20,
+            itemHeight: 20,
+            data: ['正常', '故障'],
+            left: 'right'
+        },
+
+        polar: {},
+        // tooltip: {
+        //     formatter: function (params) {
+        //         console.log(params.value[3])
+        //         return params.value[2] + ' commits in ' + hours[params.value[1]] + ' of ' + days[params.value[0]];
+        //     }
+        // },
+
+        // 提示框
+        tooltip: {
+            backgroundColor: 'rgba(250,250,250,0.8)',     // 提示背景颜色，默认为透明度为0.7的黑色
+            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                type: 'line',         // 默认为直线，可选为：'line' | 'shadow'
+                lineStyle: {          // 直线指示器样式设置
+                    color: '#aaa'
+                },
+                crossStyle: {
+                    color: '#aaa'
+                },
+                shadowStyle: {                     // 阴影指示器样式设置
+                    color: 'rgba(200,200,200,0.2)'
+                }
+            },
+            textStyle: {
+                color: '#333'
+            },
+            formatter: function (params) {
+                console.log(params)
+                return params.value[3] + ' (' + params.seriesName + ')<br>' + params.value[4];
+            }
+        },
+
+
+        //设置雷达背景
+        angleAxis: {
+            type: 'category',
+            data: hours,
+            boundaryGap: false,
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#152C4E',
+                    type: 'dashed'
+                }
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: '#204A75',
+                    type: 'solid',
+                    width: 2
+                }
+            }
+
+        },
+
+        radiusAxis: {
+            type: 'category',
+            data: [],
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: '#204A75',
+                    type: 'solid',
+                    width: 1
+                }
+            },
+            axisLabel: {
+                rotate: 45
+            },
+            // splitArea:{show: true},
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#152C4E',
+                    type: 'solid'
+                }
+            },
+        },
+        series: [
+            {
+                name: '故障',
+                type: 'scatter',
+                coordinateSystem: 'polar',
+                itemStyle: {normal: {color: "#E01919", areaStyle: {color: '#E01919'}}}, //设置背景颜色
+                symbol: 'image://../../images/shexiangtou2.png', //设置坐标点图标
+                symbolSize: function (val) { //这是坐标点大小
+                    // console.log(val)
+                    if (val[1] < 20) {
+                        return 15;
+                    } else {
+                        return val[1] / 2;
+                    }
+
+                    // return 20;
+                },
+                data: data,
+                animationDelay: function (idx) {
+                    return idx * 10;
+                }
+            },
+
+            {
+                name: '正常',
+                type: 'scatter',
+                coordinateSystem: 'polar',
+                itemStyle: {normal: {color: "#00D7FB", areaStyle: {color: '#FFFF00'}}}, //设置背景颜色
+                symbol: 'image://../../images/shexiangtou.png', //设置坐标点图标
+                symbolSize: function (val) {//这是坐标点大小
+                    if (val[1] < 20) {
+                        return 15;
+                    } else {
+                        return val[1] / 2;
+                    }
+                },
+                data: data2,
+                animationDelay: function (idx) {
+                    return idx * 5;
+                }
+            }
+        ]
+    };
+
+    myChart.setOption(option);
+}
+
+
+/// <summary>
+/// 生成一个指定范围的随机数
+/// </summary>
+/// <param name="start">起始值</param>
+/// <param name="end">终止值</param>
+function newNumber(start, end) {
+    return Math.round(Math.random() * (end - start) + start);//生成在[start,end]范围内的随机数值，只支持不小于0的合法范围
+}
+/// <summary>
+/// 目标数字是否已经存在于现有数字集合中
+/// </summary>
+/// <param name="para">现有数字集合</param>
+/// <param name="num">目标数字</param>
+function isHaveThisNumber(para, num) {
+    //拒绝无效的数组
+    if (typeof(para) == "object") {
+        if (para.length == 0) {
+            console.log("数组为空");
+            return false;
+        }
+    }
+    for (var i = 0; i < para.length; i++) {
+        if (para[i] == num) {
+            // console.log("与第【" + (i + 1) + "】个元素重复，正在重新生成...");
+            return true;//与目标数组有重复
+        }
+    }
+    return false;
+}
+/// <summary>
+/// 生成一个不重复的随机数数组
+/// </summary>
+/// <param name="start">起始值</param>
+/// <param name="end">终止值</param>
+/// <param name="size">随机数大小</param>
+function newRandomNumbersWithNoRepeat(start, end, size) {
+    var para = new Array();//目标随机数组
+    var rnum;//当前随机数
+    var currentIndex = 0;//当前随机数组的索引
+    if (start > end || start < 0 || end < 0 || size < 0) {
+        console.log("无效参数");
+        return;
+    }
+    if (end - start + 1 < size) {//验证随机数个数是否超出随机数范围
+        console.log("随机数范围大于随机区间");
+        return;
+    }
+    for (var i = 0; i < size; i++) {//生成 size 个不重复的随机数
+        rnum = newNumber(start, end);//获取随机数
+        if (isHaveThisNumber(para, rnum)) {//是否已经存在
+            while (isHaveThisNumber(para, rnum)) {//获取新的随机数 直到不重复
+                rnum = newNumber(start, end);//重新获取随机数
+                // console.log("发现新的随机数：" + rnum);
+            }
+        }
+        para[currentIndex++] = rnum;//添加到现有数字集合中
+    }
+    return para;
 }
 
