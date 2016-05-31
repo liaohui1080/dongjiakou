@@ -60,8 +60,8 @@ var jsArr = [
 
 
     //angular-strap 一个bootsrap 的库,主要用到了时间选择器功能
-    'bower_components/angular-strap/dist/angular-strap.js',
-    'bower_components/angular-strap/dist/angular-strap.tpl.js',
+    'lh_js_diy/angular-strap/dist/angular-strap.js',
+    'lh_js_diy/angular-strap/dist/angular-strap.tpl.js',
 
 
     //编辑器

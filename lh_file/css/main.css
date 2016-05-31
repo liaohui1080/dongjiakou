@@ -3514,7 +3514,7 @@ html #layui_layer_skinlayercss {
 }
 
 .layui-layer-btn {
-    text-align: right;
+    text-align: center;
     padding: 0 10px 12px;
     pointer-events: auto
 }

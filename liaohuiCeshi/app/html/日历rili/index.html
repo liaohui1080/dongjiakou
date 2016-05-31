@@ -38,13 +38,14 @@
     <link href="../../pagePublic/metronic/assets/css/themes/default.css" rel="stylesheet" type="text/css"
           id="style_color"/>
     <link href="../../pagePublic/metronic/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/datepicker/datepicker.css" rel="stylesheet" type="text/css"/>
     <!-- END THEME STYLES -->
 
 
     <link href="../../../../lh_file/css/main.min.css" rel='stylesheet'>
 
     <style>
-        .gantt-side{
+        .gantt-side {
             min-width: 100px;
         }
     </style>
@@ -74,8 +75,6 @@
         </div>
     </div>
     <!-- END PAGE HEADER-->
-
-
 
 
     <div class="row clearfix">
@@ -120,9 +119,9 @@
 
                 <li>
 
-                    <form class="form-inline" >
+                    <form class="form-inline">
                         范围:
-                        <div class="form-group">
+                        <div class="form-group datepicker-del">
 
                             <input style="width: 130px" type="datetime" class="form-control input-sm"
                                    ng-model="timeSpans.from"
@@ -159,12 +158,14 @@
                                 ng-click="timeType.upClick(options.scale)">上
                         </button>
                         <div class="btn-group btn-group-sm" role="group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
                                 {{timeType.queryScale}}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li ng-repeat="item in timeType.data"><a href="#" ng-bind="item.name" ng-click="timeType.queryClick(item)"></a></li>
+                                <li ng-repeat="item in timeType.data"><a href="#" ng-bind="item.name"
+                                                                         ng-click="timeType.queryClick(item)"></a></li>
 
                             </ul>
                         </div>
@@ -220,12 +221,9 @@
             </div>
 
 
-
         </div>
 
     </div>
-
-
 
 
     <!--修改时间-->
@@ -347,7 +345,7 @@
 
 
     <!--创建任务-->
-    <div class="modal fade "  id="addTask" ng-controller="addTask">
+    <div class="modal fade " id="addTask" ng-controller="addTask">
         <form>
             <div class="modal-dialog " style="width: 400px">
                 <div class="modal-content">
@@ -371,10 +369,11 @@
                                     <label>Task From Time</label>
 
                                     <ul class="list-inline" style="">
-                                        <li class="col-sm-8"> <input type="text" size="8"  class="form-control " ng-model="editFrom.from"
-                                                                     data-autoclose="1" bs-datepicker
-                                                                     placeholder="开始日期"
-                                                                     data-date-format="yyyy年MM月dd日">
+                                        <li class="col-sm-8"><input type="text" size="8" class="form-control "
+                                                                    ng-model="editFrom.from"
+                                                                    data-autoclose="1" bs-datepicker
+                                                                    placeholder="开始日期"
+                                                                    data-date-format="yyyy年MM月dd日">
                                         </li>
                                         <li class="col-sm-4">
                                             <input type="text" class="form-control " size="8" ng-model="editFrom.from"
@@ -386,19 +385,17 @@
                                     </ul>
 
 
-
-
-
                                 </div>
 
                                 <div class="form-group" style="padding-bottom: 30px">
                                     <label>Task From Time To</label>
 
                                     <ul class="list-inline" style="">
-                                        <li class="col-sm-8"> <input type="text" size="10"  class="form-control " ng-model="editFrom.to"
-                                                                     data-autoclose="1" bs-datepicker
-                                                                     placeholder="开始日期"
-                                                                     data-date-format="yyyy年MM月dd日">
+                                        <li class="col-sm-8"><input type="text" size="10" class="form-control "
+                                                                    ng-model="editFrom.to"
+                                                                    data-autoclose="1" bs-datepicker
+                                                                    placeholder="开始日期"
+                                                                    data-date-format="yyyy年MM月dd日">
                                         </li>
                                         <li class="col-sm-4">
                                             <input type="text" class="form-control " size="8" ng-model="editFrom.to"
@@ -413,13 +410,14 @@
                                 </div>
 
 
-                                <div class="form-group" >
-                                    <label >Task Color</label>
+                                <div class="form-group">
+                                    <label>Task Color</label>
                                     <div>{{editFrom.selected}}
                                         <ui-select ng-model="editFrom.selected" theme="selectize"
                                                    ng-disabled="disabled" style="width: 100%;"
                                                    title="Choose a country">
-                                            <ui-select-match placeholder="任务颜色">{{$select.selected.name}}</ui-select-match>
+                                            <ui-select-match placeholder="任务颜色">{{$select.selected.name}}
+                                            </ui-select-match>
                                             <ui-select-choices repeat="country in colorList | filter: $select.search">
 
                                                 <span ng-style="country.value">
@@ -453,6 +451,7 @@
     </div><!-- /.modal -->
 
 </div>
+
 
 
 

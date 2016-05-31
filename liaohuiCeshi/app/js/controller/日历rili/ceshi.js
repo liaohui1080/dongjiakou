@@ -49,7 +49,8 @@ myApp.controller('rootController',
 
 
 
-
+        var abcd =$(".datepicker-del");
+        console.log(abcd.html())
 
         //初始化 变量
         $scope.data = ''; //gantt图数据
