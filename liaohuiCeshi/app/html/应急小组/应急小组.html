@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <!--<link href="../../pagePublic/metronic/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"  type="text/css"/>-->
+    <link href="../../pagePublic/metronic/assets/plugins/font-awesome-4.6.3/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css"/>
+
+    <link href="../../pagePublic/metronic/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet"
+          type="text/css"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+    <link href="../../pagePublic/metronic/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css"
+          rel="stylesheet" type="text/css"/>
+    <!-- END PAGE LEVEL PLUGIN STYLES -->
+
+    <!-- BEGIN THEME STYLES -->
+
+    <!--控制是否圆角-->
+    <link href="../../pagePublic/metronic/assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/plugins.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/pages/tasks.css" rel="stylesheet" type="text/css"/>
+
+    <link href="../../pagePublic/metronic/assets/css/pages/timeline.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/themes/default.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+    <!-- END THEME STYLES -->
+
+
+    <link href="../../../../lh_file/css/main.min.css" rel='stylesheet'>
+
+    <style>
+        .tr-open {
+            /*background-color: #f0a5a4;*/
+            height: 437px;
+        }
+
+        .tr-colse {
+            /*background-color: #6ff096;*/
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- BEGIN PAGE -->
+<div class="page-content" ng-app="myApp" ng-controller="rootController">
+
+{{treeCopyRowData}}
+    <!-- BEGIN PAGE HEADER-->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+            <h3 class="page-title">
+                统计分析导航页
+                <small>statistics and more</small>
+            </h3>
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <i class="icon-home"></i>
+                    <a href="#">Home</a>
+                    <span class="icon-angle-right"></span>
+                </li>
+                <li><a href="#">Dashboard</a></li>
+            </ul>
+
+            <!-- END PAGE TITLE & BREADCRUMB-->
+        </div>
+    </div>
+    <!-- END PAGE HEADER-->
+    <!-- CONTENT BODY GOES HERE >>>> -->
+
+
+    <div class="row">
+        <div class="col-md-12" style="position: relative;">
+            <div class="panel panel-default grid-tree"
+                 style="position: absolute ;height: 400px;display: none; overflow: scroll;">
+
+
+            </div>
+
+
+
+
+            <table
+                    object-table
+
+                   data="tableData"
+                  editable="true"
+                   search="false"
+
+                   paging="true"
+
+                   display="15"
+                   fields="userLoginId,enabled,hasLoggedOut,disabledDateTime,groupName"
+                   headers="userLoginId,enabled,hasLoggedOut,disabledDateTime,groupName"
+
+            >
+                <thead>
+                <tr>
+                    <th style="width: 40px; text-align: center"></th>
+                    <th>企业名字</th>
+                    <th class="text-center">小组名称</th>
+                    <th class="text-center">负责人</th>
+                    <th>设立时间</th>
+                    <th>所属企业</th>
+                    <th>附件</th>
+                    <th>机构小组</th>
+                    <th style="width: 80px; text-align: center">操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr id="trID{{$id}}" style="">
+                    <td style="text-align: center; "
+                        >
+
+                        {{$index}}
+
+
+                    </td>
+
+                    <td
+                    >{{item.name}}
+                    </td>
+                    <td class="text-center">{{::item.groupName }}
+
+                    </td>
+                    <td
+
+                            class="text-center">
+                        {{::item.lender}}
+
+
+                    </td>
+                    <td
+
+                    >{{::item.time}}
+                    </td>
+                    <td>{{::item.company}}</td>
+                    <td class="text-center">
+                        <a href="#" data-toggle="modal" data-target="#tableUpdate">上传</a> |
+                        <a href="#" data-toggle="modal" data-target="#tableSeeFile" ng-click="$owner.clickTableSeeFile(item.accessory)" >查看</a>
+                    </td>
+                    <td class="text-center"
+                        class="tr-colse"
+                        data-toggle="modal" data-target="#treeModal"
+                        ng-click="$owner.clickTrOpen(item,'#trID'+$id)">
+
+                        <a class="#">
+                            <li class="fa fa-group"></li> 查看
+                        </a>
+                    </td>
+                    <td style="text-align: center">
+
+                        <button class="btn-success btn btn-xs" ng-click="$owner.clickTableEidt(item)">
+                            <li class="glyphicon glyphicon-pencil"></li>
+                        </button>
+                        <button type="button" class="btn btn-xs btn-danger" ng-click="$owner.clickTableDel(item)">
+                            <i class="glyphicon glyphicon-remove-circle">
+                            </i>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!--编辑表格行-->
+    <div class="modal fade " id="tableEdit">
+        <form class="form-horizontal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">修改信息</h4>
+                </div>
+                <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">企业名字:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" disabled placeholder="{{tableEdit.name}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">小组名称:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="tableEdit.groupName" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">设立时间:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="tableEdit.time" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">负责人:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="tableEdit.lender" >
+                            </div>
+                        </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="clickTableEditBtnClose(tableEdit)" data-dismiss="modal">关闭</button>
+                    <button type="button" ng-click="clickTableEditBtn(tableEdit)" class="btn btn-primary">修改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
+
+
+    <!--上传文件-->
+    <div class="modal fade " id="tableUpdate">
+        <form class="form-horizontal">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">上传文件</h4>
+                    </div>
+                    <div class="modal-body">
+
+                       上传控件安放位置
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" ng-click="clickFlieUpdate()">上传文件</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
+
+
+    <!--查看附件-->
+    <div class="modal fade " id="tableSeeFile">
+        <form class="form-horizontal">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">查看附件</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" ng-repeat="tf in tableFile">
+                            <div class="col-xs-12 col-md-12">
+                                <a href="#" class="thumbnail">
+                                    <img ng-src="{{tf}}" >
+                                </a>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
+
+
+
+    <!--tree 模板-->
+    <script type="text/ng-template" id="tree.html">
+        <div class="table-responsive">
+            <table class="table tree-grid">
+                <thead>
+                <tr>
+                    <th><a ng-if="expandingProperty.sortable" ng-click="sortBy(expandingProperty)">{{expandingProperty.displayName
+                        || expandingProperty.field || expandingProperty}}</a><span
+                            ng-if="!expandingProperty.sortable">{{expandingProperty.displayName || expandingProperty.field || expandingProperty}}</span><i
+                            ng-if="expandingProperty.sorted"
+                            class="{{expandingProperty.sortingIcon}} pull-right"></i></th>
+                    <th ng-repeat="col in colDefinitions"><a ng-if="col.sortable" ng-click="sortBy(col)">{{col.displayName
+                        || col.field}}</a><span ng-if="!col.sortable">{{col.displayName || col.field}}</span><i
+                            ng-if="col.sorted" class="{{col.sortingIcon}} pull-right"></i></th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in tree_rows | searchFor:$parent.filterString:expandingProperty:colDefinitions track by row.branch.uid"
+                    ng-class="'level-' + {{ row.level }} + (row.branch.selected ? ' active':'')"
+                    class="tree-grid-row">
+                    <td><a abc="dddd" ng-click="user_clicks_branch(row.branch)">
+
+                        <i ng-class="row.tree_icon"
+                           ng-click="row.branch.expanded = !row.branch.expanded"
+                           class="indented tree-icon">
+
+
+                        </i>
+
+                    </a><span class="indented tree-label" ng-click="on_user_click(row.branch)">
+                   {{row.branch[expandingProperty.field] || row.branch[expandingProperty]}}</span>
+                    </td>
+                    <td ng-repeat="col in colDefinitions">
+
+                        <div style="text-align: right" ng-if="col.cellTemplate" compile="col.cellTemplate"
+                             cell-template-scope="col.cellTemplateScope">
+
+                        </div>
+                        <div ng-if="!col.cellTemplate">{{row.branch[col.field]}}</div>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+    <!--树查看-->
+    <div class="modal fade " id="treeModal">
+        <form class="form-horizontal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">小组信息</h4>
+                    </div>
+                    <div class="modal-body" style="padding: 0px">
+
+                        <tree-grid tree-data="tree_data"
+                                   expand-level="1"
+                                   col-defs="col_name"
+                                   tree-control="my_tree"
+                                   expand-on="expanding_property"
+                                   template-url="tree.html"
+                                   on-select="my_tree_handler(branch)"
+                                   icon-leaf="glyphicon glyphicon-folder-open">
+
+
+                        </tree-grid>
+
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
+
+    <!--树编辑-->
+    <div class="modal fade " id="treeEdit">
+        <form class="form-horizontal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">修改信息</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">姓名:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="treeEdit.childname"   >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">职务:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="treeEdit.positions" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">手机:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="treeEdit.phoneNumber" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">办公电话:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="treeEdit.telephone" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">备注:</label>
+                            <div class="col-sm-10">
+                                <textarea type="text" class="form-control" ng-model="treeEdit.note" ></textarea>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="clickTreeEditClose(treeEdit)" data-dismiss="modal">关闭</button>
+                        <button type="button" ng-click="clickTreeEditBtn(treeEdit)" class="btn btn-primary">修改</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
+
+
+    <!--树增加-->
+    <div class="modal fade " id="treeAdd">
+        <form class="form-horizontal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">增加信息</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">姓名:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="treeEdit.childname"   >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">职务:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="treeEdit.positions" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">手机:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="treeEdit.phoneNumber" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">办公电话:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="treeEdit.telephone" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">备注:</label>
+                            <div class="col-sm-10">
+                                <textarea type="text" class="form-control" ng-model="treeEdit.note" ></textarea>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="treeEdit=''" data-dismiss="modal">关闭</button>
+                        <button type="button" ng-click="clickTreeAddBtn(treeEdit)" class="btn btn-primary">修改</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+<!-- END PAGE -->
+
+
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="../../pagePublic/metronic/assets/plugins/respond.min.js"></script>
+<script src="../../pagePublic/metronic/assets/plugins/excanvas.min.js"></script>
+<![endif]-->
+<script src="../../pagePublic/metronic/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="../../pagePublic/metronic/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<!-- END CORE../../pagePublic/metronic/ PLUGINS -->
+<!-- BEGIN PA../../pagePublic/metronic/GE LEVEL PLUGINS -->
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/flot/jquery.flot.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/flot/jquery.flot.resize.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap-daterangepicker/moment.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
+<!-- IMPORTAN../../pagePublic/metronic/T! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
+<script src="../../pagePublic/metronic/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<!-- END PAGE../../pagePublic/metronic/ LEVEL PLUGINS -->
+<!-- BEGIN PA../../pagePublic/metronic/GE LEVEL SCRIPTS -->
+<script src="../../pagePublic/metronic/assets/scripts/app.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/scripts/index.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/scripts/tasks.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+
+
+<script src="../../../../angular.js"></script>
+
+<script src="../../../configCeshi.js"></script>
+<script src="../../../../lh_file/js/main.js"></script>
+
+
+<!--<script src="../../../bower_components/wangEditor/dist/js/wangEditor.min.js"></script>-->
+<script src="../../js/controller/应急小组/ceshi.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+/*箭头向左*/
+.arrow-left {
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  border-color: #ddd;
+  border-width: 0 0 1px 1px;
+  border-style: solid;
+  transform: rotateZ(45deg);
+  position: absolute;
+  top: 53px;
+  left: -8px;
+}
+.arrow-top {
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  border-color: #ddd;
+  border-width: 0 0 1px 1px;
+  border-style: solid;
+  transform: rotateZ(135deg);
+  position: absolute;
+  top: -8px;
+  left: 23px;
+}
+.text {
+  line-height: 2;
+}
+.box-vertical-center {
+  height: 300px;
+  display: flex;
+  align-items: center;
+}
+.text-white {
+  color: #fff;
+}
+.time-item {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  left: -2px;
+}
+.time-item .time-item_1 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ddd;
+  opacity: 0.5;
+}
+.time-item .time-item_2 {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 1;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  box-shadow: -2px 1px 2px #b1b1b1;
+}
+.time-line_line2 {
+  background-color: #f9b53c;
+  height: 70px;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  left: 20%;
+  margin-left: -10px;
+}
+.timeline li.timeline-white .timeline-body {
+  color: #999;
+  border: 1px solid #ddd;
+  background-color: #f7f8f9;
+}
+.timeline li.timeline-white .timeline-body .arrow-left {
+  top: 21px;
+}
+.timeline li.timeline-white .timeline-body h2,
+.timeline li.timeline-white .timeline-body h4 {
+  color: #333;
+}
+.timeline li.timeline-white .timeline-body:after {
+  border-right-color: transparent;
+}
+.timeline li.timeline-yellow .timeline-body2:after {
+  border-color: transparent;
+}
+.timeline li.timeline-blue .timeline-body2:after {
+  border-right-color: transparent;
+}
+.img-circle-icon {
+  height: 66px;
+  width: 66px;
+  border: 1px  solid #ddd ;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.img-circle-icon .fa {
+  font-size: 40px;
+  line-height: 60px;
+}
+.img-circle-icon .iconfont {
+  font-size: 35px;
+  line-height: 66px;
+}
+.img-circle-icon2 {
+  box-shadow: 0.5px 1px 4px #d5d5d5;
+  width: 88px;
+  height: 88px;
+  background-color: #fff;
+}
+.img-circle-icon2 .iconfont {
+  font-size: 44px;
+  line-height: 82px;
+}
+.hengtiao-line {
+  position: relative;
+  height: 200px;
+}
+.hengtiao-line .yuandian {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0 auto;
+  margin-top: 24px;
+  z-index: 999;
+}
+.hengtiao-line .img-circle-icon2 {
+  box-shadow: none;
+}
+.hengtiao-line .hengtiao {
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  left: 0;
+  top: 170px;
+  background-color: #fff;
+}

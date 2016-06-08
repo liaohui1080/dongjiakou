@@ -68,11 +68,13 @@
                 <td ng-if="editable" editable ng-repeat="field in fields">
                     <div contenteditable ng-model="item[field]">{{item[field]}}</div>
                 </td>
+
             </tr>
 
             </tbody>
 
         </table>
+
     </div>
 
     <div class="loading" ng-show="dataIsLoading">

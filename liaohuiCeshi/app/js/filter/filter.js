@@ -100,11 +100,41 @@ var lhFilter=(function(){
     }];
 
 
+    //超出max个之后截取--2016.6.3 ouyang
+    var cutStr=[function(){
+        return function(value,max,tail){
+            if (!value) return '';
+            max = parseInt(max, 10);
+            if (!max) return value;
+            if (value.length <= max) return value;
+            value = value.substr(0, max);
+            return value + (tail || ' …');
+        }
+    }];
+
+    //低于max个不显示悬浮内容--2016.6.3 ouyang
+    var disCutStr=[function(){
+        return function(value,max){
+            if (!value) return '';
+            max = parseInt(max, 10);
+            if (!max) return value;
+            if (value.length <= max){
+                return '';
+            }else{
+                return value;
+            }
+        }
+    }];
+
+
+
     return {
         uiSelectPropsFilter:uiSelectPropsFilter,
         YNtoHanzi:YNtoHanzi,
         YNtoZaixian:YNtoZaixian,
         timeFormat:timeFormat,
+        cutStr:cutStr,
+        disCutStr:disCutStr,
         pageStart:pageStart
     };
 

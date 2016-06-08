@@ -1,0 +1,19 @@
+{
+  "status": 1,
+  "info": "获取二级部门",
+  "data": [
+
+    {
+
+      "childname": "小组名字",
+      "phoneNumber": "1393938383",
+      "telephone": "固定电话",
+      "note": "备注",
+      "positions": "职务",
+      "type": "person"
+    }
+  ]
+}
+
+
+

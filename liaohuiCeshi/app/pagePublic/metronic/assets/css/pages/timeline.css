@@ -14,7 +14,7 @@ Timeline UI Base
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	width: 10px;
+	width: 5px;
 	background: #ccc;
 	left: 20%;
 	margin-left: -10px;
@@ -46,7 +46,7 @@ Timeline UI Base
 
 .timeline > li .timeline-time span.time {
 	font-weight: 300;
-	font-size: 38px;
+	font-size: 20px;
 	line-height: 38px;
 }
 
@@ -55,7 +55,7 @@ Timeline UI Base
 .timeline > li .timeline-body {
 	margin: 0 0 15px 25%;
 	color: #fff;
-	padding: 10px;
+	padding: 15px;
 	font-weight: 300;
 	position: relative;
 	border-radius: 5px;
@@ -143,32 +143,55 @@ Timeline UI Base
 }
 
 /* The icons */
+/*.timeline > li .timeline-icon {*/
+	/*width: 40px;*/
+	/*height: 40px;*/
+	/*speak: none;*/
+	/*font-style: normal;*/
+	/*font-weight: normal;*/
+	/*font-variant: normal;*/
+	/*text-transform: none;*/
+	/*font-size: 1.4em;*/
+	/*line-height: 40px;*/
+	/*-webkit-font-smoothing: antialiased;*/
+	/*position: absolute;*/
+	/*color: #fff;*/
+	/*background: #fff;*/
+	/*border-radius: 50%;*/
+	/*box-shadow: 0 0 0 10px #ccc;*/
+	/*text-align: center;*/
+	/*left: 20%;*/
+	/*top: 0;*/
+	/*margin: 5px 0 0 -25px;*/
+	/*padding-bottom: 3px; */
+	/*padding-right: 1px;*/
+	/*padding-left: 2px;*/
+	/*-webkit-border-radius: 30px !important;*/
+	   /*-moz-border-radius: 30px !important;*/
+			/*border-radius: 30px !important;*/
+/*}*/
+
 .timeline > li .timeline-icon {
-	width: 40px;
-	height: 40px;
+	width: 20px;
+	height: 20px;
 	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	font-size: 1.4em;
+
 	line-height: 40px;
 	-webkit-font-smoothing: antialiased;
 	position: absolute;
 	color: #fff;
-	background: #aaa;  
+	background: transparent;
 	border-radius: 50%;
-	box-shadow: 0 0 0 8px #ccc;
+	box-shadow: 0 0 0 10px transparent;
 	text-align: center;
 	left: 20%;
 	top: 0;
 	margin: 5px 0 0 -25px;
-	padding-bottom: 3px; 
+	padding-bottom: 3px;
 	padding-right: 1px;
 	padding-left: 2px;
-	-webkit-border-radius: 30px !important;
-	   -moz-border-radius: 30px !important;
-			border-radius: 30px !important;
+
+
 }
 
 .timeline > li .timeline-icon > i {
@@ -252,6 +275,10 @@ Timeline UI Base
 .timeline li.timeline-grey .timeline-time span.time {
 	 color: #555555; 
 }
+
+
+
+
 
 @media (max-width: 767px) {  
 	timeline > li .timeline-time span.time {
