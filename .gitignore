@@ -1,3 +1,4 @@
+/接口
 
 .DS_Store
 json_server/
@@ -13,5 +14,6 @@ liaohuiCeshi/node_modules/
 liaohuiCeshi/lh_js_diy/angular-object-table/node_modules/
 liaohuiCeshi/lh_js_diy/angular-object-table/example/
 liaohuiCeshi/lh_js_diy/angular-object-table/build/
+接口/
 
-
+*.iml

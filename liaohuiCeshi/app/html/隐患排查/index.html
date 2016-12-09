@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="../../pagePublic/metronic/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/uniform/css/uniform.default.css" rel="stylesheet"
+          type="text/css"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+    <link href="../../pagePublic/metronic/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css"
+          rel="stylesheet" type="text/css"/>
+    <!-- END PAGE LEVEL PLUGIN STYLES -->
+
+    <!-- BEGIN THEME STYLES -->
+
+    <!--控制是否圆角-->
+    <link href="../../pagePublic/metronic/assets/css/style-metronic.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/plugins.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/pages/tasks.css" rel="stylesheet" type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/css/themes/default.css" rel="stylesheet" type="text/css"
+          id="style_color"/>
+    <link href="../../pagePublic/metronic/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+    <!-- END THEME STYLES -->
+    <!--动画css-->
+    <link href="../../pagePublic/animate.css/animate.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../lh_file/css/main.min.css" rel='stylesheet'>
+
+    <style>
+
+        .line {
+            fill: none;
+            stroke-width: 4px;
+            stroke-miterlimit: 10px;
+        }
+
+        .line-jixian {
+            stroke: #999999;
+
+        }
+
+        .line-hongxian {
+            /*stroke: #00A99D;*/
+            display: none;
+        }
+
+        .line-lanxian {
+            stroke: #2E97DE;
+            display: none;
+        }
+
+        .line-huixian {
+            fill: none;
+            /*stroke: #B3B3B3;*/
+            stroke-width: 2px;
+            stroke-miterlimit: 10px;
+            stroke-dasharray: 5, 2;
+            display: none;
+        }
+
+
+
+
+        .huixian-node {
+            display: none;
+        }
+
+        .jueduidingwei {
+            position: absolute;
+
+            display: none;
+        }
+
+        .hongxianAnimat {
+            stroke-dasharray: 3000;
+            animation: hongxianKey 5s linear;
+        }
+
+        @keyframes hongxianKey {
+            from {
+                stroke-dashoffset: 3000;
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .hongxianJinduAnimat {
+            stroke-dasharray: 40;
+            stroke: #ffffff;
+            animation: hongxianJinduKey 20s linear infinite;
+        }
+
+        @keyframes hongxianJinduKey {
+            from {
+                stroke-dashoffset: 1214;
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+
+
+
+        .popover {
+            border: none;
+            z-index: 999;
+            left: 0;
+            width: 200px;
+        }
+
+        .popover .list-group {
+            margin: 0;
+        }
+
+    </style>
+
+
+</head>
+<body ng-app="myApp">
+
+
+<!-- BEGIN PAGE -->
+<div class="page-content" ng-controller="rootController">
+    <!--整改提示框-->
+    <div class="popover bottom popover-public" style="font-size: 12px; width: 200px; ">
+        <div class="popover-content" >
+            <p class="zhenggai-neirong"></p>
+            <p class="zhenggai-time"></p>
+        </div>
+    </div>
+    <!--/整改提示框-->
+
+    <!-- BEGIN PAGE HEADER-->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+            <h3 class="page-title">
+                隐患排查
+                <small>statistics and more</small>
+            </h3>
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <i class="icon-home"></i>
+                    <a href="#">Home</a>
+                    <span class="icon-angle-right"></span>
+                </li>
+                <li><a href="#">Dashboard</a></li>
+            </ul>
+
+            <!-- END PAGE TITLE & BREADCRUMB-->
+        </div>
+    </div>
+    <!-- END PAGE HEADER-->
+    <!-- CONTENT BODY GOES HERE >>>> -->
+
+
+    <div class="row ">
+        <ul class="list-inline" style="margin-left: 20px">
+
+            <li>
+
+                <ui-select ng-model="jihua.selected" theme="selectize" ng-disabled="disabled" style="width: 200px;"
+                           title="Choose a country" on-select="jihuaClick($model)">
+                    <ui-select-match placeholder="选择计划">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat=" country in jihua | filter: $select.search">
+                        <span ng-bind-html="country.name | highlight: $select.search"></span>
+
+                    </ui-select-choices>
+                </ui-select>
+            </li>
+            <li>
+
+                <ui-select ng-model="yinhuan.selected" theme="selectize" ng-disabled="disabled" style="width: 200px;"
+                           title="Choose a country" on-select="yinhuanClick($model)">
+                    <ui-select-match placeholder="选择隐患">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat=" country in yinhuan | filter: $select.search">
+                        <span ng-bind-html="country.name | highlight: $select.search"></span>
+
+                    </ui-select-choices>
+                </ui-select>
+            </li>
+        </ul>
+
+
+        <div class="procedure" style="position: relative">
+
+            <svg id="procedureSvg">
+                <path id="jixian" class="line-jixian line "/>
+                <path id="hongxian" class="line-hongxian line "/>
+                <!--<path id="hongxian2" class="line-hongxian line hongxianJinduAnimat"/>-->
+                <path id="lanxian" class="line-lanxian line"/>
+
+
+                <!--一次复查-->
+                <g id="huixian0-group" class="huixian-group">
+
+                    <path id="huixian1" class="line-huixian" stroke="#B3B3B3"/>
+
+                    <g id="huixian1-zuo-group" class="huixian-node">
+                        <ellipse id="huixian1-zuo-dian" class="dian zuodian"  fill="#999999"
+                                 stroke="#FFFFFF"
+                                 stroke-width="3" stroke-miterlimit="10" cx="1315.31" cy="146.135" rx="6" ry="5.7"/>
+                        <path class="xian " fill="none" stroke="#B3B3B3" stroke-miterlimit="10"
+                              stroke-dasharray="2,2"
+                              d="M1332.906,189.753h-7.889   c-5.58,0-10.08-4.566-9.999-10.145l0.388-26.696"/>
+
+                        <path class="juxing " fill="#E6E6E6"
+                              d="M1372.718,198.911h-34.09v-18h34.09c4.921,0,8.91,3.989,8.91,8.91v0.18   C1381.628,194.922,1377.638,198.911,1372.718,198.911z"/>
+                        <text class="wenzi xuanze" transform="matrix(1 0 0 1 1350.3096 194.3765)"
+                              fill="#333333" font-family="'SimHei'" font-size="12">整改
+                        </text>
+                        <circle class="yuan xuanze" fill="#999999" cx="1338.969" cy="189.977" r="9"/>
+                        <text class=" xuanze" transform="matrix(1 0 0 1 1335.8433 193.7269)"
+                              fill="#FFFFFF" font-family="'SimHei'" font-size="12">1
+                        </text>
+
+                    </g>
+
+                    <g id="huixian1-you-group" class="huixian-node">
+                        <ellipse class="dian youdian" id="huixian1-you-dian"  fill="#999999" stroke="#FFFFFF"
+                                 stroke-width="3" stroke-miterlimit="10" cx="1622.31"
+                                 cy="204.135" rx="6" ry="5.7"/>
+                        <line class="xian " fill="none" stroke="#B3B3B3" stroke-miterlimit="10"
+                              stroke-dasharray="2,2"
+                              x1="1629.659" y1="204.26"
+                              x2="1682.659" y2="204.26"/>
+
+                        <path class="juxing xuanze" fill="#E6E6E6"
+                              d="M1722.718,213.911h-34.09v-18h34.09c4.921,0,8.91,3.989,8.91,8.91v0.18     C1731.628,209.922,1727.638,213.911,1722.718,213.911z"/>
+
+                        <text class="wenzi xuanze" transform="matrix(1 0 0 1 1700.3096 209.3765)" fill="#333333"
+                              font-family="'SimHei'"
+                              font-size="12">复查
+                        </text>
+
+                        <circle class="yuan xuanze" fill="#999999" cx="1688.969" cy="204.977" r="9"/>
+                        <text class="xuanze" transform="matrix(1 0 0 1 1685.8433 208.7269)" fill="#FFFFFF"
+                              font-family="'SimHei'"
+                              font-size="12">1
+                        </text>
+
+                    </g>
+
+                </g>
+                <!--/一次复查-->
+
+                <!--二次复查-->
+                <g id="huixian1-group" class="huixian-group">
+                    <path id="huixian2" class="line-huixian" stroke="#B3B3B3"/>
+                    <g id="huixian2-zuo-group" class="huixian-node">
+                        <ellipse class="dian zuodian" xmlns="http://www.w3.org/2000/svg" fill="#999999" stroke="#FFFFFF"
+                                 stroke-width="3" stroke-miterlimit="10" cx="1283.31" cy="146.135" rx="6" ry="5.7"/>
+                        <path class="xian xuanze" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#B3B3B3"
+                              stroke-miterlimit="10" stroke-dasharray="2,2"
+                              d="M1300.906,225.753h-7.889    c-5.58,0-10.08-4.566-9.999-10.145l0.388-62.696"/>
+                        <path class="xuanze" xmlns="http://www.w3.org/2000/svg" fill="#E6E6E6"
+                              d="M1339.718,234.911h-34.09v-18h34.09c4.921,0,8.91,3.989,8.91,8.91v0.18    C1348.628,230.922,1344.638,234.911,1339.718,234.911z"/>
+                        <text class="wenzi xuanze" xmlns="http://www.w3.org/2000/svg"
+                              transform="matrix(1 0 0 1 1317.3096 230.3765)" fill="#333333" font-family="'SimHei'"
+                              font-size="12">整改
+                        </text>
+                        <circle class="yuan xuanze" xmlns="http://www.w3.org/2000/svg" fill="#999999" cx="1305.969"
+                                cy="225.977" r="9"/>
+                        <text class="xuanze" xmlns="http://www.w3.org/2000/svg"
+                              transform="matrix(1 0 0 1 1302.8433 229.7269)"
+                              fill="#FFFFFF" font-family="'SimHei'" font-size="12">2
+                        </text>
+                    </g>
+                    <g id="huixian2-you-group" class="huixian-node">
+                        <ellipse class="dian youdian" xmlns="http://www.w3.org/2000/svg" fill="#999999" stroke="#FFFFFF"
+                                 stroke-width="3" stroke-miterlimit="10" cx="1643.31" cy="174.135" rx="6" ry="5.7"/>
+                        <line class="xian xuanze" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#B3B3B3"
+                              stroke-miterlimit="10" stroke-dasharray="2,2" x1="1649.659" y1="175.26" x2="1702.659"
+                              y2="175.26"/>
+                        <path class="xuanze" xmlns="http://www.w3.org/2000/svg" fill="#E6E6E6"
+                              d="M1745.718,183.911h-34.09v-18h34.09c4.921,0,8.91,3.989,8.91,8.91v0.18     C1754.628,179.922,1750.638,183.911,1745.718,183.911z"/>
+                        <text class="wenzi xuanze" xmlns="http://www.w3.org/2000/svg"
+                              transform="matrix(1 0 0 1 1723.3096 179.3765)" fill="#333333" font-family="'SimHei'"
+                              font-size="12">复查
+                        </text>
+                        <circle class="yuan xuanze" xmlns="http://www.w3.org/2000/svg" fill="#999999" cx="1711.969"
+                                cy="174.977" r="9"/>
+                        <text class="xuanze" xmlns="http://www.w3.org/2000/svg"
+                              transform="matrix(1 0 0 1 1708.8433 178.7269)"
+                              fill="#FFFFFF" font-family="'SimHei'" font-size="12">2
+                        </text>
+                    </g>
+                </g>
+                <!--/二次复查-->
+
+                <!--三次复查-->
+                <g id="huixian2-group" class="huixian-group" >
+
+                    <path id="huixian3" class="line-huixian" stroke="#B3B3B3"/>
+
+                    <g id="huixian1-zuo-group" class="huixian-node">
+                        <ellipse class="dian zuodian" xmlns="http://www.w3.org/2000/svg" fill="#999999" stroke="#FFFFFF"
+                                 stroke-width="3" stroke-miterlimit="10" cx="1249.31" cy="146.135" rx="6" ry="5.7"/>
+                        <path class="xian" fill="none" stroke="#B3B3B3" stroke-miterlimit="10"
+                              stroke-dasharray="2,2"
+                              d="M1267.906,262.753h-7.889    c-5.58,0-10.08-4.566-9.999-10.145l0.388-99.696"/>
+
+                        <path class="juxing" fill="#E6E6E6"
+                              d="M1306.718,271.911h-34.09v-18h34.09c4.921,0,8.91,3.989,8.91,8.91v0.18    C1315.628,267.922,1311.638,271.911,1306.718,271.911z"/>
+                        <text class="wenzi" transform="matrix(1 0 0 1 1284.3096 267.3766)"
+                              fill="#333333" font-family="'SimHei'" font-size="12">整改
+                        </text>
+                        <circle class="yuan" fill="#999999" cx="1272.969" cy="262.977" r="9"/>
+                        <text transform="matrix(1 0 0 1 1269.8433 266.7269)"
+                              fill="#FFFFFF" font-family="'SimHei'" font-size="12">1
+                        </text>
+
+                    </g>
+
+                    <g id="huixian1-you-group" class="huixian-node">
+                        <ellipse class="dian youdian" fill="#999999" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10"
+                                 cx="1664.31" cy="144.135" rx="6" ry="5.7"/>
+                        <line class="xian" fill="none" stroke="#B3B3B3" stroke-miterlimit="10" stroke-dasharray="2,2"
+                              x1="1670.659" y1="143.26" x2="1733.659" y2="143.26"/>
+
+                        <path class="juxing" fill="#E6E6E6"
+                              d="M1774.718,152.911h-34.09v-18h34.09c4.921,0,8.91,3.989,8.91,8.91v0.18     C1783.628,148.922,1779.638,152.911,1774.718,152.911z"/>
+
+                        <text class="wenzi" transform="matrix(1 0 0 1 1752.3096 148.3765)" fill="#333333"
+                              font-family="'SimHei'"
+                              font-size="12">复查
+                        </text>
+
+                        <circle class="yuan" fill="#999999" cx="1740.969" cy="143.977" r="9"/>
+                        <text transform="matrix(1 0 0 1 1737.8433 147.7269)" fill="#FFFFFF" font-family="'SimHei'"
+                              font-size="12">3
+                        </text>
+
+                    </g>
+
+                </g>
+                <!--/三次复查-->
+
+
+            </svg>
+
+
+            <!--隐患-->
+            <svg version="1.1" id="yinhuan" class="jueduidingwei">
+                <g>
+                    <g>
+                        <circle class="jiedian" fill="#FFFFFF" stroke="#FDB247" stroke-width="5" stroke-miterlimit="10"
+                                cx="95.628"
+                                cy="73.99" r="7.5"/>
+                        <g>
+                            <line fill="none" stroke="#FDB247" stroke-width="2" stroke-miterlimit="10" x1="96.287"
+                                  y1="81.054" x2="96.287" y2="109.054"/>
+                            <g>
+                                <circle fill="#FDB247" cx="95.254" cy="139.998" r="33.033"/>
+                                <text transform="matrix(1 0 0 1 77.4231 138.3576)">
+                                    <tspan x="0" y="0" fill="#FFFFFF" font-family="'SimHei'" font-size="17.5216">发现
+                                    </tspan>
+                                    <tspan x="0" y="18.69" fill="#FFFFFF" font-family="'SimHei'" font-size="17.5216">
+                                        隐患
+                                    </tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <path fill="none" stroke="#FDB247" stroke-miterlimit="10"
+                          d="M97.034,63.966V15.768c0-3.316-2.689-6.003-6.005-6L79.222,9.778"/>
+                    <text ng-bind="yinhuanWenzi" class="yinhuan-wenzi" transform="matrix(1 0 0 1 13.3206 14.6806)" fill="#FDB247" font-family="'SimHei'"
+                          font-size="12">发现23个隐患
+                    </text>
+                </g>
+            </svg>
+            <!--/隐患-->
+
+
+            <!--整改-->
+            <svg version="1.1" id="zhenggai" class="jueduidingwei">
+                <g>
+                    <circle class="jiedian" fill="#FFFFFF" stroke="#E94B65" stroke-width="5" stroke-miterlimit="10"
+                            cx="52.889"
+                            cy="104.514" r="7.5"/>
+                    <line fill="none" stroke="#E94B65" stroke-width="2" stroke-miterlimit="10" x1="52.295" y1="94.537"
+                          x2="52.295" y2="74.537"/>
+                    <g>
+                        <circle fill="#E94B65" cx="53.263" cy="41.505" r="33.033"/>
+                        <text transform="matrix(1 0 0 1 36.0536 36.7751)">
+                            <tspan x="0" y="0" fill="#FFFFFF" font-family="'SimHei'" font-size="17.5216">下达</tspan>
+                            <tspan x="0" y="18.69" fill="#FFFFFF" font-family="'SimHei'" font-size="17.5216">整改</tspan>
+                        </text>
+                    </g>
+                </g>
+            </svg>
+            <!--/整改-->
+
+
+            <!--计划-->
+            <svg version="1.1" id="jihua" class="jueduidingwei">
+                <g>
+                    <g>
+                        <circle class="jiedian" fill="#FFFFFF" stroke="#2E97DE" stroke-width="5" stroke-miterlimit="10"
+                                cx="107.619"
+                                cy="62.967" r="7.5"/>
+                        <line fill="none" stroke="#2E97DE" stroke-width="2" stroke-miterlimit="10" x1="108.278"
+                              y1="72.032" x2="108.278" y2="92.032"/>
+                        <g>
+                            <circle fill="#4A96C9" cx="107.245" cy="110.976" r="17.612"/>
+                            <text transform="matrix(1 0 0 1 97.7382 110.1012)">
+                                <tspan x="0" y="0" fill="#FFFFFF" font-family="'SimHei'" font-size="9.342">执行</tspan>
+                                <tspan x="0" y="9.965" fill="#FFFFFF" font-family="'SimHei'" font-size="9.342">计划
+                                </tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <path fill="none" stroke="#2E97DE" stroke-miterlimit="10" d="M108.054,55.943V36.011c0-3.906-3.196-7.056-7.102-6.999
+		l-10.333,0.432"/>
+                    <text ng-bind="jiahuaWenzi" class="jihua-wenzi" style="text-align: right" transform="matrix(1 0 0 1 17.163 33.4084)" fill="#2E97DE" font-family="'SimHei'"
+                          font-size="12">2016巡检计划
+                    </text>
+                </g>
+            </svg>
+            <!--/计划-->
+
+
+            <!--完成-->
+            <svg version="1.1" id="wancheng" class="jueduidingwei">
+                <g>
+                    <circle class="dian" fill="#FFFFFF" stroke="#00989C" stroke-width="5" stroke-miterlimit="10" cx="21.374"
+                            cy="23.967" r="7.5"/>
+                    <line class="xian" fill="none" stroke="#00989C" stroke-width="2" stroke-miterlimit="10" x1="22.033" y1="33.032"
+                          x2="22.033" y2="53.032"/>
+                    <g>
+                        <circle class="yuan" fill="#00A99D" cx="21" cy="71.443" r="17.5"/>
+                        <g>
+                            <text class="wenzi" transform="matrix(1 0 0 1 13.2025 75.3712)" fill="#FFFFFF" font-family="'SimHei'"
+                                  font-size="9.342">完成
+                            </text>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+            <!--/完成-->
+
+            <!--整改计划提示框-->
+            <div class="popover bottom popover-jihua">
+                <div class="arrow"></div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item ">
+                        Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                    <a href="#" class="list-group-item active">Morbi leo risus</a>
+                    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                    <a href="#" class="list-group-item">Vestibulum at eros</a>
+                </div>
+            </div>
+            <!--/整改计划提示框-->
+
+            <!--发现隐患提示框-->
+            <div class="popover bottom popover-yinhuan">
+                <div class="arrow"></div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item ">
+                        隐患
+                    </a>
+                    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                    <a href="#" class="list-group-item active">Morbi leo risus</a>
+                    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                    <a href="#" class="list-group-item">Vestibulum at eros</a>
+                </div>
+            </div>
+            <!--/发现隐患提示框-->
+
+        </div>
+
+    </div>
+    <div class="row" style="background-color: #EBEEF1; padding-top: 20px; background-image: url(1.png);
+    background-repeat: repeat-x">
+
+
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">df</div>
+                <div class="panel-body">
+                    <div id="xunjianjihua" style="height:300px;"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-8">
+            <div class="panel panel-default" style="height: 300px;">
+                <div class="panel-heading">df</div>
+                <div class="panel-body">df</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default" style="height: 300px;">
+                <div class="panel-heading">df</div>
+                <div class="panel-body">df</div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="panel panel-default" style="height: 300px;">
+                <div class="panel-heading">df</div>
+                <div class="panel-body">df</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default" style="height: 300px;">
+                <div class="panel-heading">df</div>
+                <div class="panel-body">df</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default" style="height: 300px;">
+                <div class="panel-heading">df</div>
+                <div class="panel-body">df</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default" style="height: 300px;">
+                <div class="panel-heading">df</div>
+                <div class="panel-body">df</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default" style="height: 300px;">
+                <div class="panel-heading">df</div>
+                <div class="panel-body">df</div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<!-- END PAGE -->
+
+
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="../../pagePublic/metronic/assets/plugins/respond.min.js"></script>
+<script src="../../pagePublic/metronic/assets/plugins/excanvas.min.js"></script>
+<![endif]-->
+<script src="../../pagePublic/metronic/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="../../pagePublic/metronic/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap-hover-dropdown/twitter-bootstrap-hover-dropdown.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery.cookie.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<!-- END CORE../../pagePublic/metronic/ PLUGINS -->
+<!-- BEGIN PA../../pagePublic/metronic/GE LEVEL PLUGINS -->
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.europe.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.germany.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/maps/jquery.vmap.usa.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/flot/jquery.flot.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/flot/jquery.flot.resize.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap-daterangepicker/moment.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/gritter/js/jquery.gritter.js" type="text/javascript"></script>
+<!-- IMPORTAN../../pagePublic/metronic/T! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
+<script src="../../pagePublic/metronic/assets/plugins/fullcalendar/fullcalendar/fullcalendar.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+<!-- END PAGE../../pagePublic/metronic/ LEVEL PLUGINS -->
+<!-- BEGIN PA../../pagePublic/metronic/GE LEVEL SCRIPTS -->
+<script src="../../pagePublic/metronic/assets/scripts/app.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/scripts/index.js" type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/scripts/tasks.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+
+
+<script src="../../pagePublic/Snap.svg/dist/snap.svg-min.js"></script>
+<script src="../../pagePublic/d3/d3.js"></script>
+<script src="../../../../angular.js"></script>
+<script src="../../pagePublic/echarts/echarts.js"></script>
+
+<script src="../../../configCeshi.js"></script>
+<script src="../../../../lh_file/js/main.js"></script>
+
+<script src="../../js/controller/隐患排查/ceshi.js"></script>
+
+
+</body>
+</html>

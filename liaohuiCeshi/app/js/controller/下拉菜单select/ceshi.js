@@ -27,41 +27,42 @@ myApp.controller('rootController',
     ['$scope', 'lh_ajax', function ($scope, lh_ajax) {
 
 
-
         lh_ajax.get({
-            url:"server_json/user_list.json",
-            success:function(msg){
-                $scope.countries=msg.data;
+            url: "server_json/user_list.json",
+            success: function (msg) {
+                $scope.countries = msg.data;
+
             }
         });
 
-        $scope.dianji=function(m){
 
+
+
+        $scope.dianji = function (m) {
 
 
             console.log(m);
 
-            if(m==1){
-                $scope.renyuanShow=false;
+            if (m == 1) {
+                $scope.renyuanShow = false;
                 lh_ajax.get({
-                    url:"server_json/user_list33.json",
-                    success:function(msg){
-                        $scope.dier=msg.data;
+                    url: "server_json/user_list33.json",
+                    success: function (msg) {
+                        $scope.dier = msg.data;
                     }
                 });
             }
 
-            if(m==2){
+            if (m == 2) {
                 lh_ajax.get({
-                    url:"server_json/user_list4.json",
-                    success:function(msg){
-                        $scope.dier=msg.data;
+                    url: "server_json/user_list4.json",
+                    success: function (msg) {
+                        $scope.dier = msg.data;
 
-                        $scope.renyuanShow=true;
+                        $scope.renyuanShow = true;
                     }
                 });
             }
-
 
 
         }

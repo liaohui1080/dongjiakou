@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="../../pagePublic/metronic/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="../../pagePublic/metronic/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+          type="text/css"/>
+
+    <style>
+        .line {
+            fill: none;
+            stroke-width: 4px;
+            stroke-miterlimit: 10px;
+        }
+
+        .line-jixian {
+            stroke: #0096FC;
+        }
+
+        .line-jixian {
+            stroke-dasharray: 0;
+            stroke-dashoffset: 2000;
+            animation: dash 5s linear forwards;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+
+</head>
+<body>
+<svg id="svg"></svg>
+<input id="button" type="button" class="zxx_api_button" value="点击水平位移">
+<div class="container-fluid">
+
+
+    <svg id="procedure"></svg>
+    <div class="row ">
+
+
+    </div>
+</div>
+
+
+<script src="../../pagePublic/metronic/assets/plugins/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+<script src="../../pagePublic/metronic/assets/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js"
+        type="text/javascript"></script>
+<script src="../../pagePublic/metronic/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+<script src="../../../bower_components/Snap.svg/dist/snap.svg-min.js"></script>
+<script src="../../pagePublic/d3/d3.js"></script>
+
+
+<script>
+
+    $(function () {
+        var windowWidth = $(window).width();
+        var svgHeight = 300;
+
+        var procedure = d3.select("#procedure")
+                .attr("x", 0)       //设定宽度
+                .attr("y", 0)       //设定宽度
+                .attr("width", windowWidth)       //设定宽度
+                .attr("height", svgHeight);    //设定高度
+
+        //插入一个矩形背景色
+        var bg = procedure.append("rect")
+                .attr("fill", "#EBEEF1")
+                .attr("x", 0)       //设定宽度
+                .attr("y", 0)       //设定宽度
+                .attr("width", windowWidth)       //设定宽度
+                .attr("height", svgHeight);    //设定高度
+
+
+        var lineData = [
+            {"x": 0, "y": 122},
+            {"x": 300, "y": 122},
+            {"x": 300, "y": 150},
+            {"x": 500, "y": 150},
+        ];
+        var line = d3.svg.line()
+                .x(function (d) {
+                    return d.x;
+                })
+                .y(function (d) {
+                    return d.y;
+                });
+        //                .interpolate("linear");//分段的线性片段，如折线。
+//                .interpolate(function (points) {
+//                    console.log(points)
+////                    return points.join("C0,1 0 0 1 ");
+//
+//                }) // custom interpolator
+//        console.log(line(lineData))
+        //插入基线
+        var lineJixian = procedure.append("path")
+                .classed("line-jixian line", true)
+                //                .attr("d", line(lineData));
+                //                .attr("d", "M0 122 , L300 122,C300 122 310 130 50 60  ,L300 140 ,L400 140, L400 122  ");
+                .attr("d", "M0,122 " +
+                        "l12 0" +
+                        "c2,0,4,2,4,4" +
+                        "l0,13 " +
+                        "c0,2,2,4,4,4" +
+                        "h90" +
+                        "c2,0,5-2,5-5" +
+                        "l0-13" +
+                        "c0-2.761,2.239-5,5-5h292.713c3.308,0,6.402-1.636,8.264-4.369l57.072-84.256c1.859-2.745,5.592-3.462,8.335-1.601l0.729,0.494" +
+                        "c2.738,1.857,3.456,5.579,1.607,8.321L383.396,203.521c-1.85,2.742-1.131,6.465,1.607,8.321l7.907,5.362" +
+                        "c2.729,1.851,6.44,1.152,8.31-1.564l61.109-88.787c1.868-2.715,4.954-4.335,8.25-4.33L572,122.911");
+
+
+//        svg.select("#jixian")
+//                .attr("stroke", "#2E97DE")
+//                .attr("d", "M1,122.944 l12.047-0.033"+
+//		"c2.732,0,4.959,2.193,4.999,4.926l0.196,13.149c0.041,2.732,2.267,4.926,4.999,4.926h90.731c2.761,0,5-2.239,5-5l0-13"+
+//		"c0-2.761,2.239-5,5-5h292.713c3.308,0,6.402-1.636,8.264-4.369l57.072-84.256c1.859-2.745,5.592-3.462,8.335-1.601l0.729,0.494"+
+//		"c2.738,1.857,3.456,5.579,1.607,8.321L383.396,203.521c-1.85,2.742-1.131,6.465,1.607,8.321l7.907,5.362"+
+//		"c2.729,1.851,6.44,1.152,8.31-1.564l61.109-88.787c1.868-2.715,4.954-4.335,8.25-4.33L572,122.911");
+
+        //    var width = 1000;  //画布的宽度
+        //    var height = 300;   //画布的高度
+        //
+//            var svg = d3.select(".procedure")     //选择文档中的body元素
+//                    .append("svg")          //添加一个svg元素
+//                    .attr("fill", "#d3d3d3")
+//                    .attr("width", width)       //设定宽度
+//                    .attr("height", height);    //设定高度
+        //
+        //    var d = "M25,124.944l243.047-2.033 " +
+        //            "c2.732,0,4.959,2.193,4.999,4.926l0.196,13.149c0.041,2.732,2.267,4.926,4.999,4.926h90.731c2.761,0,5-2.239,5-5l0-13 " +
+        //            "c0-2.761,2.239-5,5-5h292.713c3.308,0,6.402-1.636,8.264-4.369l57.072-84.256c1.859-2.745,5.592-3.462,8.335-1.601l0.729,0.494 " +
+        //            "c2.738,1.857,3.456,5.579,1.607,8.321L638.396,203.521c-1.85,2.742-1.131,6.465,1.607,8.321l7.907,5.362 " +
+        //            "c2.729,1.851,6.44,1.152,8.31-1.564l61.109-88.787c1.868-2.715,4.954-4.335,8.25-4.33L963,122.911";
+        //    var d2 = "M656.219,215.64l61.109-88.787" +
+        //            "c1.868-2.715,4.954-4.335,8.25-4.33L749,122.911"
+        //    var path = svg.append("path")
+        //            .attr("class", "line")
+        //            .attr("d", d);
+        //
+        //    var lineData = [
+        //        {"x": 100, "y": 10},
+        //        {"x": 0, "y": 0},
+        //    ];
+        //    var line = d3.svg.line()
+        //            .x(function (d) {
+        //                return d.x;
+        //            })
+        //            .y(function (d) {
+        //                return d.y;
+        //            })
+        //            .interpolate("linear");//分段的线性片段，如折线。
+        //
+        //    svg.append("path")
+        //            .attr("class", "line2")
+        /////           .attr("d", line(lineData));
+        //            .attr("d", "M10,25");
+
+
+        //    var dataset = [ 250 , 210 , 170 , 130 , 90 ];  //数据（表示矩形的宽度）
+
+
+        //    var rectHeight = 25;   //每个矩形所占的像素高度(包括空白)
+        //
+        //    svg.selectAll("rect")
+        //            .data(dataset)
+        //            .enter()
+        //            .append("rect")
+        //            .attr("x",20)
+        //            .attr("y",function(d,i){
+        //                return i * rectHeight;
+        //            })
+        //            .attr("width",function(d){
+        //                return d;
+        //            })
+        //            .attr("height",rectHeight-2)
+        //            .attr("stroke", "#0096FC")
+        //            .attr("fill","steelblue");
+
+
+        var s = Snap("#svg");
+        s.attr({
+            x: 0,
+            y: 0,
+
+            width: windowWidth,
+            height: svgHeight,
+        });
+
+        //插入一个矩形背景色
+        s.rect({
+            fill: "#EBEEF1",
+            x: 0,
+            y: 0,
+            width: windowWidth,
+            height: svgHeight,
+        });
+
+
+        var rect = s.rect(0, 20, 60, 40);
+
+
+        var path = s.path();
+        var d = "M0 122 , L200 122 ,L200 140 , H200, L400 140 ,L400 122 ";
+        var d2 ="M0,122 " +
+                "l12 0" +
+                "c2,0,4,2,4,4" +
+                "l0,13 " +
+                "c0,2,2,4,4,4" +
+                "h90" +
+                "c2,0,5-2,5-5" +
+                "l0-13" +
+                "c0-2.761,2.239-5,5-5h292.713c3.308,0,6.402-1.636,8.264-4.369l57.072-84.256c1.859-2.745,5.592-3.462,8.335-1.601l0.729,0.494" +
+                "c2.738,1.857,3.456,5.579,1.607,8.321L383.396,203.521c-1.85,2.742-1.131,6.465,1.607,8.321l7.907,5.362" +
+                "c2.729,1.851,6.44,1.152,8.31-1.564l61.109-88.787c1.868-2.715,4.954-4.335,8.25-4.33L572,122.911"
+        path.attr({
+                    x: 100,
+                    y: 0,
+                    class: "line-jixian line ",
+                    d: "M0 122 "
+
+                })
+
+
+        document.getElementById("button").onclick = function () {
+            Snap.animate(0, 500, function (val) {
+                rect.attr({
+                    x: val,
+                    fill: "#21fc4e",
+                });
+            }, 1000);
+
+
+            // 鼠标移入，图形展开
+            Snap.animate(0, windowWidth, function(x) {
+
+                path.attr({
+                    d: Snap.path.getSubpath(d2, 0, x)
+
+                });
+            }, 2000);
+
+
+
+            // 以上代码，类似于下面的效果
+            // rect.animate({x: 20}, 1000);
+            // 显然，上面的更强大，更灵活；下面的则是简单易懂
+        };
+
+        var dot = Snap.path.findDotsAtSegment(20,80, 40,40, 60,40, 80,80, 0.5);
+        console.dir(dot);
+
+
+//        var s = Snap("#svg");
+//        s.attr({
+//            x: 0,
+//            y: 0,
+//            width: windowWidth,
+//            height: svgHeight,
+//        });
+//
+//        //插入一个矩形背景色
+//        s.rect({
+//            fill: "#EBEEF1",
+//            x: 0,
+//            y: 0,
+//            width: windowWidth,
+//            height: svgHeight,
+//        });
+//
+//        //创建床半径为80的圆
+//        var path = s.path();
+//
+//        path.attr({
+//            x: 0,
+//            y: 0,
+//            class: "line-jixian line ",
+//            d: "M0,122 " +
+//            "l12 0" +
+//            "c2,0,4,2,4,4" +
+//            "l0,13 " +
+//            "c0,2,2,4,4,4" +
+//            "h90" +
+//            "c2,0,5-2,5-5" +
+//            "l0-13" +
+//            "c0-2.761,2.239-5,5-5h292.713c3.308,0,6.402-1.636,8.264-4.369l57.072-84.256c1.859-2.745,5.592-3.462,8.335-1.601l0.729,0.494" +
+//            "c2.738,1.857,3.456,5.579,1.607,8.321L383.396,203.521c-1.85,2.742-1.131,6.465,1.607,8.321l7.907,5.362" +
+//            "c2.729,1.851,6.44,1.152,8.31-1.564l61.109-88.787c1.868-2.715,4.954-4.335,8.25-4.33L572,122.911"
+//        })
+//
+////        path.animate({
+////            d: "M0,122 " +
+////            "l12 0" +
+////            "c2,0,4,2,4,4" +
+////            "l0,13 " +
+////            "c0,2,2,4,4,4" +
+////            "h90" +
+////            "c2,0,5-2,5-5" +
+////            "l0-13" +
+////            "c0-2.761,2.239-5,5-5h292.713c3.308,0,6.402-1.636,8.264-4.369l57.072-84.256c1.859-2.745,5.592-3.462,8.335-1.601l0.729,0.494" +
+////            "c2.738,1.857,3.456,5.579,1.607,8.321L383.396,203.521c-1.85,2.742-1.131,6.465,1.607,8.321l7.907,5.362" +
+////            "c2.729,1.851,6.44,1.152,8.31-1.564l61.109-88.787c1.868-2.715,4.954-4.335,8.25-4.33L572,122.911"
+////        },5000);
+//
+////        s.animation(0, 20, function (val) {
+////            path.attr({
+////                d: "M0,122 " +
+////                "l12 0" +
+////                "c2,0,4,2,4,4" +
+////                "l0,13 " +
+////                "c0,2,2,4,4,4" +
+////                "h90" +
+////                "c2,0,5-2,5-5" +
+////                "l0-13" +
+////                "c0-2.761,2.239-5,5-5h292.713c3.308,0,6.402-1.636,8.264-4.369l57.072-84.256c1.859-2.745,5.592-3.462,8.335-1.601l0.729,0.494" +
+////                "c2.738,1.857,3.456,5.579,1.607,8.321L383.396,203.521c-1.85,2.742-1.131,6.465,1.607,8.321l7.907,5.362" +
+////                "c2.729,1.851,6.44,1.152,8.31-1.564l61.109-88.787c1.868-2.715,4.954-4.335,8.25-4.33L572,122.911"
+////            });
+////        }, 1000);
+//
+//
+//        s.animate(0, 200, function (val) {
+//            path.attr({
+//                d: "M0,122 " +
+//                "l12 0" +
+//                "c2,0,4,2,4,4" +
+//                "l0,13 " +
+//                "c0,2,2,4,4,4" +
+//                "h90" +
+//                "c2,0,5-2,5-5" +
+//                "l0-13" +
+//                "c0-2.761,2.239-5,5-5h292.713c3.308,0,6.402-1.636,8.264-4.369l57.072-84.256c1.859-2.745,5.592-3.462,8.335-1.601l0.729,0.494" +
+//                "c2.738,1.857,3.456,5.579,1.607,8.321L383.396,203.521c-1.85,2.742-1.131,6.465,1.607,8.321l7.907,5.362" +
+//                "c2.729,1.851,6.44,1.152,8.31-1.564l61.109-88.787c1.868-2.715,4.954-4.335,8.25-4.33L572,122.911"
+//            });
+//        }, 500);
+
+    })
+
+</script>
+</body>
+</html>
