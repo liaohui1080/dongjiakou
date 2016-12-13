@@ -179,7 +179,7 @@ comments: true
 
 ##### 隐患排查流程图
     需要引入的控件
-    'objectTable',
+    '',
    
 * [demo](http://liaohui1080.github.io/dongjiakou/liaohuiCeshi/app/html/隐患排查)
 * [html](https://github.com/liaohui1080/dongjiakou/tree/gh-pages/liaohuiCeshi/app/html/隐患排查)

@@ -165,7 +165,11 @@ var lhFactory = (function () {
 
 
     /* 使用 layer  进度加载 和 提示框
-     * {url:url地址,infoSuccess:成功消息内容,infoError:失败消息内容 ,infoShow:true false 控制是否显示 ,success:成功方法}
+     * {url:url地址,infoSuccess:成功消息内容,
+     * infoError:失败消息内容 ,
+     * infoShow:true false 控制是否显示 ,
+     * data:{"id":值},
+     * success:成功方法}
      *
      *
      * */

@@ -26,7 +26,7 @@ myApp.controller('rootController', ['$scope', '$log', 'lh_ajax', '$timeout', fun
         var redColor = "#E94B65", //红色
             huiseColor = "#B3B3B3",
             greeColor = "#00989C"; //绿色
-            blueColor = "#2E97DE"; //绿色
+        blueColor = "#2E97DE"; //绿色
 
         var procedureWidth = $(".procedure").width(); //页面的宽度
         var svgWidth = 3000; //svg图形默认宽度
@@ -380,11 +380,11 @@ myApp.controller('rootController', ['$scope', '$log', 'lh_ajax', '$timeout', fun
             $(".dian").removeData("xinxi");
 
 
-            function wancheng(color){
+            function wancheng(color) {
                 var wancheng = Snap.select("#wancheng")
-                wancheng.select(".yuan").animate({fill:color},500)
-                wancheng.select(".dian").animate({stroke:color},600)
-                wancheng.select(".xian").animate({stroke:color},700)
+                wancheng.select(".yuan").animate({fill: color}, 500)
+                wancheng.select(".dian").animate({stroke: color}, 600)
+                wancheng.select(".xian").animate({stroke: color}, 700)
             }
 
             if (zhenggaiLength) {
@@ -417,5 +417,717 @@ myApp.controller('rootController', ['$scope', '$log', 'lh_ajax', '$timeout', fun
     }
 
 
+    function Inspection_plan(data) {
+        console.log(data);
+        var myChart = echarts.init(document.getElementById('main1'));
+        option = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis'
+                //触发类型：坐标轴触发，用于柱状或者折线图。
+            },
+            toolbox: {
+                showTitle: false,
+                feature: {
+//          dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar']},
+//          restore: {show: true},
+//          saveAsImage: {show: true}
+                }
+            },
+//          	x轴
+            xAxis: {
+//         坐标轴类型 
+                type: 'category',
+//   			 类目轴，适用于离散的类目数据
+//				boundaryGap:['30%','60%'],
+
+                axisLabel: {
+//					坐标轴相关刻度设置
+                    show: true,
+//						是否显示刻度标签
+                    interval: 0,
+                    //          坐标轴刻度标签的显示间隔，在类目轴中有效。
+                    //          默认会采用标签不重叠的策略间隔显示标签。
+                    //			可以设置成 0 强制显示所有标签。
+                    rotate: 45,
+//                       刻度标签旋转的角度，在类目轴的类目标签显示不下的时候可以通过旋转防止标签之间重叠。
+//                       旋转的角度从 -90 度到 90 度。
+                    margin: 10,
+//                       刻度标签与轴线之间的距离。
+                    textStyle: {
+//                       	刻度标签文字的颜色
+                        color: '#999999'
+                    }
+                },
+                axisTick: {
+//              坐标轴刻度相关设置	
+                    show: false   //不显示刻度
+                },
+                axisLine: {
+                    lineStyle: {
+                        width: 1
+                    }
+                },
+                data: //				 xAxis.data[i] :类目数据，在类目轴（type: 'category'）中有效。
+                data.xAxis
+            },
+            grid: { // 控制图的大小，调整下面这些值就可以，
+                x: 25,
+                x2: 0,
+                y: 15,
+                y2: 50,
+                // y2可以控制 X轴跟Zoom控件之间的间隔，避免以为倾斜后造成 label重叠到zoom上
+            },
+            yAxis: {
+//          y轴
+
+                type: 'value',
+//				min:0,
+//				max:80,
+                scale: true,
+                minInterval: 1,
+                splitNumber: 8,
+                splitLine: {
+                    show: false,
+                },
+                axisLabel: {
+                    interval: '1',
+                    inside: false,
+                    textStyle: {
+                        color: '#b3b3b3'
+                    }
+                },
+                axisTick: {
+                    show: true,
+                    inside: false,
+                    lineStyle: {
+                        color: '#b3b3b3'
+                    }
+                },
+                axisLine: {
+                    show: false,
+
+                },
+
+//          	data:["10","20","30","40","50","60","70","80"]
+            },
+            series: [{
+//          	数据
+                name: '销量',
+                type: 'bar',
+                barWidth: '60%',
+                barGap: '30%',
+                itemStyle: {
+
+                    normal: {
+                        color: function (params) {
+                            // build a color map as your need.
+                            var colorList = [
+                                '#e94b65', '#006ec4', '#00989c', '#4dc1f9', '#fdb247',
+                                '#e94b65', '#4dc1f9', '#fdb247', '#00989c', '#4dc1f9',
+                                '#e94b65', '#006ec4', '#00989c', '#F0805A', '#006ec4',
+                                '#fdb247', '#00989c', '#4dc1f9', '#4dc1f9', '#e94b65',
+                                '#fdb247', '#e94b65', '#006ec4', '#fdb247', '#00989c',
+                                '#4dc1f9', '#fdb247'
+                            ];
+                            return colorList[params.dataIndex]
+                        },
+
+                    }
+                },
+                data: data.series
+            }]
+        };
+        myChart.setOption(option);
+
+    }
+
+    var loadeChart1 = function () {
+        lh_ajax.get({
+            url: "server_json/Inspection_plan.json",
+            success: function (msg) {
+                Inspection_plan(msg.data)
+
+            }
+        })
+    }
+    loadeChart1();
+
+
+    function hiddenDanger_quantity(data) {
+
+        var myChart = echarts.init(document.getElementById('main2'));
+        var option = {
+            //  title: {
+            //      text: '折线图堆叠'
+            //  },
+            tooltip: {
+                trigger: 'axis'
+            },
+            toolbox: {
+                showTitle: false,
+                feature: {
+                    magicType: {show: true, type: ['line', 'bar', 'tiled', 'stack']},
+                }
+            },
+
+            grid: {
+                x: 45,
+                x2: 35,
+                y: 30,
+                y2: 50
+            },
+            xAxis: {
+
+
+                type: 'category',
+                boundaryGap: false,
+                data: ['企业名字', '企业名字', '企业名字', '企业名字', '企业名字', '企业名字', '企业名字'],
+                axisLine: {
+                    onZero: false,
+                    lineStyle: {
+                        color: '#5faad8'
+                    }
+                },
+
+                axisTick: {
+                    //              坐标轴刻度相关设置
+                    show: false     //不显示刻度
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#f3f3f3'
+                    }
+                },
+                axisLabel: {
+                    rotate: 40,
+                    textStyle: {
+                        color: '#4d4d4d',
+
+                    }
+                }
+            },
+            yAxis: {
+                inverse: true,
+                type: 'value',
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#f3f3f3'
+                    }
+                },
+                splitArea: {
+                    show: true,
+                    areaStyle: {
+                        color: ['#ffffff', '#f8f8f8']
+                    }
+                },
+                axisTick: {
+                    //              坐标轴刻度相关设置
+                    show: false     //不显示刻度
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#5faad8'
+                    }
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#4d4d4d'
+                    },
+
+                }
+
+            },
+            series: [
+                {
+                    name: '邮件营销',
+                    type: 'line',
+                    stack: '总量',
+                    data: data.series1,
+                    itemStyle: {
+                        normal: {
+                            color: '#5bd3d4',
+                            lineStyle: {
+                                color: '#5bd3d4'
+                            }
+                        }
+                    }
+                },
+                {
+                    name: '联盟广告',
+                    type: 'line',
+                    stack: '总量',
+                    data: data.series2,
+                    itemStyle: {
+                        normal: {
+                            color: '#ffb97e',
+                            lineStyle: {
+                                color: '#ffb97e'
+                            }
+                        }
+                    }
+                },
+                {
+                    name: '视频广告',
+                    type: 'line',
+                    stack: '总量',
+                    data: data.series3,
+                    itemStyle: {
+                        normal: {
+                            color: '#51aeef',
+                            lineStyle: {
+                                color: '#51aeef'
+                            }
+                        }
+                    }
+                },
+                {
+                    name: '直接访问',
+                    type: 'line',
+                    stack: '总量',
+                    data: data.series4,
+                    itemStyle: {
+                        normal: {
+                            color: '#df9297',
+                            lineStyle: {
+                                color: '#df9297'
+                            }
+                        }
+                    }
+                },
+
+            ]
+        };
+        myChart.setOption(option);
+
+    };
+    var loadeChart2 = function () {
+        lh_ajax.get({
+            url: "server_json/hiddenDanger_quantity.json",
+            success: function (msg) {
+                hiddenDanger_quantity(msg.data),
+                    console.log(msg.data);
+            }
+        })
+    };
+    loadeChart2()
+
+
+    function Chain_yearonyear(data) {
+        var myChart = echarts.init(document.getElementById('main3'))
+        var _span = document.getElementById('percent1')
+
+        _span.style.left = '46%';
+        _span.style.top = '40%';
+
+        var option = {
+            title: {
+                text: '园区企业隐患的数量较上月对比',
+                x: 'center',
+                top: '88%',
+                textStyle: {
+                    color: '#6c6c6c',
+                    fontSize: '16'
+
+                }
+
+            },
+
+//   backgroundColor: '#f2f2f2',
+            color: ['#e94b65', '#fdb247'],
+
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+//  legend: {
+//      orient: 'vertical',
+//      x: '2%',
+//      top: '40%',
+//      data:['蛋糕','冷饮','甜筒','糖果']
+//  },
+            series: [
+                {
+                    name: '隐患占比',
+                    type: 'pie',
+                    radius: ['30%', '50%'],
+                    avoidLabelOverlap: false,
+//          itemStyle: dataStyle,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'outside'
+                        },
+                        emphasis: {
+                            show: true,
+                            formatter: function (param) {
+//                      return param.percent.toFixed(0) + '%';    
+                            },
+                            textStyle: {
+//                      fontSize: '16',
+                                fontWeight: 'bold'
+                            }
+                        }
+
+
+                    },
+                    data: [
+                        {value: data.value[0], name: '本月隐患'},
+                        {value: data.value[1], name: '上月隐患'}
+                    ]
+                },
+
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        myChart.on('mouseover', function (params) {
+            console.log(params);
+            if (params.dataIndex == 0) {//dataIndex；数据在数组中的index
+                _span.innerHTML = params.percent.toFixed(0) + '%'
+            }
+            if (params.dataIndex == 1) {
+                _span.innerHTML = params.percent.toFixed(0) + '%'
+            }
+        });
+        myChart.on('mouseout', function () {
+            _span.innerHTML = ''
+        });
+    }
+
+    var loadeChart3 = function () {
+        lh_ajax.get({
+            url: "server_json/Chain_yearonyear.json",
+            success: function (msg) {
+                Chain_yearonyear(msg.data),
+                    console.log(msg.data);
+            }
+        })
+    }
+    loadeChart3()
+
+    function potential_type(data) {
+        var myChart = echarts.init(document.getElementById('main4'));
+        var dataStyle = {
+            normal: {
+                label: {show: false},
+                labelLine: {show: true},
+                shadowColor: 'rgba(40, 40, 40, 0.5)',
+            }
+        };
+        var placeHolderStyle = {
+            normal: {
+                color: '#f1f2f2',
+                label: {show: false},
+                labelLine: {show: false},
+                borderColor: '#ffffff'
+            },
+            emphasis: {
+                color: 'rgba(0,0,0,0)',
+                borderColor: '#ffffff'
+            }
+        };
+        var option = {
+// backgroundColor: '#f4f2e3',
+            color: ['#e94b65', '#fbb040', '#d7df23', '#27aae1', '#58595b'],
+            tooltip: {
+                show: true,
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+//  legend: {
+//      itemGap:12,
+//      data:['01','02','03','04','05','06']
+//  },
+//  toolbox: {
+//      show : true,
+//      feature : {
+//          mark : {show: true},
+//          dataView : {show: true, readOnly: false},
+//          restore : {show: true},
+//          saveAsImage : {show: true}
+//      }
+//  },
+            series: [
+                {
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: [90, 110],
+                    itemStyle: dataStyle,
+                    hoverAnimation: false,
+
+                    data: [
+                        {
+                            value: data.data[0],
+                            name: data.name[0]
+                        },
+                        {
+                            value: data.invisible[0],
+                            name: 'invisible',
+                            itemStyle: placeHolderStyle
+                        }
+
+                    ]
+                },
+                {
+                    name: 'Line 2',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: [70, 90],
+                    itemStyle: dataStyle,
+                    hoverAnimation: false,
+
+                    data: [
+                        {
+                            value: data.data[1],
+                            name: data.name[1]
+                        },
+                        {
+                            value: data.invisible[1],
+                            name: 'invisible',
+                            itemStyle: placeHolderStyle
+                        }
+                    ]
+                },
+                {
+                    name: 'Line 3',
+                    type: 'pie',
+                    clockWise: true,
+                    hoverAnimation: false,
+                    radius: [50, 70],
+                    itemStyle: dataStyle,
+
+                    data: [
+                        {
+                            value: data.data[2],
+                            name: data.data[2]
+                        },
+                        {
+                            value: data.invisible[2],
+                            name: 'invisible',
+                            itemStyle: placeHolderStyle
+                        }
+                    ]
+                },
+                {
+                    name: 'Line 4',
+                    type: 'pie',
+                    clockWise: true,
+                    hoverAnimation: false,
+                    radius: [30, 50],
+                    itemStyle: dataStyle,
+
+                    data: [
+                        {
+                            value: data.data[3],
+                            name: data.name[3]
+                        },
+                        {
+                            value: data.invisible[3],
+                            name: 'invisible',
+                            itemStyle: placeHolderStyle
+                        }
+                    ]
+                },
+                {
+                    name: 'Line 5',
+                    type: 'pie',
+                    clockWise: true,
+                    hoverAnimation: false,
+                    radius: [10, 30],
+                    itemStyle: dataStyle,
+
+                    data: [
+                        {
+                            value: data.data[4],
+                            name: data.name[4]
+                        },
+                        {
+                            value: data.invisible[4],
+                            name: 'invisible',
+                            itemStyle: placeHolderStyle
+                        }
+                    ]
+                },
+
+            ]
+        };
+        myChart.setOption(option);
+
+
+    }
+
+    var loadeChart4 = function () {
+        lh_ajax.get({
+            url: "server_json/potential_type.json",
+            success: function (msg) {
+                potential_type(msg.data),
+                    console.log(msg.data);
+            }
+        })
+    };
+    loadeChart4()
+
+    function HiddenDanger_property(data) {
+        var myChart = echarts.init(document.getElementById('main5'));
+        var _divs = document.getElementById("main5_div")
+        var spans = _divs.getElementsByTagName('span')
+
+        var option = {
+//  title : {
+//      text: '某站点用户访问来源',
+//      subtext: '纯属虚构',
+//      x:'center'
+//  },
+//  tooltip : {
+//      trigger: 'item',
+//      formatter: "{a} <br/>{b} : {c} ({d}%)"
+//  },
+//  legend: {
+//      orient: 'vertical',
+//      left: 'left',
+//      data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+//  },
+            series: [
+                {
+//          name: '访问来源',
+                    type: 'pie',
+                    radius: '50%',
+//          center: ['50%', '60%'],
+                    data: [
+                        {value: data.value[0], name: data.name[0]},
+                        {value: data.value[1], name: data.name[1]},
+                        {value: data.value[2], name: data.name[2]}
+
+                    ],
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'outside'
+                        },
+                        emphasis: {
+                            show: true,
+                            formatter: function (param) {
+
+                            },
+                            textStyle: {
+//                      fontSize: '16',
+                                fontWeight: 'bold'
+                            }
+                        }
+
+
+                    },
+                    itemStyle: {
+//          	normal:{
+//          		position:'inner'
+//          	
+//          	},
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ],
+            color: ['#e94b65', '#fdb247', '#006ec4']
+        };
+        myChart.setOption(option);
+//myChart.on('mouseover', function (params) {
+//      console.log(params);
+//      if(params.dataIndex==0){//dataIndex；数据在数组中的index
+//          spans[0].innerHTML=params.percent.toFixed(0)+'%'
+//      }
+//      if(params.dataIndex==1){
+//          spans[1].innerHTML=params.percent.toFixed(0)+'%'
+//      }
+//      if(params.dataIndex==2){
+//          spans[2].innerHTML=params.percent.toFixed(0)+'%'
+//      }
+//  });
+//myChart.on('mouseout',function(){
+//			   spans[0].innerHTML=''
+//			   spans[1].innerHTML=''
+//			   spans[2].innerHTML=''
+//			})
+
+    }
+
+    var loadeChart5 = function () {
+        lh_ajax.get({
+            url: "server_json/HiddenDanger_property.json",
+            success: function (msg) {
+                HiddenDanger_property(msg.data),
+                    console.log(msg.data);
+            }
+        })
+    };
+    loadeChart5()
+
+
+    function HiddenDanger_treatment(data) {
+        var myChart = echarts.init(document.getElementById('main6'));
+        option = {
+            color: ['#006ec4', '#fdb247', '#e94b65', 'black'],
+            series: [
+                {
+
+                    type: 'pie',
+                    selectedMode: 'single',
+                    radius: ['10%', '90%'],
+
+                    label: {
+                        normal: {
+                            position: 'inner'
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+
+                },
+                {
+                    type: 'pie',
+                    radius: ['40%', '60%'],
+
+                    data: [
+                        {value: data.value[0], name: data.name[0]},
+                        {value: data.value[1], name: data.name[1]},
+                        {value: data.value[2], name: data.name[2]},
+                        {value: data.value[3], name: data.name[3]}
+                    ]
+                }
+            ]
+        };
+        myChart.setOption(option);
+
+    }
+
+    var loadeChart6 = function () {
+        lh_ajax.get({
+            url: "server_json/HiddenDanger_treatment.json",
+            success: function (msg) {
+                HiddenDanger_treatment(msg.data),
+                    console.log(msg.data);
+            }
+        })
+    };
+    loadeChart6()
+
 }]);
 
+
+		
+	
+	
+	
+	
+	
