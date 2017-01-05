@@ -2,6 +2,11 @@
 	 "status": 1,
  	 "info": "侧边列表",
 	"data":{
-        "value":[60,30]       
+		"yuehuanbi":{
+			"value":[60,30]
+		},
+		"yuetongbi":{
+			"value":[40,72]
+		}
 	}
 }

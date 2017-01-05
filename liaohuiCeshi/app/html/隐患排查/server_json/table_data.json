@@ -1,0 +1,74 @@
+{
+	"status": 1,
+    "info": "侧边列表",
+	"data":[
+			{
+			  		"name":"企业名称",
+			  		"type":"隐患类型 ",
+			  		"number":1,
+			  		"start_time":"时间",
+			    	"end_time":"时间",
+			    	"treatment_status":"通过或者不通过",
+			    	"rectification_person":"人名"
+			},
+			{
+			  		"name":"企业名称",
+			  		"type":"隐患类型 ",
+			  		"number":2,
+			  		"start_time":"时间",
+			    	"end_time":"时间",
+			    	"treatment_status":"通过或者不通过",
+			    	"rectification_person":"人名"
+			},
+			{
+			  		"name":"企业名称",
+			  		"type":"隐患类型 ",
+			  		"number":3,
+			  		"start_time":"时间",
+			    	"end_time":"时间",
+			    	"treatment_status":"通过或者不通过",
+			    	"rectification_person":"人名"
+			},
+			{
+			  		"name":"企业名称",
+			  		"type":"隐患类型 ",
+			  		"number":4,
+			  		"start_time":"时间",
+			    	"end_time":"时间",
+			    	"treatment_status":"通过或者不通过",
+			    	"rectification_person":"人名"
+			},
+			{
+			  		"name":"企业名称",
+			  		"type":"隐患类型 ",
+			  		"number":5,
+			  		"start_time":"时间",
+			    	"end_time":"时间",
+			    	"treatment_status":"通过或者不通过",
+			    	"rectification_person":"人名"
+			},
+			{
+			  		"name":"企业名称",
+			  		"type":"隐患类型 ",
+			  		"number":6,
+			  		"start_time":"时间",
+			    	"end_time":"时间",
+			    	"treatment_status":"通过或者不通过",
+			    	"rectification_person":"人名"
+			},
+			{
+			  		"name":"企业名称",
+			  		"type":"隐患类型 ",
+			  		"number":7,
+			  		"start_time":"时间",
+			    	"end_time":"时间",
+			    	"treatment_status":"通过或者不通过",
+			    	"rectification_person":"人名"
+			}
+			
+		
+	]
+}
+
+
+

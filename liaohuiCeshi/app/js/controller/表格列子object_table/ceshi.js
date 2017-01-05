@@ -97,7 +97,7 @@ var listUserLogin = (function () {
 
             //删除表格数据
             $scope.userListRowShanchu = function (row) {
-
+                // console.log(row)
                 var del =confirm("确认删除");
 
                 if(del==true){
